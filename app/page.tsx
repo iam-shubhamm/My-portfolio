@@ -241,7 +241,7 @@ export default function Home() {
               <div className="mt-5 space-y-4 text-gray-300">
                 <p><span className="font-semibold text-white">Location:</span> Buxar, Bihar, India</p>
                 <p><span className="font-semibold text-white">Email:</span> shubhamkanpura7@gmail.com</p>
-                <p><span className="font-semibold text-white">Phone:</span> +91 9931392284</p>
+                <p><span className="font-semibold text-white">LinkedIn:</span> <a href="https://www.linkedin.com/in/shubhamsingh7a" target="_blank" className="text-cyan-300 underline">View Profile</a></p>
                 <p><span className="font-semibold text-white">Focus:</span> Data Analyst, BI, Python, SQL</p>
               </div>
             </Card>
@@ -337,7 +337,12 @@ export default function Home() {
         <FadeSection id="contact" className="scroll-mt-28 py-16 pb-24">
           <h2 className="text-center text-4xl font-semibold">Contact</h2>
           <div className="mt-10 grid gap-6 md:grid-cols-3">
-            
+            <Card>
+              <p className="text-sm uppercase tracking-[0.2em] text-gray-400">LinkedIn</p>
+              <a href="https://www.linkedin.com/in/shubhamsingh7a" target="_blank" className="mt-3 inline-block text-lg text-cyan-300 underline">
+                Open Profile
+              </a>
+            </Card>
             <Card>
               <p className="text-sm uppercase tracking-[0.2em] text-gray-400">Email</p>
               <p className="mt-3 break-all text-lg text-gray-100">shubhamkanpura7@gmail.com</p>
