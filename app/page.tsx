@@ -319,7 +319,7 @@ export default function Home() {
             <Card>
               <h3 className="text-xl font-semibold">B.Tech in Computer Science and Engineering</h3>
               <p className="mt-3 text-gray-300">United Institute of Technology, Prayagraj</p>
-              <p className="mt-2 text-sm text-gray-400">2021 - 2026</p>
+              <p className="mt-2 text-sm text-gray-400">2021 - 2025</p>
             </Card>
             <Card>
               <h3 className="text-xl font-semibold">Intermediate of Science</h3>
