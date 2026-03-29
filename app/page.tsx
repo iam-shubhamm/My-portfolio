@@ -337,10 +337,7 @@ export default function Home() {
         <FadeSection id="contact" className="scroll-mt-28 py-16 pb-24">
           <h2 className="text-center text-4xl font-semibold">Contact</h2>
           <div className="mt-10 grid gap-6 md:grid-cols-3">
-            <Card>
-              <p className="text-sm uppercase tracking-[0.2em] text-gray-400">Phone</p>
-              <p className="mt-3 text-lg text-gray-100">+91 9931392284</p>
-            </Card>
+            
             <Card>
               <p className="text-sm uppercase tracking-[0.2em] text-gray-400">Email</p>
               <p className="mt-3 break-all text-lg text-gray-100">shubhamkanpura7@gmail.com</p>
