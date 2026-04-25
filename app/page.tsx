@@ -1,359 +1,845 @@
-"use client";
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Shubham Singh | Data Analyst Portfolio</title>
 
-import { motion } from "framer-motion";
-import { BarChart3, BrainCircuit, Database, Sparkles } from "lucide-react";
+  <!-- Google Font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
-const skills = [
-  "Python",
-  "SQL",
-  "Power BI",
-  "Excel",
-  "Pandas",
-  "NumPy",
-  "Seaborn",
-  "PySpark",
-  "Scikit-learn",
-  "Data Cleaning",
-  "EDA",
-  "ETL Pipelines",
-];
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
 
-const projects = [
-  {
-    title: "Heart Attack Prediction Using Machine Learning",
-    desc: "Built a Decision Tree-based predictive model to identify high-risk patients using healthcare datasets, with preprocessing, feature selection, and evaluation.",
-  },
-  {
-    title: "Sales Performance Analysis Using Python and Power BI",
-    desc: "Analyzed sales data to uncover revenue trends and top-performing products, and built interactive Power BI dashboards for decision-making.",
-  },
-  {
-    title: "Movie Recommendation System",
-    desc: "Created a recommendation system using similarity algorithms to deliver more relevant movie suggestions from user behavior and rating patterns.",
-  },
-  {
-    title: "Customer Churn Prediction",
-    desc: "Developed a machine learning model to predict customer churn and identify key factors affecting retention through EDA and feature engineering.",
-  },
-];
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      scroll-behavior: smooth;
+    }
 
-const certifications = [
-  "IAM (TCS)",
-  "HackerRank Certification in Python",
-  "UIT Python Summer Training Certificate",
-  "SQL (Advanced) Certificate - HackerRank",
-];
+    :root {
+      --bg: #0f172a;
+      --card: rgba(15, 23, 42, 0.78);
+      --text: #e5e7eb;
+      --muted: #94a3b8;
+      --primary: #38bdf8;
+      --secondary: #a78bfa;
+      --accent: #22c55e;
+      --white: #ffffff;
+      --border: rgba(148, 163, 184, 0.25);
+      --shadow: 0 25px 60px rgba(0, 0, 0, 0.35);
+    }
 
-const achievements = [
-  "4★ rating in C++ on HackerRank",
-  "4★ rating in Python on HackerRank",
-  "Solved 400+ programming problems on HackerRank, CodeChef, and LeetCode",
-  "Completed multiple certifications in Python and SQL",
-];
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: radial-gradient(circle at top left, #1e3a8a, transparent 35%),
+                  radial-gradient(circle at top right, #581c87, transparent 35%),
+                  var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+    }
 
-function Card({ children }: { children: React.ReactNode }) {
-  return (
-    <motion.div
-      whileHover={{ y: -6, scale: 1.02 }}
-      transition={{ duration: 0.2 }}
-      className="rounded-3xl border border-white/10 bg-white/5 p-6 shadow-2xl backdrop-blur-sm"
-    >
-      {children}
-    </motion.div>
-  );
-}
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
 
-function FadeSection({ id, children, className = "" }: { id?: string; children: React.ReactNode; className?: string }) {
-  return (
-    <motion.section
-      id={id}
-      initial={{ opacity: 0, y: 40 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, amount: 0.2 }}
-      transition={{ duration: 0.7 }}
-      className={className}
-    >
-      {children}
-    </motion.section>
-  );
-}
+    .container {
+      width: min(1120px, 92%);
+      margin: auto;
+    }
 
-export default function Home() {
-  return (
-    <div className="min-h-screen bg-[radial-gradient(circle_at_top,_#0f172a_0%,_#020617_45%,_#000000_100%)] text-white">
-      <header className="fixed inset-x-0 top-0 z-50 border-b border-white/10 bg-black/30 backdrop-blur-md">
-        <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
-          <a href="#home" className="text-lg font-semibold tracking-wide">
-            Shubham Singh
-          </a>
-          <nav className="hidden gap-6 text-sm text-gray-300 md:flex">
-            <a href="#about" className="hover:text-white">About</a>
-            <a href="#skills" className="hover:text-white">Skills</a>
-            <a href="#projects" className="hover:text-white">Projects</a>
-            <a href="#experience" className="hover:text-white">Experience</a>
-            <a href="#education" className="hover:text-white">Education</a>
-            <a href="#contact" className="hover:text-white">Contact</a>
-          </nav>
+    .section {
+      padding: 90px 0;
+    }
+
+    .section-title {
+      text-align: center;
+      margin-bottom: 50px;
+    }
+
+    .section-title span {
+      color: var(--primary);
+      font-weight: 600;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      font-size: 14px;
+    }
+
+    .section-title h2 {
+      font-size: clamp(30px, 4vw, 44px);
+      margin-top: 10px;
+    }
+
+    /* Navbar */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      backdrop-filter: blur(16px);
+      background: rgba(15, 23, 42, 0.82);
+      border-bottom: 1px solid var(--border);
+    }
+
+    nav {
+      height: 72px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo {
+      font-size: 24px;
+      font-weight: 800;
+      color: var(--white);
+    }
+
+    .logo span {
+      color: var(--primary);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 28px;
+      list-style: none;
+      align-items: center;
+    }
+
+    .nav-links a {
+      color: var(--muted);
+      font-size: 15px;
+      transition: 0.3s ease;
+    }
+
+    .nav-links a:hover {
+      color: var(--primary);
+    }
+
+    .menu-btn {
+      display: none;
+      font-size: 26px;
+      cursor: pointer;
+    }
+
+    /* Hero */
+    .hero {
+      min-height: calc(100vh - 72px);
+      display: grid;
+      place-items: center;
+      padding: 70px 0;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 50px;
+      align-items: center;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 9px 16px;
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      color: var(--primary);
+      background: rgba(56, 189, 248, 0.08);
+      margin-bottom: 22px;
+      font-size: 14px;
+    }
+
+    .hero h1 {
+      font-size: clamp(42px, 7vw, 76px);
+      line-height: 1.05;
+      margin-bottom: 22px;
+    }
+
+    .hero h1 span {
+      background: linear-gradient(90deg, var(--primary), var(--secondary));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .hero p {
+      color: var(--muted);
+      max-width: 680px;
+      font-size: 17px;
+      margin-bottom: 32px;
+    }
+
+    .btn-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 13px 22px;
+      border-radius: 14px;
+      border: 1px solid var(--border);
+      font-weight: 600;
+      transition: 0.3s ease;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      color: #020617;
+      border: none;
+    }
+
+    .btn:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow);
+    }
+
+    .hero-card {
+      position: relative;
+      border: 1px solid var(--border);
+      background: var(--card);
+      border-radius: 30px;
+      padding: 34px;
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    .hero-card::before {
+      content: "";
+      position: absolute;
+      inset: -80px;
+      background: conic-gradient(from 180deg, transparent, rgba(56,189,248,0.3), transparent, rgba(167,139,250,0.3), transparent);
+      animation: rotate 7s linear infinite;
+      z-index: -1;
+    }
+
+    @keyframes rotate {
+      to { transform: rotate(360deg); }
+    }
+
+    .profile-circle {
+      width: 170px;
+      height: 170px;
+      border-radius: 50%;
+      margin: 0 auto 24px;
+      display: grid;
+      place-items: center;
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      color: #020617;
+      font-size: 58px;
+      font-weight: 800;
+      box-shadow: 0 20px 50px rgba(56, 189, 248, 0.25);
+    }
+
+    .hero-card h3 {
+      text-align: center;
+      font-size: 26px;
+      margin-bottom: 6px;
+    }
+
+    .hero-card p {
+      text-align: center;
+      margin-bottom: 22px;
+    }
+
+    .socials {
+      display: flex;
+      justify-content: center;
+      gap: 14px;
+    }
+
+    .socials a {
+      width: 44px;
+      height: 44px;
+      display: grid;
+      place-items: center;
+      border-radius: 12px;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid var(--border);
+      transition: 0.3s ease;
+    }
+
+    .socials a:hover {
+      background: var(--primary);
+      color: #020617;
+      transform: translateY(-4px);
+    }
+
+    /* Cards */
+    .glass-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      padding: 28px;
+      box-shadow: var(--shadow);
+      transition: 0.3s ease;
+    }
+
+    .glass-card:hover {
+      transform: translateY(-8px);
+      border-color: rgba(56, 189, 248, 0.45);
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 28px;
+    }
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 18px;
+    }
+
+    .stat h3 {
+      font-size: 34px;
+      color: var(--primary);
+    }
+
+    .stat p {
+      color: var(--muted);
+    }
+
+    /* Skills */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 18px;
+    }
+
+    .skill {
+      text-align: center;
+      padding: 24px 16px;
+    }
+
+    .skill i {
+      font-size: 34px;
+      color: var(--primary);
+      margin-bottom: 14px;
+    }
+
+    .skill h3 {
+      font-size: 18px;
+      margin-bottom: 8px;
+    }
+
+    .skill p {
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    /* Projects */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+
+    .project-card {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .project-icon {
+      width: 58px;
+      height: 58px;
+      border-radius: 18px;
+      display: grid;
+      place-items: center;
+      background: rgba(56, 189, 248, 0.12);
+      color: var(--primary);
+      font-size: 26px;
+      margin-bottom: 20px;
+    }
+
+    .project-card h3 {
+      font-size: 22px;
+      margin-bottom: 12px;
+    }
+
+    .project-card p {
+      color: var(--muted);
+      font-size: 15px;
+      margin-bottom: 18px;
+    }
+
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 24px;
+    }
+
+    .tags span {
+      padding: 6px 10px;
+      border-radius: 999px;
+      background: rgba(167, 139, 250, 0.12);
+      color: #ddd6fe;
+      font-size: 12px;
+      border: 1px solid rgba(167, 139, 250, 0.2);
+    }
+
+    .project-links {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .small-btn {
+      padding: 10px 14px;
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      font-size: 14px;
+      font-weight: 600;
+      transition: 0.3s ease;
+    }
+
+    .small-btn:hover {
+      background: var(--primary);
+      color: #020617;
+      transform: translateY(-3px);
+    }
+
+    /* Timeline */
+    .timeline {
+      display: grid;
+      gap: 22px;
+      max-width: 850px;
+      margin: auto;
+    }
+
+    .timeline-item {
+      position: relative;
+      padding-left: 28px;
+      border-left: 2px solid rgba(56, 189, 248, 0.35);
+    }
+
+    .timeline-item::before {
+      content: "";
+      position: absolute;
+      left: -8px;
+      top: 8px;
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      background: var(--primary);
+    }
+
+    .timeline-item h3 {
+      font-size: 20px;
+    }
+
+    .timeline-item span {
+      color: var(--primary);
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    .timeline-item p {
+      color: var(--muted);
+      margin-top: 8px;
+    }
+
+    /* Contact */
+    .contact-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    .contact-card {
+      text-align: center;
+    }
+
+    .contact-card i {
+      font-size: 30px;
+      color: var(--primary);
+      margin-bottom: 14px;
+    }
+
+    .contact-card p {
+      color: var(--muted);
+      word-break: break-word;
+    }
+
+    footer {
+      padding: 28px 0;
+      text-align: center;
+      border-top: 1px solid var(--border);
+      color: var(--muted);
+    }
+
+    .top-btn {
+      position: fixed;
+      right: 22px;
+      bottom: 22px;
+      width: 46px;
+      height: 46px;
+      border-radius: 50%;
+      background: var(--primary);
+      color: #020617;
+      display: grid;
+      place-items: center;
+      font-weight: 800;
+      box-shadow: var(--shadow);
+      z-index: 999;
+    }
+
+    @media (max-width: 900px) {
+      .menu-btn {
+        display: block;
+      }
+
+      .nav-links {
+        position: absolute;
+        top: 72px;
+        right: 0;
+        width: 100%;
+        padding: 22px;
+        flex-direction: column;
+        background: rgba(15, 23, 42, 0.98);
+        border-bottom: 1px solid var(--border);
+        display: none;
+      }
+
+      .nav-links.active {
+        display: flex;
+      }
+
+      .hero-grid,
+      .about-grid,
+      .projects-grid,
+      .contact-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .skills-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 520px) {
+      .skills-grid,
+      .stats {
+        grid-template-columns: 1fr;
+      }
+
+      .hero h1 {
+        font-size: 40px;
+      }
+
+      .section {
+        padding: 70px 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container">
+      <nav>
+        <a href="#home" class="logo">Shubham<span>.</span></a>
+        <ul class="nav-links" id="navLinks">
+          <li><a href="#home">Home</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#skills">Skills</a></li>
+          <li><a href="#projects">Projects</a></li>
+          <li><a href="#experience">Experience</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+        <div class="menu-btn" onclick="toggleMenu()">
+          <i class="fa-solid fa-bars"></i>
         </div>
-      </header>
-
-      <main id="home" className="mx-auto max-w-6xl px-6 pt-32">
-        <section className="relative flex min-h-screen flex-col items-center justify-center overflow-hidden text-center">
-          <div className="absolute inset-0 -z-10 overflow-hidden">
-            <motion.div
-              animate={{ y: [0, -25, 0], x: [0, 20, 0] }}
-              transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
-              className="absolute left-1/2 top-24 h-72 w-72 -translate-x-1/2 rounded-full bg-cyan-500/20 blur-3xl"
-            />
-            <motion.div
-              animate={{ y: [0, 20, 0], x: [0, -20, 0] }}
-              transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
-              className="absolute bottom-24 left-24 h-64 w-64 rounded-full bg-fuchsia-500/15 blur-3xl"
-            />
-            <motion.div
-              animate={{ y: [0, -18, 0], x: [0, 18, 0] }}
-              transition={{ duration: 9, repeat: Infinity, ease: "easeInOut" }}
-              className="absolute right-20 top-32 h-64 w-64 rounded-full bg-blue-500/20 blur-3xl"
-            />
-            <motion.div
-              animate={{ opacity: [0.15, 0.28, 0.15] }}
-              transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
-              className="absolute inset-0 bg-[linear-gradient(to_right,rgba(255,255,255,0.04)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.04)_1px,transparent_1px)] bg-[size:48px_48px]"
-            />
-            <motion.div
-              animate={{ rotate: 360 }}
-              transition={{ duration: 30, repeat: Infinity, ease: "linear" }}
-              className="absolute left-10 top-28 h-24 w-24 rounded-full border border-cyan-400/20"
-            />
-            <motion.div
-              animate={{ rotate: -360 }}
-              transition={{ duration: 36, repeat: Infinity, ease: "linear" }}
-              className="absolute bottom-20 right-16 h-32 w-32 rounded-full border border-fuchsia-400/20"
-            />
-          </div>
-
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            className="mb-6 inline-flex items-center gap-2 rounded-full border border-cyan-400/30 bg-white/5 px-4 py-2 text-sm text-cyan-200 backdrop-blur-md"
-          >
-            <Sparkles className="h-4 w-4" />
-            Open to Data Analyst Opportunities
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 1.2, repeat: Infinity, repeatType: "reverse", repeatDelay: 1.5 }}
-            className="mb-8 h-2 w-28 rounded-full bg-gradient-to-r from-cyan-400 via-blue-500 to-fuchsia-500 shadow-[0_0_30px_rgba(59,130,246,0.45)]"
-          />
-
-          <motion.h1
-            initial={{ opacity: 0, y: -30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            className="text-5xl font-extrabold tracking-tight text-white md:text-7xl"
-          >
-            Shubham Singh
-          </motion.h1>
-
-          <motion.p
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.2, duration: 0.8 }}
-            className="mt-5 max-w-2xl text-lg text-slate-200 md:text-2xl"
-          >
-            Data Analyst <span className="text-cyan-300">|</span> Python <span className="text-cyan-300">|</span> SQL <span className="text-cyan-300">|</span> Power BI
-          </motion.p>
-
-          <motion.p
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.35, duration: 0.8 }}
-            className="mt-6 max-w-4xl text-base leading-8 text-slate-300 md:text-lg"
-          >
-            I turn raw data into clear insights through analytics, dashboards, and machine learning, with a focus on solving real-world business problems in a practical way.
-          </motion.p>
-
-          <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ delay: 0.45, duration: 0.8 }}
-            className="mt-10 flex flex-wrap items-center justify-center gap-4"
-          >
-            <a href="#projects" className="rounded-full bg-gradient-to-r from-cyan-400 to-blue-500 px-8 py-4 text-lg font-semibold text-black shadow-lg shadow-cyan-500/20 transition hover:scale-105">
-              View Projects
-            </a>
-            <a href="#contact" className="rounded-full border border-cyan-400/30 bg-white/5 px-8 py-4 text-lg font-medium text-white backdrop-blur-md transition hover:bg-white/10">
-              Contact Me
-            </a>
-            <a href="#skills" className="rounded-full border border-fuchsia-400/30 bg-white/5 px-8 py-4 text-lg font-medium text-white backdrop-blur-md transition hover:bg-white/10">
-              Skills
-            </a>
-            <a href="#about" className="rounded-full border border-blue-400/30 bg-white/5 px-8 py-4 text-lg font-medium text-white backdrop-blur-md transition hover:bg-white/10">
-              About
-            </a>
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.55, duration: 0.8 }}
-            className="mt-14 grid w-full max-w-4xl gap-4 md:grid-cols-4"
-          >
-            <div className="rounded-2xl border border-cyan-400/20 bg-slate-900/70 p-4 shadow-lg shadow-cyan-500/10 backdrop-blur-md">
-              <Database className="mx-auto h-6 w-6 text-cyan-300" />
-              <p className="mt-2 text-sm text-slate-300">SQL & Data Handling</p>
-            </div>
-            <div className="rounded-2xl border border-fuchsia-400/20 bg-slate-900/70 p-4 shadow-lg shadow-fuchsia-500/10 backdrop-blur-md">
-              <BarChart3 className="mx-auto h-6 w-6 text-fuchsia-300" />
-              <p className="mt-2 text-sm text-slate-300">Dashboards & BI</p>
-            </div>
-            <div className="rounded-2xl border border-blue-400/20 bg-slate-900/70 p-4 shadow-lg shadow-blue-500/10 backdrop-blur-md">
-              <BrainCircuit className="mx-auto h-6 w-6 text-blue-300" />
-              <p className="mt-2 text-sm text-slate-300">Machine Learning</p>
-            </div>
-            <div className="rounded-2xl border border-emerald-400/20 bg-slate-900/70 p-4 shadow-lg shadow-emerald-500/10 backdrop-blur-md">
-              <Sparkles className="mx-auto h-6 w-6 text-emerald-300" />
-              <p className="mt-2 text-sm text-slate-300">Continuous Learning</p>
-            </div>
-          </motion.div>
-        </section>
-
-        <FadeSection id="about" className="scroll-mt-28 py-16">
-          <div className="grid gap-8 md:grid-cols-[1.4fr_0.9fr]">
-            <Card>
-              <h2 className="text-4xl font-semibold">About Me</h2>
-              <p className="mt-5 text-gray-300 leading-8">
-                I am a B.Tech graduate with a strong interest in Data Analytics and Data Engineering. I enjoy working with data, cleaning it, analyzing it, and turning it into meaningful insights that support better decisions.
-              </p>
-              <p className="mt-4 text-gray-300 leading-8">
-                I have hands-on experience with Python, SQL, Power BI, Excel, Pandas, NumPy, Seaborn, and machine learning concepts. I like exploring patterns in data, building dashboards, and solving real-world business problems in a simple and practical way.
-              </p>
-              <p className="mt-4 text-gray-300 leading-8">
-                Along with analytics, I am continuously improving my skills in ETL pipelines, PySpark, and modern data tools so I can grow into a strong data professional.
-              </p>
-            </Card>
-
-            <Card>
-              <h3 className="text-2xl font-semibold">Quick Info</h3>
-              <div className="mt-5 space-y-4 text-gray-300">
-                <p><span className="font-semibold text-white">Location:</span> Buxar, Bihar, India</p>
-                <p><span className="font-semibold text-white">Email:</span> shubhamkanpura7@gmail.com</p>
-                <p><span className="font-semibold text-white">LinkedIn:</span> <a href="https://www.linkedin.com/in/shubhamsingh7a" target="_blank" className="text-cyan-300 underline">View Profile</a></p>
-                <p><span className="font-semibold text-white">Focus:</span> Data Analyst, BI, Python, SQL</p>
-              </div>
-            </Card>
-          </div>
-        </FadeSection>
-
-        <FadeSection id="skills" className="scroll-mt-28 py-16">
-          <h2 className="text-center text-4xl font-semibold">Technical Skills</h2>
-          <div className="mt-10 grid grid-cols-2 gap-5 md:grid-cols-4">
-            {skills.map((skill) => (
-              <Card key={skill}>
-                <p className="text-center font-medium text-gray-200">{skill}</p>
-              </Card>
-            ))}
-          </div>
-        </FadeSection>
-
-        <FadeSection id="projects" className="scroll-mt-28 py-16">
-          <h2 className="text-center text-4xl font-semibold">Projects</h2>
-          <div className="mt-10 grid gap-6 md:grid-cols-2">
-            {projects.map((project) => (
-              <Card key={project.title}>
-                <div className="mb-4 flex h-40 items-end rounded-2xl border border-white/5 bg-[linear-gradient(135deg,#1e293b,#0f172a)] p-4">
-                  <span className="text-sm uppercase tracking-[0.2em] text-gray-300">Project</span>
-                </div>
-                <h3 className="text-xl font-semibold">{project.title}</h3>
-                <p className="mt-3 leading-7 text-gray-300">{project.desc}</p>
-              </Card>
-            ))}
-          </div>
-        </FadeSection>
-
-        <FadeSection id="experience" className="scroll-mt-28 py-16">
-          <h2 className="text-center text-4xl font-semibold">Experience</h2>
-          <div className="mt-10">
-            <Card>
-              <h3 className="text-2xl font-semibold">Identity and Access Management (Virtual Experience) - Tata Consultancy Services (Forage)</h3>
-              <ul className="mt-4 list-disc space-y-3 pl-6 text-gray-300 leading-7">
-                <li>Applied IAM concepts including user lifecycle management and role-based access control (RBAC) to design secure access systems.</li>
-                <li>Developed IAM solutions aligned with business requirements, improving access efficiency and strengthening security compliance.</li>
-              </ul>
-            </Card>
-          </div>
-        </FadeSection>
-
-        <FadeSection className="py-16">
-          <div className="grid gap-8 md:grid-cols-2">
-            <div id="achievements" className="scroll-mt-28">
-              <h2 className="text-center text-4xl font-semibold md:text-left">Achievements</h2>
-              <div className="mt-8 grid gap-5">
-                {achievements.map((item) => (
-                  <Card key={item}>
-                    <p className="text-gray-200">🏆 {item}</p>
-                  </Card>
-                ))}
-              </div>
-            </div>
-
-            <div id="certifications" className="scroll-mt-28">
-              <h2 className="text-center text-4xl font-semibold md:text-left">Certifications</h2>
-              <div className="mt-8 grid gap-5">
-                {certifications.map((item) => (
-                  <Card key={item}>
-                    <p className="text-gray-200">📜 {item}</p>
-                  </Card>
-                ))}
-              </div>
-            </div>
-          </div>
-        </FadeSection>
-
-        <FadeSection id="education" className="scroll-mt-28 py-16">
-          <h2 className="text-center text-4xl font-semibold">Education</h2>
-          <div className="mt-10 grid gap-6 md:grid-cols-3">
-            <Card>
-              <h3 className="text-xl font-semibold">B.Tech in Computer Science and Engineering</h3>
-              <p className="mt-3 text-gray-300">United Institute of Technology, Prayagraj</p>
-              <p className="mt-2 text-sm text-gray-400">2021 - 2025</p>
-            </Card>
-            <Card>
-              <h3 className="text-xl font-semibold">Intermediate of Science</h3>
-              <p className="mt-3 text-gray-300">Maharshi Chayan College, Buxar</p>
-              <p className="mt-2 text-sm text-gray-400">2021</p>
-            </Card>
-            <Card>
-              <h3 className="text-xl font-semibold">Secondary School</h3>
-              <p className="mt-3 text-gray-300">Bihar Public School, Buxar</p>
-              <p className="mt-2 text-sm text-gray-400">2019</p>
-            </Card>
-          </div>
-        </FadeSection>
-
-        <FadeSection id="contact" className="scroll-mt-28 py-16 pb-24">
-          <h2 className="text-center text-4xl font-semibold">Contact</h2>
-          <div className="mt-10 grid gap-6 md:grid-cols-3">
-            <Card>
-              <p className="text-sm uppercase tracking-[0.2em] text-gray-400">LinkedIn</p>
-              <a href="https://www.linkedin.com/in/shubhamsingh7a" target="_blank" className="mt-3 inline-block text-lg text-cyan-300 underline">
-                Open Profile
-              </a>
-            </Card>
-            <Card>
-              <p className="text-sm uppercase tracking-[0.2em] text-gray-400">Email</p>
-              <p className="mt-3 break-all text-lg text-gray-100">shubhamkanpura7@gmail.com</p>
-            </Card>
-            <Card>
-              <p className="text-sm uppercase tracking-[0.2em] text-gray-400">Location</p>
-              <p className="mt-3 text-lg text-gray-100">Buxar, Bihar, India</p>
-            </Card>
-          </div>
-        </FadeSection>
-      </main>
+      </nav>
     </div>
-  );
-}
+  </header>
+
+  <main>
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+      <div class="container hero-grid">
+        <div>
+          <div class="badge"><i class="fa-solid fa-chart-line"></i> Data Analyst Portfolio</div>
+          <h1>Hi, I'm <span>Shubham Singh</span></h1>
+          <p>
+            Data Analyst skilled in SQL, Python, Excel, Power BI and Tableau. I create dashboards,
+            analyze KPIs, clean real-world datasets, and convert raw data into clear business insights.
+          </p>
+          <div class="btn-group">
+            <a href="#projects" class="btn btn-primary"><i class="fa-solid fa-briefcase"></i> View Projects</a>
+            <a href="https://github.com/iam-shubhamm?tab=repositories" target="_blank" class="btn"><i class="fa-brands fa-github"></i> GitHub</a>
+            <a href="https://www.linkedin.com/in/shubhamsingh7a" target="_blank" class="btn"><i class="fa-brands fa-linkedin"></i> LinkedIn</a>
+          </div>
+        </div>
+
+        <div class="hero-card">
+          <div class="profile-circle">SS</div>
+          <h3>Shubham Singh</h3>
+          <p>Data Analyst | Python | SQL | Power BI</p>
+          <div class="socials">
+            <a href="mailto:shubhamkanpura7@gmail.com" title="Email"><i class="fa-solid fa-envelope"></i></a>
+            <a href="tel:+919931392284" title="Phone"><i class="fa-solid fa-phone"></i></a>
+            <a href="https://github.com/iam-shubhamm?tab=repositories" target="_blank" title="GitHub"><i class="fa-brands fa-github"></i></a>
+            <a href="https://www.linkedin.com/in/shubhamsingh7a" target="_blank" title="LinkedIn"><i class="fa-brands fa-linkedin"></i></a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- About -->
+    <section class="section" id="about">
+      <div class="container">
+        <div class="section-title">
+          <span>About Me</span>
+          <h2>Turning Data Into Decisions</h2>
+        </div>
+        <div class="about-grid">
+          <div class="glass-card">
+            <h3>Who I Am</h3>
+            <p>
+              I am a Data Analyst with hands-on experience in SQL, Python, Excel, Power BI and Tableau.
+              I enjoy working with datasets, building interactive dashboards, designing KPIs and finding
+              useful patterns that help businesses make better decisions.
+            </p>
+            <br>
+            <p>
+              My work includes customer churn analysis, pizza sales analysis and a movie recommendation system.
+              I focus on clean presentation, strong insights and real-world business value.
+            </p>
+          </div>
+          <div class="stats">
+            <div class="glass-card stat">
+              <h3>10+</h3>
+              <p>Data Analysis Projects</p>
+            </div>
+            <div class="glass-card stat">
+              <h3>48K+</h3>
+              <p>Pizza Sales Records Analyzed</p>
+            </div>
+            <div class="glass-card stat">
+              <h3>4K+</h3>
+              <p>Telecom Customers Analyzed</p>
+            </div>
+            <div class="glass-card stat">
+              <h3>11</h3>
+              <p>Real-world Assignments</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Skills -->
+    <section class="section" id="skills">
+      <div class="container">
+        <div class="section-title">
+          <span>Skills</span>
+          <h2>Tools & Technologies</h2>
+        </div>
+        <div class="skills-grid">
+          <div class="glass-card skill">
+            <i class="fa-solid fa-database"></i>
+            <h3>SQL</h3>
+            <p>Queries, Joins, Aggregation, KPI Analysis</p>
+          </div>
+          <div class="glass-card skill">
+            <i class="fa-brands fa-python"></i>
+            <h3>Python</h3>
+            <p>Pandas, NumPy, Data Cleaning, EDA</p>
+          </div>
+          <div class="glass-card skill">
+            <i class="fa-solid fa-chart-pie"></i>
+            <h3>Power BI</h3>
+            <p>Dashboards, Visuals, Business Insights</p>
+          </div>
+          <div class="glass-card skill">
+            <i class="fa-solid fa-file-excel"></i>
+            <h3>Advanced Excel</h3>
+            <p>Reports, Analysis, Pivot Tables</p>
+          </div>
+          <div class="glass-card skill">
+            <i class="fa-solid fa-chart-simple"></i>
+            <h3>Tableau</h3>
+            <p>Interactive Data Visualization</p>
+          </div>
+          <div class="glass-card skill">
+            <i class="fa-solid fa-broom"></i>
+            <h3>Data Cleaning</h3>
+            <p>Transforming raw data into useful data</p>
+          </div>
+          <div class="glass-card skill">
+            <i class="fa-solid fa-lightbulb"></i>
+            <h3>Data Storytelling</h3>
+            <p>Clear insights for decision-making</p>
+          </div>
+          <div class="glass-card skill">
+            <i class="fa-solid fa-robot"></i>
+            <h3>Machine Learning</h3>
+            <p>Decision Trees, Scikit-learn</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Projects -->
+    <section class="section" id="projects">
+      <div class="container">
+        <div class="section-title">
+          <span>Projects</span>
+          <h2>Featured Work</h2>
+        </div>
+
+        <div class="projects-grid">
+          <div class="glass-card project-card">
+            <div class="project-icon"><i class="fa-solid fa-user-minus"></i></div>
+            <h3>Customer Churn Prediction</h3>
+            <p>
+              Analyzed 4,043 telecom customers to identify churn patterns based on tenure, contract type and monthly charges.
+              Built Power BI visuals to highlight churn-prone customer segments.
+            </p>
+            <div class="tags">
+              <span>Power BI</span>
+              <span>Dashboard</span>
+              <span>KPI Analysis</span>
+            </div>
+            <div class="project-links">
+              <a href="https://github.com/iam-shubhamm/Customer-Churn-Prediction" target="_blank" class="small-btn">
+                <i class="fa-brands fa-github"></i> View Project
+              </a>
+            </div>
+          </div>
+
+          <div class="glass-card project-card">
+            <div class="project-icon"><i class="fa-solid fa-pizza-slice"></i></div>
+            <h3>Pizza Sales Data Analysis</h3>
+            <p>
+              Analyzed 48,000+ pizza sales records using Microsoft SQL Server and Power BI. Created KPIs like revenue,
+              average order value, total orders and sales trends.
+            </p>
+            <div class="tags">
+              <span>MS SQL Server</span>
+              <span>Power BI</span>
+              <span>Sales Analysis</span>
+            </div>
+            <div class="project-links">
+              <a href="https://github.com/iam-shubhamm/Pizza-Sales-Analysis-Dashboard-using-MS-SQL-Server-and-Power-BI" target="_blank" class="small-btn">
+                <i class="fa-brands fa-github"></i> View Project
+              </a>
+            </div>
+          </div>
+
+          <div class="glass-card project-card">
+            <div class="project-icon"><i class="fa-solid fa-film"></i></div>
+            <h3>Movie Recommendation System</h3>
+            <p>
+              Built a content-based movie recommendation system using Python, Pandas and Scikit-learn. Deployed an
+              interactive Streamlit application for personalized movie suggestions.
+            </p>
+            <div class="tags">
+              <span>Python</span>
+              <span>Scikit-learn</span>
+              <span>Streamlit</span>
+            </div>
+            <div class="project-links">
+              <a href="https://github.com/iam-shubhamm/Movie-Recommendation-System" target="_blank" class="small-btn">
+                <i class="fa-brands fa-github"></i> View Project
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Experience -->
+    <section class="section" id="experience">
+      <div class="container">
+        <div class="section-title">
+          <span>Experience & Education</span>
+          <h2>My Journey</h2>
+        </div>
+        <div class="timeline">
+          <div class="glass-card timeline-item">
+            <h3>Identity and Access Management Virtual Experience</h3>
+            <span>Tata Consultancy Services - Forage</span>
+            <p>
+              Completed a virtual consulting experience with TCS, applying IAM concepts to design secure access systems,
+              improve access efficiency and strengthen security compliance.
+            </p>
+          </div>
+
+          <div class="glass-card timeline-item">
+            <h3>Bachelor of Technology</h3>
+            <span>United Institute of Technology, Prayagraj | 2021 - 2025</span>
+            <p>
+              Completed B.Tech from AKTU with a focus on technology, programming and data-driven projects.
+            </p>
+          </div>
+
+          <div class="glass-card timeline-item">
+            <h3>Certifications</h3>
+            <span>Data Analytics & SQL</span>
+            <p>
+              Completed Tutedude Data Analytics training and earned SQL Advanced certification from HackerRank.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact -->
+    <section class="section" id="contact">
+      <div class="container">
+        <div class="section-title">
+          <span>Contact</span>
+          <h2>Let's Connect</h2>
+        </div>
+        <div class="contact-grid">
+          <a class="glass-card contact-card" href="mailto:shubhamkanpura7@gmail.com">
+            <i class="fa-solid fa-envelope"></i>
+            <h3>Email</h3>
+            <p>shubhamkanpura7@gmail.com</p>
+          </a>
+          <a class="glass-card contact-card" href="tel:+919931392284">
+            <i class="fa-solid fa-phone"></i>
+            <h3>Phone</h3>
+            <p>+91-9931392284</p>
+          </a>
+          <a class="glass-card contact-card" href="https://www.linkedin.com/in/shubhamsingh7a" target="_blank">
+            <i class="fa-brands fa-linkedin"></i>
+            <h3>LinkedIn</h3>
+            <p>linkedin.com/in/shubhamsingh7a</p>
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <p>© 2026 Shubham Singh. Built with HTML, CSS and JavaScript.</p>
+    </div>
+  </footer>
+
+  <a href="#home" class="top-btn"><i class="fa-solid fa-arrow-up"></i></a>
+
+  <script>
+    function toggleMenu() {
+      document.getElementById('navLinks').classList.toggle('active');
+    }
+
+    const links = document.querySelectorAll('.nav-links a');
+    links.forEach(link => {
+      link.addEventListener('click', () => {
+        document.getElementById('navLinks').classList.remove('active');
+      });
+    });
+  </script>
+</body>
+</html>
