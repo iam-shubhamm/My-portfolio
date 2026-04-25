@@ -69,7 +69,7 @@ export default function Home() {
       </nav>
 
       <section className="hero">
-        <div className="hero-left">
+        <div>
           <p className="small-badge">Data Analyst Portfolio</p>
 
           <h1>
@@ -164,8 +164,8 @@ export default function Home() {
           <div className="glass-box">
             <h3>🎯 Decision Focused</h3>
             <p>
-              My dashboards are not only beautiful — they are designed to help
-              users take action.
+              My dashboards are designed to help users understand data and take
+              action.
             </p>
           </div>
 
@@ -230,36 +230,25 @@ export default function Home() {
           <div className="process-card">
             <b>01</b>
             <h3>Understand Problem</h3>
-            <p>
-              First I understand the business question, objective and important
-              KPIs.
-            </p>
+            <p>First I understand the business question and important KPIs.</p>
           </div>
 
           <div className="process-card">
             <b>02</b>
             <h3>Clean Data</h3>
-            <p>
-              I prepare data by cleaning, filtering, transforming and organizing
-              it.
-            </p>
+            <p>I prepare data by cleaning, filtering and transforming it.</p>
           </div>
 
           <div className="process-card">
             <b>03</b>
             <h3>Analyze Trends</h3>
-            <p>
-              I find patterns, segments, outliers and insights from real
-              datasets.
-            </p>
+            <p>I find patterns, segments and useful insights from datasets.</p>
           </div>
 
           <div className="process-card">
             <b>04</b>
             <h3>Build Dashboard</h3>
-            <p>
-              I create interactive dashboards with clean visual storytelling.
-            </p>
+            <p>I create interactive dashboards with visual storytelling.</p>
           </div>
         </div>
       </section>
