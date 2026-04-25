@@ -33,7 +33,9 @@ export default function Home() {
       </div>
 
       <nav className="navbar">
-        <h2 className="logo">Shubham<span>.</span></h2>
+        <h2 className="logo">
+          Shubham<span>.</span>
+        </h2>
 
         <div className="nav-links">
           <a href="#home">Home</a>
@@ -51,17 +53,23 @@ export default function Home() {
       <section id="home" className="hero">
         <div className="hero-text reveal">
           <p className="tag">Data Analyst & Developer</p>
+
           <h1>
             Hi, I&apos;m <span>Shubham Singh</span>
           </h1>
+
           <p>
             I build data-driven projects using Power BI, Python, SQL, Machine
             Learning, and modern web technologies.
           </p>
 
           <div className="buttons">
-            <a href="#projects" className="btn primary">View Projects</a>
-            <a href="#contact" className="btn secondary">Contact Me</a>
+            <a href="#projects" className="btn primary">
+              View Projects
+            </a>
+            <a href="#contact" className="btn secondary">
+              Contact Me
+            </a>
           </div>
         </div>
 
@@ -73,6 +81,7 @@ export default function Home() {
               width={320}
               height={320}
               className="profile-img"
+              priority
             />
           </div>
         </div>
@@ -86,10 +95,10 @@ export default function Home() {
 
         <div className="about-box reveal">
           <p>
-            I am a B.Tech Computer Science graduate interested in Data Analytics,
-            Machine Learning, and Front-End Development. I enjoy creating
-            dashboards, analyzing data, and building projects that solve real
-            problems.
+            I am a B.Tech Computer Science graduate interested in Data
+            Analytics, Machine Learning, and Front-End Development. I enjoy
+            creating dashboards, analyzing data, and building projects that solve
+            real business problems.
           </p>
         </div>
       </section>
@@ -101,7 +110,16 @@ export default function Home() {
         </div>
 
         <div className="grid">
-          {["Power BI", "Python", "SQL", "Machine Learning", "HTML", "CSS", "JavaScript", "Next.js"].map((skill) => (
+          {[
+            "Power BI",
+            "Python",
+            "SQL",
+            "Machine Learning",
+            "HTML",
+            "CSS",
+            "JavaScript",
+            "Next.js",
+          ].map((skill) => (
             <div className="card reveal" key={skill}>
               <h3>{skill}</h3>
               <p>Practical project-based knowledge and hands-on experience.</p>
@@ -117,27 +135,42 @@ export default function Home() {
         </div>
 
         <div className="grid projects">
-          <div className="card reveal">
-            <h3>Heart Attack Prediction</h3>
+          <a
+            href="https://github.com/iam-shubhamm/Pizza-Sales-Analysis-Dashboard-using-MS-SQL-Server-and-Power-BI"
+            target="_blank"
+            className="card reveal project-link"
+          >
+            <h3>Pizza Sales Analysis Dashboard</h3>
             <p>
-              Machine learning project using Decision Tree models to predict
-              heart attack risk.
+              Power BI and MS SQL Server project to analyze pizza sales,
+              revenue, orders, top-selling pizzas, and business performance
+              insights.
             </p>
-          </div>
+          </a>
 
-          <div className="card reveal">
-            <h3>Customer Churn Dashboard</h3>
+          <a
+            href="https://github.com/iam-shubhamm/Customer-Churn-Prediction"
+            target="_blank"
+            className="card reveal project-link"
+          >
+            <h3>Customer Churn Prediction</h3>
             <p>
-              Power BI dashboard to analyze customer churn and business insights.
+              Power BI dashboard project to analyze customer churn and understand
+              important business insights.
             </p>
-          </div>
+          </a>
 
-          <div className="card reveal">
+          <a
+            href="https://github.com/iam-shubhamm/Movie-Recommendation-System"
+            target="_blank"
+            className="card reveal project-link"
+          >
             <h3>Movie Recommendation System</h3>
             <p>
-              Streamlit-based movie recommendation app using similarity logic.
+              Streamlit-based movie recommendation app using Python and
+              similarity logic.
             </p>
-          </div>
+          </a>
         </div>
       </section>
 
@@ -148,9 +181,29 @@ export default function Home() {
         </div>
 
         <div className="contact-box reveal">
-          <p>Email: your.email@example.com</p>
-          <p>GitHub: github.com/yourusername</p>
-          <p>LinkedIn: linkedin.com/in/yourprofile</p>
+          <p>
+            Email:{" "}
+            <a href="mailto:shubhamkanpura7@gmail.com">
+              shubhamkanpura7@gmail.com
+            </a>
+          </p>
+
+          <p>
+            GitHub:{" "}
+            <a href="https://github.com/iam-shubhamm" target="_blank">
+              github.com/iam-shubhamm
+            </a>
+          </p>
+
+          <p>
+            LinkedIn:{" "}
+            <a
+              href="https://www.linkedin.com/in/shubhamsingh7a"
+              target="_blank"
+            >
+              linkedin.com/in/shubhamsingh7a
+            </a>
+          </p>
         </div>
       </section>
     </main>
