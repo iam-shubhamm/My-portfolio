@@ -1,7 +1,7 @@
 import "./globals.css";
 
 export const metadata = {
-  title: "Shubham Singh | Data Analyst Portfolio",
+  title: "Shubham Singh | 3D Data Analyst Portfolio",
   description: "3D Animated Data Analyst Portfolio",
 };
 
