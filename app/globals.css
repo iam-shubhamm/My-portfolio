@@ -68,9 +68,11 @@ main.dark {
 }
 
 @keyframes float {
-  0%, 100% {
+  0%,
+  100% {
     transform: translateY(0) rotateX(0deg) rotateY(0deg);
   }
+
   50% {
     transform: translateY(-40px) rotateX(20deg) rotateY(25deg);
   }
@@ -226,9 +228,11 @@ main.dark {
 }
 
 @keyframes card3d {
-  0%, 100% {
+  0%,
+  100% {
     transform: rotateY(-8deg) rotateX(5deg) translateY(0);
   }
+
   50% {
     transform: rotateY(8deg) rotateX(-5deg) translateY(-18px);
   }
@@ -311,6 +315,22 @@ main.dark {
 .contact-box p {
   opacity: 0.8;
   line-height: 1.7;
+}
+
+.project-link {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+}
+
+.contact-box a {
+  color: #2563eb;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.contact-box a:hover {
+  text-decoration: underline;
 }
 
 .reveal {
