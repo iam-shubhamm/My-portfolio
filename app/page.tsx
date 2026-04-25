@@ -1,6 +1,5 @@
 "use client";
 
-import Image from "next/image";
 import { useEffect, useState } from "react";
 
 export default function Home() {
@@ -40,19 +39,19 @@ export default function Home() {
       title: "Pizza Sales Analysis Dashboard",
       link: "https://github.com/iam-shubhamm/Pizza-Sales-Analysis-Dashboard-using-MS-SQL-Server-and-Power-BI",
       tools: "MS SQL Server, Power BI",
-      desc: "Analyzed pizza sales data to track total revenue, total orders, best-selling pizzas, sales trends, and business performance using SQL queries and Power BI dashboard visuals.",
+      desc: "Analyzed pizza sales data to track revenue, orders, top-selling pizzas, trends, and business performance using SQL and Power BI.",
     },
     {
       title: "Customer Churn Prediction",
       link: "https://github.com/iam-shubhamm/Customer-Churn-Prediction",
       tools: "Power BI",
-      desc: "Created a Power BI dashboard to understand customer churn patterns, identify important churn factors, and present clear business insights through interactive visuals.",
+      desc: "Created a Power BI dashboard to understand customer churn patterns and present clear business insights.",
     },
     {
       title: "Movie Recommendation System",
       link: "https://github.com/iam-shubhamm/Movie-Recommendation-System",
       tools: "Python, Streamlit",
-      desc: "Built a movie recommendation project that suggests movies based on similarity logic and provides a simple interactive interface using Streamlit.",
+      desc: "Built a movie recommendation project that suggests movies based on similarity logic using Streamlit.",
     },
   ];
 
@@ -92,8 +91,7 @@ export default function Home() {
 
           <p>
             I am a Data Analyst skilled in Power BI, SQL, Python, dashboard
-            creation, data visualization, and business insights. I enjoy
-            analyzing data and presenting it in a clear and meaningful way.
+            creation, data visualization, and business insights.
           </p>
 
           <div className="buttons">
@@ -107,15 +105,24 @@ export default function Home() {
         </div>
 
         <div className="hero-card reveal">
-          <div className="photo-card">
-            <Image
-              src="/myphoto.jpg"
-              alt="Shubham Singh"
-              width={320}
-              height={320}
-              className="profile-img"
-              priority
-            />
+          <div className="data-visual-3d">
+            <div className="cube">
+              <div className="face front">Power BI</div>
+              <div className="face back">SQL</div>
+              <div className="face right">Python</div>
+              <div className="face left">Data</div>
+              <div className="face top">Charts</div>
+              <div className="face bottom">Insights</div>
+            </div>
+
+            <div className="chart-bars">
+              <span></span>
+              <span></span>
+              <span></span>
+              <span></span>
+            </div>
+
+            <p>Data • Dashboard • Insights</p>
           </div>
         </div>
       </section>
@@ -129,10 +136,9 @@ export default function Home() {
         <div className="about-box reveal">
           <p>
             I am a B.Tech Computer Science graduate with a strong interest in
-            Data Analytics. I work with tools like Power BI, SQL, MS SQL Server,
-            and Python to analyze data, create dashboards, and generate useful
-            business insights. My focus is to convert raw data into simple,
-            clear, and decision-making reports.
+            Data Analytics. I work with Power BI, SQL, MS SQL Server, and Python
+            to analyze data, create dashboards, and generate useful business
+            insights.
           </p>
         </div>
       </section>
@@ -189,11 +195,16 @@ export default function Home() {
         </div>
 
         <div className="contact-container reveal">
-          <a href="mailto:shubhamkanpura7@gmail.com" className="contact-item">
+          <a
+            href="https://mail.google.com/mail/?view=cm&fs=1&to=shubhamkanpura7@gmail.com&su=Portfolio%20Contact&body=Hi%20Shubham,%0A%0AI%20visited%20your%20portfolio%20and%20want%20to%20connect%20with%20you.%0A%0A"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="contact-item"
+          >
             <span>📧</span>
             <div>
               <h3>Email</h3>
-              <p>shubhamkanpura7@gmail.com</p>
+              <p>Click to open Gmail compose</p>
             </div>
           </a>
 
