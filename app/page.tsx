@@ -206,7 +206,7 @@ export default function Home() {
             <span>📧</span>
             <div>
               <h3>Email</h3>
-              <p>Open Gmail compose</p>
+              <p>shubhamkanpura7@gmail.com</p>
             </div>
           </a>
 
