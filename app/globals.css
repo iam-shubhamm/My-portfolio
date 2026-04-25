@@ -1,18 +1,8 @@
 @import "tailwindcss";
 
-* {
-  box-sizing: border-box;
-  scroll-behavior: smooth;
-}
-
-html,
 body {
   margin: 0;
-  padding: 0;
   background: #070b1a;
   color: white;
-}
-
-a {
-  text-decoration: none;
+  font-family: Arial, sans-serif;
 }
