@@ -7,10 +7,10 @@ export default function Home() {
   const [dark, setDark] = useState(false);
 
   useEffect(() => {
-    const items = document.querySelectorAll(".reveal");
+    const revealItems = document.querySelectorAll(".reveal");
 
     const revealOnScroll = () => {
-      items.forEach((item) => {
+      revealItems.forEach((item) => {
         const top = item.getBoundingClientRect().top;
         if (top < window.innerHeight - 100) {
           item.classList.add("active");
@@ -164,15 +164,18 @@ export default function Home() {
             <a
               href={project.link}
               target="_blank"
+              rel="noopener noreferrer"
               className="project-card reveal"
               key={project.title}
             >
               <div className="project-number">0{index + 1}</div>
+
               <div>
                 <h3>{project.title}</h3>
                 <span>{project.tools}</span>
                 <p>{project.desc}</p>
               </div>
+
               <div className="project-arrow">↗</div>
             </a>
           ))}
@@ -197,6 +200,7 @@ export default function Home() {
           <a
             href="https://github.com/iam-shubhamm"
             target="_blank"
+            rel="noopener noreferrer"
             className="contact-item"
           >
             <span>💻</span>
@@ -209,6 +213,7 @@ export default function Home() {
           <a
             href="https://www.linkedin.com/in/shubhamsingh7a"
             target="_blank"
+            rel="noopener noreferrer"
             className="contact-item"
           >
             <span>🔗</span>
