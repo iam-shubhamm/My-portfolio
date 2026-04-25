@@ -2,7 +2,7 @@ import "./globals.css";
 
 export const metadata = {
   title: "Shubham Singh | Data Analyst Portfolio",
-  description: "Data Analyst Portfolio of Shubham Singh",
+  description: "3D Animated Data Analyst Portfolio",
 };
 
 export default function RootLayout({
