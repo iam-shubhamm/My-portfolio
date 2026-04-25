@@ -39,19 +39,19 @@ export default function Home() {
       title: "Pizza Sales Analysis Dashboard",
       link: "https://github.com/iam-shubhamm/Pizza-Sales-Analysis-Dashboard-using-MS-SQL-Server-and-Power-BI",
       tools: "MS SQL Server, Power BI",
-      desc: "Analyzed pizza sales data to track revenue, orders, top-selling pizzas, trends, and business performance using SQL and Power BI.",
+      desc: "Analyzed pizza sales data to track revenue, orders, top-selling pizzas, sales trends, and business performance using SQL queries and Power BI dashboard visuals.",
     },
     {
       title: "Customer Churn Prediction",
       link: "https://github.com/iam-shubhamm/Customer-Churn-Prediction",
       tools: "Power BI",
-      desc: "Created a Power BI dashboard to understand customer churn patterns and present clear business insights.",
+      desc: "Created a Power BI dashboard to analyze customer churn patterns, identify churn factors, and present clear business insights through interactive visuals.",
     },
     {
       title: "Movie Recommendation System",
       link: "https://github.com/iam-shubhamm/Movie-Recommendation-System",
       tools: "Python, Streamlit",
-      desc: "Built a movie recommendation project that suggests movies based on similarity logic using Streamlit.",
+      desc: "Built a movie recommendation project that suggests movies based on similarity logic and provides a simple interactive interface using Streamlit.",
     },
   ];
 
@@ -91,7 +91,8 @@ export default function Home() {
 
           <p>
             I am a Data Analyst skilled in Power BI, SQL, Python, dashboard
-            creation, data visualization, and business insights.
+            creation, data visualization, and business insights. I enjoy
+            analyzing data and presenting it in a clear and meaningful way.
           </p>
 
           <div className="buttons">
@@ -104,7 +105,7 @@ export default function Home() {
           </div>
         </div>
 
-        <div className="hero-card reveal">
+        <div className="hero-visual reveal">
           <div className="data-visual-3d">
             <div className="cube">
               <div className="face front">Power BI</div>
@@ -138,7 +139,8 @@ export default function Home() {
             I am a B.Tech Computer Science graduate with a strong interest in
             Data Analytics. I work with Power BI, SQL, MS SQL Server, and Python
             to analyze data, create dashboards, and generate useful business
-            insights.
+            insights. My focus is to convert raw data into simple, clear, and
+            decision-making reports.
           </p>
         </div>
       </section>
@@ -204,7 +206,7 @@ export default function Home() {
             <span>📧</span>
             <div>
               <h3>Email</h3>
-              <p>Click to open Gmail compose</p>
+              <p>Open Gmail compose</p>
             </div>
           </a>
 
