@@ -1,8 +1,115 @@
 @import "tailwindcss";
 
+* {
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+}
+
+html,
 body {
   margin: 0;
+  padding: 0;
+}
+
+.dark-theme {
+  min-height: 100vh;
   background: #070b1a;
   color: white;
-  font-family: Arial, sans-serif;
+}
+
+.light-theme {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #fdf2f8, #eff6ff, #ecfeff);
+  color: #0f172a;
+}
+
+.light-theme p {
+  color: #334155 !important;
+}
+
+.light-theme .glass-card,
+.light-theme .project-card,
+.light-theme .skill-card {
+  background: rgba(255, 255, 255, 0.72);
+  border: 1px solid rgba(15, 23, 42, 0.12);
+}
+
+.glass-card {
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(255, 255, 255, 0.09);
+  border-radius: 32px;
+  padding: 32px;
+  backdrop-filter: blur(18px);
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.28);
+  transition: 0.3s ease;
+}
+
+.glass-card:hover {
+  transform: translateY(-10px);
+  border-color: rgba(34, 211, 238, 0.7);
+}
+
+.skill-card {
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(255, 255, 255, 0.09);
+  border-radius: 28px;
+  padding: 28px;
+  text-align: center;
+  backdrop-filter: blur(18px);
+  transition: 0.3s ease;
+}
+
+.skill-card:hover {
+  transform: translateY(-10px) scale(1.03);
+  border-color: rgba(236, 72, 153, 0.8);
+}
+
+.project-card {
+  overflow: hidden;
+  border-radius: 36px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(255, 255, 255, 0.09);
+  backdrop-filter: blur(18px);
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.28);
+  transition: 0.35s ease;
+}
+
+.project-card:hover {
+  transform: translateY(-14px) scale(1.02);
+  border-color: rgba(250, 204, 21, 0.8);
+}
+
+.premium-btn {
+  border-radius: 18px;
+  background: linear-gradient(90deg, #22d3ee, #a855f7, #ec4899);
+  padding: 15px 28px;
+  font-weight: 900;
+  color: white;
+  box-shadow: 0 18px 40px rgba(34, 211, 238, 0.28);
+  transition: 0.3s ease;
+}
+
+.premium-btn:hover {
+  transform: translateY(-4px) scale(1.05);
+}
+
+.outline-btn {
+  border-radius: 18px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.1);
+  padding: 15px 28px;
+  font-weight: 900;
+  color: white;
+  backdrop-filter: blur(14px);
+  transition: 0.3s ease;
+}
+
+.outline-btn:hover {
+  transform: translateY(-4px) scale(1.05);
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.light-theme .outline-btn {
+  color: #0f172a;
+  border-color: rgba(15, 23, 42, 0.2);
 }
