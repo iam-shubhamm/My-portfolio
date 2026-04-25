@@ -15,7 +15,7 @@ const projects = [
     title: "Pizza Sales Data Analysis",
     tag: "SQL + Power BI",
     icon: "🍕",
-    desc: "Analyzed 48,000+ pizza sales records using MS SQL Server and Power BI to find revenue trends and best-selling products.",
+    desc: "Analyzed pizza sales records using MS SQL Server and Power BI to find revenue trends, best-selling products and business insights.",
     tech: ["SQL Server", "Power BI", "Sales", "KPI"],
     link: "https://github.com/iam-shubhamm/Pizza-Sales-Analysis-Dashboard-using-MS-SQL-Server-and-Power-BI",
   },
@@ -55,11 +55,14 @@ export default function Home() {
 
       <nav className="navbar">
         <div className="nav-inner">
-          <h2 className="logo">Shubham<span>.</span></h2>
+          <h2 className="logo">
+            Shubham<span>.</span>
+          </h2>
+
           <div className="nav-links">
+            <a href="#about">About</a>
             <a href="#projects">Projects</a>
             <a href="#skills">Skills</a>
-            <a href="#process">Process</a>
             <a href="#contact">Contact</a>
           </div>
         </div>
@@ -68,26 +71,55 @@ export default function Home() {
       <section className="hero">
         <div className="hero-left">
           <p className="badge">🚀 Data Analyst Portfolio</p>
+
           <h1>
             I Turn Raw Data Into
-            <span> Business Insights</span>
+            <span>Business Insights</span>
           </h1>
+
           <p className="hero-text">
             Hi, I’m Shubham Singh — a Data Analyst skilled in SQL, Python,
-            Power BI, Excel and dashboards that help businesses make better decisions.
+            Power BI, Excel and dashboards that help businesses make better
+            decisions.
           </p>
 
           <div className="hero-buttons">
-            <a href="#projects" className="primary-btn">View My Work</a>
-            <a href="https://github.com/iam-shubhamm" target="_blank" className="secondary-btn">
+            <a href="#projects" className="primary-btn">
+              View My Work
+            </a>
+
+            <a
+              href="https://github.com/iam-shubhamm"
+              target="_blank"
+              className="secondary-btn"
+            >
               GitHub Profile
+            </a>
+
+            <a
+              href="https://www.linkedin.com/in/shubhamsingh7a"
+              target="_blank"
+              className="secondary-btn"
+            >
+              LinkedIn
             </a>
           </div>
 
           <div className="stats-row">
-            <div><h3>10+</h3><p>Projects</p></div>
-            <div><h3>48K+</h3><p>Records</p></div>
-            <div><h3>4K+</h3><p>Customers</p></div>
+            <div>
+              <h3>10+</h3>
+              <p>Projects</p>
+            </div>
+
+            <div>
+              <h3>3</h3>
+              <p>Major Projects</p>
+            </div>
+
+            <div>
+              <h3>11+</h3>
+              <p>Assignments</p>
+            </div>
           </div>
         </div>
 
@@ -95,8 +127,10 @@ export default function Home() {
           <div className="profile-ring">
             <div className="profile">SS</div>
           </div>
+
           <h2>Shubham Singh</h2>
           <p>Data Analyst | Python | SQL | Power BI</p>
+
           <div className="mini-tags">
             <span>Power BI</span>
             <span>SQL</span>
@@ -106,22 +140,58 @@ export default function Home() {
         </div>
       </section>
 
+      <section id="about" className="section">
+        <p className="section-subtitle">ABOUT ME</p>
+        <h2 className="section-title">Turning Data Into Decisions</h2>
+
+        <div className="about-grid">
+          <div className="glass-box">
+            <h3>👋 Who I Am</h3>
+            <p>
+              I am a Data Analyst with hands-on experience in SQL, Python,
+              Excel, Power BI and Tableau. I enjoy working with real-world
+              datasets and converting raw data into useful business insights.
+            </p>
+          </div>
+
+          <div className="glass-box">
+            <h3>🎯 What I Focus On</h3>
+            <p>
+              I focus on dashboard development, KPI analysis, data cleaning,
+              exploratory data analysis and clear data storytelling for better
+              decision-making.
+            </p>
+          </div>
+        </div>
+      </section>
+
       <section className="section">
-        <p className="section-subtitle">WHY HIRE ME</p>
+        <p className="section-subtitle">WHY CHOOSE ME</p>
         <h2 className="section-title">I Build Dashboards That Tell Stories</h2>
 
         <div className="why-grid">
           <div className="glass-box">
             <h3>📈 Business Insights</h3>
-            <p>I analyze customer behavior, sales trends, KPIs and business performance.</p>
+            <p>
+              I analyze customer behavior, sales trends, KPIs and business
+              performance to find meaningful patterns.
+            </p>
           </div>
+
           <div className="glass-box">
             <h3>🎯 Decision Focused</h3>
-            <p>My dashboards are not only beautiful — they help users take action.</p>
+            <p>
+              My dashboards are not only beautiful — they are designed to help
+              users take action.
+            </p>
           </div>
+
           <div className="glass-box">
             <h3>⚡ Clean Presentation</h3>
-            <p>I design clear layouts, strong visuals, filters and professional reports.</p>
+            <p>
+              I design clean layouts, strong visuals, filters and professional
+              reports for recruiters and business users.
+            </p>
           </div>
         </div>
       </section>
@@ -169,15 +239,137 @@ export default function Home() {
         </div>
       </section>
 
-      <section id="process" className="section">
+      <section className="section">
         <p className="section-subtitle">MY PROCESS</p>
         <h2 className="section-title">How I Work With Data</h2>
 
         <div className="process-grid">
-          <div className="process-card"><b>01</b><h3>Understand Problem</h3><p>First I understand the business question and required KPIs.</p></div>
-          <div className="process-card"><b>02</b><h3>Clean Data</h3><p>I prepare data by cleaning, filtering and transforming it.</p></div>
-          <div className="process-card"><b>03</b><h3>Analyze Trends</h3><p>I find patterns, segments, outliers and useful insights.</p></div>
-          <div className="process-card"><b>04</b><h3>Build Dashboard</h3><p>I create interactive dashboards with clear visual storytelling.</p></div>
+          <div className="process-card">
+            <b>01</b>
+            <h3>Understand Problem</h3>
+            <p>
+              First I understand the business question, objective and important
+              KPIs.
+            </p>
+          </div>
+
+          <div className="process-card">
+            <b>02</b>
+            <h3>Clean Data</h3>
+            <p>
+              I prepare data by cleaning, filtering, transforming and organizing
+              it.
+            </p>
+          </div>
+
+          <div className="process-card">
+            <b>03</b>
+            <h3>Analyze Trends</h3>
+            <p>
+              I find patterns, segments, outliers and insights from real
+              datasets.
+            </p>
+          </div>
+
+          <div className="process-card">
+            <b>04</b>
+            <h3>Build Dashboard</h3>
+            <p>
+              I create interactive dashboards with clean visual storytelling.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section className="section">
+        <p className="section-subtitle">MORE ABOUT MY WORK</p>
+        <h2 className="section-title">How My Portfolio Helps Recruiters</h2>
+
+        <div className="why-grid">
+          <div className="glass-box">
+            <h3>📌 Clear Project Proof</h3>
+            <p>
+              Each project has a direct GitHub link so recruiters can easily
+              check my files, dashboard work, code and documentation.
+            </p>
+          </div>
+
+          <div className="glass-box">
+            <h3>📊 Business Focus</h3>
+            <p>
+              My projects are focused on real business problems like customer
+              churn, pizza sales performance and recommendation systems.
+            </p>
+          </div>
+
+          <div className="glass-box">
+            <h3>🚀 Ready To Work</h3>
+            <p>
+              I understand data cleaning, KPI analysis, dashboard building,
+              reporting and presenting insights clearly.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section className="section">
+        <p className="section-subtitle">MY STRENGTHS</p>
+        <h2 className="section-title">Why My Work Stands Out</h2>
+
+        <div className="process-grid">
+          <div className="process-card">
+            <b>01</b>
+            <h3>Clean Dashboard Design</h3>
+            <p>
+              I create dashboards that are easy to understand and professional.
+            </p>
+          </div>
+
+          <div className="process-card">
+            <b>02</b>
+            <h3>Strong KPI Thinking</h3>
+            <p>I focus on important business numbers, not only charts.</p>
+          </div>
+
+          <div className="process-card">
+            <b>03</b>
+            <h3>Real Dataset Practice</h3>
+            <p>
+              I work on real-world datasets to improve practical data skills.
+            </p>
+          </div>
+
+          <div className="process-card">
+            <b>04</b>
+            <h3>Readable GitHub Projects</h3>
+            <p>My repositories show project work clearly for recruiters.</p>
+          </div>
+        </div>
+      </section>
+
+      <section className="section">
+        <p className="section-subtitle">DASHBOARD STYLE</p>
+        <h2 className="section-title">Colorful Data Visualization Feel</h2>
+
+        <div className="visual-grid">
+          <div className="visual-card visual-one">
+            <h3>💰 Revenue Analysis</h3>
+            <div className="bar"><span className="bar-one"></span></div>
+            <div className="bar"><span className="bar-two"></span></div>
+            <div className="bar"><span className="bar-three"></span></div>
+          </div>
+
+          <div className="visual-card visual-two">
+            <h3>👥 Customer Insights</h3>
+            <div className="circle-chart">78%</div>
+            <p>Customer behavior and retention patterns</p>
+          </div>
+
+          <div className="visual-card visual-three">
+            <h3>📈 Sales Trends</h3>
+            <div className="trend-line">▁▂▃▅▆▇█</div>
+            <p>Monthly and daily trend analysis</p>
+          </div>
         </div>
       </section>
 
@@ -192,26 +384,56 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="cta-section">
-        <h2>Want a Data Analyst who can turn data into decisions?</h2>
-        <p>Let’s connect and discuss how I can help with analytics, dashboards and insights.</p>
-        <a href="mailto:shubhamkanpura7@gmail.com" className="primary-btn">Hire Me / Contact Me</a>
-      </section>
+      <section className="section">
+        <p className="section-subtitle">EDUCATION</p>
+        <h2 className="section-title">Academic Background</h2>
 
-      <section id="contact" className="section">
-        <p className="section-subtitle">CONTACT</p>
-        <h2 className="section-title">Let’s Connect</h2>
+        <div className="education-list">
+          <div className="education-card">
+            <h3>Bachelor of Technology</h3>
+            <p>United Institute of Technology, Prayagraj | 2021 - 2025</p>
+          </div>
 
-        <div className="contact-grid">
-          <a href="mailto:shubhamkanpura7@gmail.com">📧 shubhamkanpura7@gmail.com</a>
-          <a href="tel:+919931392284">📞 +91-9931392284</a>
-          <a href="https://www.linkedin.com/in/shubhamsingh7a" target="_blank">💼 LinkedIn Profile</a>
+          <div className="education-card">
+            <h3>Intermediate of Science</h3>
+            <p>Maharshi Chayan College, Buxar | 2021</p>
+          </div>
+
+          <div className="education-card">
+            <h3>Secondary School</h3>
+            <p>Bihar Public School, Buxar | 2019</p>
+          </div>
         </div>
       </section>
 
-      <footer>
-        © 2026 Shubham Singh — Data Analyst Portfolio
-      </footer>
+      <section id="contact" className="section contact-section">
+        <p className="section-subtitle">CONTACT ME</p>
+        <h2 className="section-title">Let’s Connect</h2>
+
+        <p className="contact-text">
+          I am open to Data Analyst opportunities, internships, projects and
+          collaborations. You can contact me through email, phone or LinkedIn.
+        </p>
+
+        <div className="contact-grid">
+          <a href="mailto:shubhamkanpura7@gmail.com">
+            📧 <span>Email</span>
+            <p>shubhamkanpura7@gmail.com</p>
+          </a>
+
+          <a href="tel:+919931392284">
+            📞 <span>Phone</span>
+            <p>+91-9931392284</p>
+          </a>
+
+          <a href="https://www.linkedin.com/in/shubhamsingh7a" target="_blank">
+            💼 <span>LinkedIn</span>
+            <p>View Profile</p>
+          </a>
+        </div>
+      </section>
+
+      <footer>© 2026 Shubham Singh — Data Analyst Portfolio</footer>
     </main>
   );
 }
