@@ -207,8 +207,8 @@ export default function Home() {
 
       <section id="about" className="section">
         <div className="title reveal">
-          <p>About Me</p>
-          <h2>Data Analyst Profile</h2>
+          <p></p>
+          <h2>About Me</h2>
         </div>
 
         <div className="about-large reveal">
@@ -244,7 +244,7 @@ export default function Home() {
 
       <section id="whatido" className="section">
         <div className="title reveal">
-          <p>What I Do</p>
+          <p></p>
           <h2>How I Work With Data</h2>
         </div>
 
@@ -289,7 +289,7 @@ export default function Home() {
 
       <section id="skills" className="section">
         <div className="title reveal">
-          <p>Skills</p>
+          <p></p>
           <h2>Data Analytics Skills</h2>
         </div>
 
