@@ -182,16 +182,45 @@ export default function Home() {
           </div>
         </div>
 
-        <div className="hero-visual reveal">
-          <div className="data-visual-3d">
-            <div className="cube">
-              <div className="face front">Power BI</div>
-              <div className="face back">SQL</div>
-              <div className="face right">Python</div>
-              <div className="face left">Data</div>
-              <div className="face top">Charts</div>
-              <div className="face bottom">Insights</div>
-            </div>
+       <div className="hero-visual reveal">
+  <div className="dashboard-3d">
+    <div className="dashboard-header">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+
+    <div className="dashboard-title">
+      <h3>Data Analyst</h3>
+      <p>Power BI • SQL • Python</p>
+    </div>
+
+    <div className="kpi-row">
+      <div className="kpi-card">
+        <h4>Sales</h4>
+        <strong>82%</strong>
+      </div>
+      <div className="kpi-card">
+        <h4>Growth</h4>
+        <strong>45%</strong>
+      </div>
+    </div>
+
+    <div className="chart-area">
+      <div className="bar bar-1"></div>
+      <div className="bar bar-2"></div>
+      <div className="bar bar-3"></div>
+      <div className="bar bar-4"></div>
+      <div className="bar bar-5"></div>
+    </div>
+
+    <div className="mini-table">
+      <div><span>Power BI</span><b>Dashboard</b></div>
+      <div><span>SQL</span><b>Analysis</b></div>
+      <div><span>Python</span><b>EDA</b></div>
+    </div>
+  </div>
+</div>
 
             <div className="chart-bars">
               <span></span>
