@@ -24,40 +24,67 @@ export default function Home() {
   }, []);
 
   const skills = [
-    {
-      title: "Power BI",
-      desc: "Creating interactive dashboards, reports, KPIs, slicers, charts, and business-focused visual insights.",
-    },
-    {
-      title: "MS SQL Server",
-      desc: "Writing SQL queries, extracting data, filtering records, grouping data, and performing sales analysis.",
-    },
-    {
-      title: "SQL",
-      desc: "Using SELECT, WHERE, GROUP BY, ORDER BY, joins, aggregate functions, and data analysis queries.",
-    },
-    {
-      title: "Python",
-      desc: "Using Python for data handling, project logic, and analytical problem-solving.",
-    },
-    {
-      title: "Data Analysis",
-      desc: "Finding useful patterns, trends, and insights from raw data to support decision-making.",
-    },
-    {
-      title: "Dashboard Creation",
-      desc: "Designing clean dashboards that make complex data easy to understand.",
-    },
-    {
-      title: "Data Visualization",
-      desc: "Creating charts and visuals to explain business performance clearly.",
-    },
-    {
-      title: "Business Insights",
-      desc: "Converting data into meaningful insights for business growth and improvement.",
-    },
-  ];
-
+  {
+    title: "SQL",
+    desc: "Writing advanced SQL queries using SELECT, WHERE, GROUP BY, ORDER BY, JOIN, subqueries, and aggregate functions for business analysis.",
+  },
+  {
+    title: "Python",
+    desc: "Using Python for data analysis, automation, logic building, and solving analytical business problems.",
+  },
+  {
+    title: "Advanced MS Excel",
+    desc: "Working with formulas, pivot tables, VLOOKUP, dashboards, reports, and business data management.",
+  },
+  {
+    title: "Power BI",
+    desc: "Creating interactive dashboards, KPI reports, slicers, charts, and business-focused visual insights.",
+  },
+  {
+    title: "Tableau",
+    desc: "Building professional dashboards, visual reports, and presenting business insights using Tableau.",
+  },
+  {
+    title: "Microsoft SQL Server",
+    desc: "Managing databases, writing queries, extracting records, filtering data, and performing sales analysis.",
+  },
+  {
+    title: "Pandas",
+    desc: "Using Pandas for data cleaning, transformation, filtering, and handling structured datasets efficiently.",
+  },
+  {
+    title: "NumPy",
+    desc: "Using NumPy for numerical operations, array handling, and supporting data analysis workflows.",
+  },
+  {
+    title: "Data Cleaning",
+    desc: "Removing errors, duplicates, null values, and preparing raw datasets for accurate analysis.",
+  },
+  {
+    title: "EDA",
+    desc: "Performing Exploratory Data Analysis to understand patterns, trends, and relationships in data.",
+  },
+  {
+    title: "Data Storytelling",
+    desc: "Presenting data insights clearly through visuals and reports for business understanding and decisions.",
+  },
+  {
+    title: "Dashboard Development",
+    desc: "Designing clean, interactive, and professional dashboards for data reporting and business tracking.",
+  },
+  {
+    title: "KPI Design",
+    desc: "Creating Key Performance Indicators to measure business performance and support decision-making.",
+  },
+  {
+    title: "Decision Trees",
+    desc: "Using decision tree models for prediction projects and machine learning-based problem solving.",
+  },
+  {
+    title: "Scikit-learn",
+    desc: "Using Scikit-learn for machine learning models, preprocessing, training, and prediction tasks.",
+  },
+];
   const projects = [
     {
       title: "Pizza Sales Analysis Dashboard",
@@ -132,7 +159,7 @@ export default function Home() {
 
       <section id="home" className="hero">
         <div className="hero-text reveal">
-          <p className="tag">Data Analyst Portfolio</p>
+          <p className="tag">Data Analyst</p>
 
           <h1>
             Hi, I&apos;m <span>Shubham Singh</span>
