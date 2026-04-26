@@ -132,7 +132,7 @@ export default function Home() {
 
       <section id="home" className="hero">
         <div className="hero-text reveal">
-          <p className="tag">Data Analyst Portfolio</p>
+          <p className="tag">Data Analyst </p>
 
           <h1>
             Hi, I&apos;m <span>Shubham Singh</span>
@@ -180,8 +180,8 @@ export default function Home() {
 
       <section id="about" className="section">
         <div className="title reveal">
-          <p>About Me</p>
-          <h2>Data Analyst Profile</h2>
+          <p></p>
+          <h2>About Me</h2>
         </div>
 
         <div className="about-large reveal">
@@ -217,7 +217,7 @@ export default function Home() {
 
       <section id="whatido" className="section">
         <div className="title reveal">
-          <p>What I Do</p>
+          <p></p>
           <h2>How I Work With Data</h2>
         </div>
 
@@ -262,7 +262,7 @@ export default function Home() {
 
       <section id="skills" className="section">
         <div className="title reveal">
-          <p>Skills</p>
+          <p></p>
           <h2>Data Analytics Skills</h2>
         </div>
 
@@ -278,23 +278,29 @@ export default function Home() {
 
       <section className="section">
         <div className="title reveal">
-          <p>Tools</p>
+          <p></p>
           <h2>Tools I Use</h2>
         </div>
 
-        <div className="tools-row reveal">
-          <span>Power BI</span>
-          <span>MS SQL Server</span>
-          <span>SQL</span>
-          <span>Python</span>
-          <span>Streamlit</span>
-          <span>GitHub</span>
-        </div>
+<div className="tools-row reveal">
+  <span>📊 Advanced MS Excel</span>
+  <span>📈 Power BI</span>
+  <span>📉 Tableau</span>
+  <span>🗄️ MS SQL Server</span>
+  <span>🛢️ MySQL</span>
+  <span>💾 SQL</span>
+  <span>🐍 Python</span>
+  <span>💻 PyCharm</span>
+  <span>📓 Jupyter Notebook</span>
+  <span>⚡ VS Code</span>
+  <span>🔗 GitHub</span>
+  <span>🚀 Streamlit</span>
+</div>
       </section>
 
       <section id="projects" className="section">
         <div className="title reveal">
-          <p>Projects</p>
+          <p></p>
           <h2>My Data Projects</h2>
         </div>
 
@@ -328,8 +334,8 @@ export default function Home() {
 
       <section className="section">
         <div className="title reveal">
-          <p>Highlights</p>
-          <h2>Profile Highlights</h2>
+          <p></p>
+          <h2>Highlights</h2>
         </div>
 
         <div className="highlight-grid">
@@ -344,7 +350,7 @@ export default function Home() {
 
       <section id="contact" className="section contact">
         <div className="title reveal">
-          <p>Contact</p>
+          <p></p>
           <h2>Let&apos;s Connect</h2>
         </div>
 
