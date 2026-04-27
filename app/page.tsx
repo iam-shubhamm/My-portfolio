@@ -4,87 +4,92 @@ import { useEffect, useState } from "react";
 
 export default function Home() {
   const [dark, setDark] = useState(false);
+  const [activeSection, setActiveSection] = useState("home");
 
   useEffect(() => {
     const revealItems = document.querySelectorAll(".reveal");
 
-    const revealOnScroll = () => {
+    const handleScroll = () => {
       revealItems.forEach((item) => {
         const top = item.getBoundingClientRect().top;
         if (top < window.innerHeight - 100) {
           item.classList.add("active");
         }
       });
+
+      const sections = ["home", "about", "whatido", "skills", "projects", "contact"];
+
+      sections.forEach((id) => {
+        const section = document.getElementById(id);
+
+        if (section) {
+          const top = section.offsetTop - 180;
+          const height = section.offsetHeight;
+
+          if (window.scrollY >= top && window.scrollY < top + height) {
+            setActiveSection(id);
+          }
+        }
+      });
     };
 
-    window.addEventListener("scroll", revealOnScroll);
-    revealOnScroll();
+    window.addEventListener("scroll", handleScroll);
+    handleScroll();
 
-    return () => window.removeEventListener("scroll", revealOnScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   const skills = [
-  {
-    title: "SQL",
-    desc: "Writing advanced SQL queries using SELECT, WHERE, GROUP BY, ORDER BY, JOIN, subqueries, and aggregate functions for business analysis.",
-  },
-  {
-    title: "Python",
-    desc: "Using Python for data analysis, automation, logic building, and solving analytical business problems.",
-  },
-  {
-    title: "Advanced MS Excel",
-    desc: "Working with formulas, pivot tables, VLOOKUP, dashboards, reports, and business data management.",
-  },
-  {
-    title: "Power BI",
-    desc: "Creating interactive dashboards, KPI reports, slicers, charts, and business-focused visual insights.",
-  },
-  {
-    title: "Tableau",
-    desc: "Building professional dashboards, visual reports, and presenting business insights using Tableau.",
-  },
-  {
-    title: "Microsoft SQL Server",
-    desc: "Managing databases, writing queries, extracting records, filtering data, and performing sales analysis.",
-  },
-  {
-    title: "Pandas",
-    desc: "Using Pandas for data cleaning, transformation, filtering, and handling structured datasets efficiently.",
-  },
-  {
-    title: "NumPy",
-    desc: "Using NumPy for numerical operations, array handling, and supporting data analysis workflows.",
-  },
-  {
-    title: "Data Cleaning",
-    desc: "Removing errors, duplicates, null values, and preparing raw datasets for accurate analysis.",
-  },
-  {
-    title: "EDA",
-    desc: "Performing Exploratory Data Analysis to understand patterns, trends, and relationships in data.",
-  },
-  {
-    title: "Data Storytelling",
-    desc: "Presenting data insights clearly through visuals and reports for business understanding and decisions.",
-  },
-  {
-    title: "Dashboard Development",
-    desc: "Designing clean, interactive, and professional dashboards for data reporting and business tracking.",
-  },
-  {
-    title: "KPI Design",
-    desc: "Creating Key Performance Indicators to measure business performance and support decision-making.",
-  },
-  {
-    title: "Decision Trees",
-    desc: "Using decision tree models for prediction projects and machine learning-based problem solving.",
-  },
-  {
-    title: "Scikit-learn",
-    desc: "Using Scikit-learn for machine learning models, preprocessing, training, and prediction tasks.",
-  },
-];
+    {
+      title: "SQL",
+      desc: "Writing SQL queries using SELECT, WHERE, GROUP BY, ORDER BY, JOIN, subqueries, and aggregate functions.",
+    },
+    {
+      title: "Python",
+      desc: "Using Python for data analysis, automation, logic building, and solving analytical problems.",
+    },
+    {
+      title: "Advanced MS Excel",
+      desc: "Working with formulas, pivot tables, VLOOKUP, dashboards, reports, and business data management.",
+    },
+    {
+      title: "Power BI",
+      desc: "Creating interactive dashboards, KPI reports, slicers, charts, and business-focused visual insights.",
+    },
+    {
+      title: "Tableau",
+      desc: "Building professional dashboards, visual reports, and presenting business insights using Tableau.",
+    },
+    {
+      title: "Microsoft SQL Server",
+      desc: "Managing databases, writing queries, filtering data, and performing sales analysis.",
+    },
+    {
+      title: "Pandas",
+      desc: "Using Pandas for data cleaning, transformation, filtering, and structured datasets.",
+    },
+    {
+      title: "NumPy",
+      desc: "Using NumPy for numerical operations, array handling, and data analysis workflows.",
+    },
+    {
+      title: "Data Cleaning",
+      desc: "Removing errors, duplicates, null values, and preparing raw datasets for analysis.",
+    },
+    {
+      title: "EDA",
+      desc: "Performing Exploratory Data Analysis to understand patterns, trends, and relationships.",
+    },
+    {
+      title: "Data Storytelling",
+      desc: "Presenting data insights clearly through visuals and reports.",
+    },
+    {
+      title: "Dashboard Development",
+      desc: "Designing clean, interactive, and professional dashboards.",
+    },
+  ];
+
   const projects = [
     {
       title: "Pizza Sales Analysis Dashboard",
@@ -94,7 +99,6 @@ export default function Home() {
         "Analyzed pizza sales data using MS SQL Server and Power BI.",
         "Tracked revenue, total orders, average order value, and sales performance.",
         "Created visuals for best-selling pizzas, sales trends, and category performance.",
-        "Focused on business insights that can help improve sales decisions.",
       ],
     },
     {
@@ -105,7 +109,6 @@ export default function Home() {
         "Created a Power BI dashboard to analyze customer churn behavior.",
         "Identified churn patterns using interactive charts and filters.",
         "Presented customer retention insights in a clean dashboard format.",
-        "Focused on helping businesses understand why customers may leave.",
       ],
     },
     {
@@ -116,7 +119,6 @@ export default function Home() {
         "Built a movie recommendation system using Python.",
         "Used similarity logic to suggest related movies.",
         "Created an interactive user interface using Streamlit.",
-        "Designed the project to show practical Python and project-building skills.",
       ],
     },
   ];
@@ -139,27 +141,54 @@ export default function Home() {
       </div>
 
       <nav className="navbar">
-        <h2 className="logo">
-          Shubham<span>.</span>
-        </h2>
+        <div className="brand">
+          <div className="brand-icon">S</div>
 
-        <div className="nav-links">
-          <a href="#home">Home</a>
-          <a href="#about">About</a>
-          <a href="#whatido">What I Do</a>
-          <a href="#skills">Skills</a>
-          <a href="#projects">Projects</a>
-          <a href="#contact">Contact</a>
+          <h2 className="logo">
+            Shubham<span>.</span>
+          </h2>
         </div>
 
-        <button onClick={() => setDark(!dark)} className="theme-btn">
-          {dark ? "☀️" : "🌙"}
-        </button>
+        <div className="nav-links">
+          <a className={activeSection === "home" ? "active-link" : ""} href="#home">
+            Home
+          </a>
+
+          <a className={activeSection === "about" ? "active-link" : ""} href="#about">
+            About
+          </a>
+
+          <a className={activeSection === "whatido" ? "active-link" : ""} href="#whatido">
+            What I Do
+          </a>
+
+          <a className={activeSection === "skills" ? "active-link" : ""} href="#skills">
+            Skills
+          </a>
+
+          <a className={activeSection === "projects" ? "active-link" : ""} href="#projects">
+            Projects
+          </a>
+
+          <a className={activeSection === "contact" ? "active-link" : ""} href="#contact">
+            Contact
+          </a>
+        </div>
+
+        <div className="nav-actions">
+          <button onClick={() => setDark(!dark)} className="theme-btn">
+            {dark ? "🌙" : "☀️"}
+          </button>
+
+          <a href="#contact" className="connect-btn">
+            Let&apos;s Connect <span>→</span>
+          </a>
+        </div>
       </nav>
 
       <section id="home" className="hero">
         <div className="hero-text reveal">
-          <p className="tag">Data Analyst </p>
+          <p className="tag">Data Analyst</p>
 
           <h1>
             Hi, I&apos;m <span>Shubham Singh</span>
@@ -167,83 +196,82 @@ export default function Home() {
 
           <p>
             I am a Data Analyst focused on Power BI, SQL, MS SQL Server, Python,
-            dashboard creation, data visualization, and business insights. I
-            enjoy transforming raw data into clear reports and useful
-            decision-making insights.
+            dashboard creation, data visualization, and business insights. I enjoy
+            transforming raw data into clear reports and useful decision-making insights.
           </p>
 
           <div className="buttons">
             <a href="#projects" className="btn primary">
               View My Projects
             </a>
+
             <a href="#contact" className="btn secondary">
               Contact Me
             </a>
           </div>
         </div>
 
-<div className="hero-visual reveal">
-  <div className="unique-3d-scene">
-    <div className="orbit-line orbit-a"></div>
-    <div className="orbit-line orbit-b"></div>
+        <div className="hero-visual reveal">
+          <div className="unique-3d-scene">
+            <div className="orbit-line orbit-a"></div>
+            <div className="orbit-line orbit-b"></div>
 
-    <div className="floating-tool powerbi">📊 Power BI</div>
-    <div className="floating-tool sql">🛢️ SQL</div>
-    <div className="floating-tool python">🐍 Python</div>
+            <div className="floating-tool powerbi">📊 Power BI</div>
+            <div className="floating-tool sql">🛢️ SQL</div>
+            <div className="floating-tool python">🐍 Python</div>
 
-    <div className="analytics-platform">
-      <div className="dashboard-panel">
-        <div className="side-menu">
-          <span>◔</span>
-          <span>▦</span>
-          <span>▥</span>
-          <span>☆</span>
-          <span>⚙</span>
-        </div>
+            <div className="analytics-platform">
+              <div className="dashboard-panel">
+                <div className="side-menu">
+                  <span>◔</span>
+                  <span>▦</span>
+                  <span>▥</span>
+                  <span>☆</span>
+                  <span>⚙</span>
+                </div>
 
-        <div className="dashboard-content">
-          <h4>Analytics Overview</h4>
+                <div className="dashboard-content">
+                  <h4>Analytics Overview</h4>
 
-          <div className="dash-grid">
-            <div className="metric-card">
-              <p>Total Revenue</p>
-              <h3>₹8.42L</h3>
-              <small>▲ 23.8%</small>
-            </div>
+                  <div className="dash-grid">
+                    <div className="metric-card">
+                      <p>Total Revenue</p>
+                      <h3>₹8.42L</h3>
+                      <small>▲ 23.8%</small>
+                    </div>
 
-            <div className="metric-card">
-              <p>Total Orders</p>
-              <h3>1,248</h3>
-              <small>▲ 18.7%</small>
-            </div>
+                    <div className="metric-card">
+                      <p>Total Orders</p>
+                      <h3>1,248</h3>
+                      <small>▲ 18.7%</small>
+                    </div>
 
-            <div className="chart-card line-chart">
-              <span></span>
-            </div>
+                    <div className="chart-card line-chart">
+                      <span></span>
+                    </div>
 
-            <div className="chart-card circle-chart">
-              <div>63%</div>
+                    <div className="chart-card circle-chart">
+                      <div>63%</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div className="bar-stage">
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+              </div>
+
+              <div className="platform-base"></div>
             </div>
           </div>
         </div>
-      </div>
-
-      <div className="bar-stage">
-        <span></span>
-        <span></span>
-        <span></span>
-        <span></span>
-      </div>
-
-      <div className="platform-base"></div>
-    </div>
-  </div>
-</div>
       </section>
 
       <section id="about" className="section">
         <div className="title reveal">
-          <p></p>
           <h2>About Me</h2>
         </div>
 
@@ -252,27 +280,24 @@ export default function Home() {
             <h3>Who I Am</h3>
             <p>
               I am a B.Tech Computer Science graduate with a strong interest in
-              Data Analytics. My main focus is to work with data, understand the
-              hidden patterns, create meaningful dashboards, and present insights
-              in a simple and professional way.
+              Data Analytics. I work with data, understand patterns, create dashboards,
+              and present insights in a simple and professional way.
             </p>
           </div>
 
           <div className="about-card">
             <h3>My Focus</h3>
             <p>
-              I focus on tools like Power BI, SQL, MS SQL Server, and Python. I
-              use these tools to clean, analyze, visualize, and explain data.
-              My goal is to make data easy to understand for business users.
+              I focus on Power BI, SQL, MS SQL Server, and Python. I use these tools
+              to clean, analyze, visualize, and explain data.
             </p>
           </div>
 
           <div className="about-card">
             <h3>My Goal</h3>
             <p>
-              I want to build my career as a Data Analyst where I can use my
-              analytical skills to solve real business problems and support
-              better decision-making through dashboards and reports.
+              I want to build my career as a Data Analyst and use my analytical skills
+              to solve real business problems.
             </p>
           </div>
         </div>
@@ -280,7 +305,6 @@ export default function Home() {
 
       <section id="whatido" className="section">
         <div className="title reveal">
-          <p></p>
           <h2>How I Work With Data</h2>
         </div>
 
@@ -288,44 +312,31 @@ export default function Home() {
           <div className="process-card reveal">
             <span>01</span>
             <h3>Understand Data</h3>
-            <p>
-              I first understand the dataset, columns, business problem, and
-              required output before creating analysis.
-            </p>
+            <p>I understand the dataset, columns, business problem, and required output.</p>
           </div>
 
           <div className="process-card reveal">
             <span>02</span>
             <h3>Analyze Data</h3>
-            <p>
-              I use SQL, Power BI, and Python to identify patterns, trends,
-              totals, categories, and important metrics.
-            </p>
+            <p>I use SQL, Power BI, and Python to identify patterns and trends.</p>
           </div>
 
           <div className="process-card reveal">
             <span>03</span>
             <h3>Create Dashboard</h3>
-            <p>
-              I design clean dashboards with KPIs, charts, filters, and visuals
-              that explain the data clearly.
-            </p>
+            <p>I design dashboards with KPIs, charts, filters, and clean visuals.</p>
           </div>
 
           <div className="process-card reveal">
             <span>04</span>
             <h3>Share Insights</h3>
-            <p>
-              I present important findings in a simple way so that business
-              users can understand and take decisions.
-            </p>
+            <p>I present findings in a simple way for better business decisions.</p>
           </div>
         </div>
       </section>
 
       <section id="skills" className="section">
         <div className="title reveal">
-          <p></p>
           <h2>Data Analytics Skills</h2>
         </div>
 
@@ -341,29 +352,27 @@ export default function Home() {
 
       <section className="section">
         <div className="title reveal">
-          <p></p>
           <h2>Tools I Use</h2>
         </div>
 
-<div className="tools-row reveal">
-  <span>📊 Advanced MS Excel</span>
-  <span>📈 Power BI</span>
-  <span>📉 Tableau</span>
-  <span>🗄️ MS SQL Server</span>
-  <span>🛢️ MySQL</span>
-  <span>💾 SQL</span>
-  <span>🐍 Python</span>
-  <span>💻 PyCharm</span>
-  <span>📓 Jupyter Notebook</span>
-  <span>⚡ VS Code</span>
-  <span>🔗 GitHub</span>
-  <span>🚀 Streamlit</span>
-</div>
+        <div className="tools-row reveal">
+          <span>📊 Advanced MS Excel</span>
+          <span>📈 Power BI</span>
+          <span>📉 Tableau</span>
+          <span>🗄️ MS SQL Server</span>
+          <span>🛢️ MySQL</span>
+          <span>💾 SQL</span>
+          <span>🐍 Python</span>
+          <span>💻 PyCharm</span>
+          <span>📓 Jupyter Notebook</span>
+          <span>⚡ VS Code</span>
+          <span>🔗 GitHub</span>
+          <span>🚀 Streamlit</span>
+        </div>
       </section>
 
       <section id="projects" className="section">
         <div className="title reveal">
-          <p></p>
           <h2>My Data Projects</h2>
         </div>
 
@@ -397,7 +406,6 @@ export default function Home() {
 
       <section className="section">
         <div className="title reveal">
-          <p></p>
           <h2>Highlights</h2>
         </div>
 
@@ -413,7 +421,6 @@ export default function Home() {
 
       <section id="contact" className="section contact">
         <div className="title reveal">
-          <p></p>
           <h2>Let&apos;s Connect</h2>
         </div>
 
@@ -421,9 +428,7 @@ export default function Home() {
           <div className="contact-text">
             <h3>Want to connect with me?</h3>
             <p>
-              You can contact me through Gmail, GitHub, or LinkedIn. Click on
-              the Gmail card and it will directly open Gmail compose with my
-              email filled.
+              You can contact me through Gmail, GitHub, or LinkedIn.
             </p>
           </div>
 
