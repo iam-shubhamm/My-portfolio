@@ -211,63 +211,79 @@ export default function Home() {
           </div>
         </div>
 
-        <div className="hero-visual reveal">
-          <div className="unique-3d-scene">
-            <div className="orbit-line orbit-a"></div>
-            <div className="orbit-line orbit-b"></div>
+       <div className="hero-visual reveal">
+  <div className="hero-3d-ui">
+    <div className="orbit orbit-one"></div>
+    <div className="orbit orbit-two"></div>
 
-            <div className="floating-tool powerbi">📊 Power BI</div>
-            <div className="floating-tool sql">🛢️ SQL</div>
-            <div className="floating-tool python">🐍 Python</div>
+    <div className="tool-card powerbi-card">
+      <span>📊</span>
+      <p>Power BI</p>
+    </div>
 
-            <div className="analytics-platform">
-              <div className="dashboard-panel">
-                <div className="side-menu">
-                  <span>◔</span>
-                  <span>▦</span>
-                  <span>▥</span>
-                  <span>☆</span>
-                  <span>⚙</span>
-                </div>
+    <div className="tool-card sql-card">
+      <span>🛢️</span>
+      <p>SQL</p>
+    </div>
 
-                <div className="dashboard-content">
-                  <h4>Analytics Overview</h4>
+    <div className="tool-card python-card">
+      <span>🐍</span>
+      <p>Python</p>
+    </div>
 
-                  <div className="dash-grid">
-                    <div className="metric-card">
-                      <p>Total Revenue</p>
-                      <h3>₹8.42L</h3>
-                      <small>▲ 23.8%</small>
-                    </div>
+    <div className="dashboard-3d">
+      <div className="dashboard-sidebar">
+        <span>◔</span>
+        <span>▦</span>
+        <span>▥</span>
+        <span>☆</span>
+        <span>⚙</span>
+      </div>
 
-                    <div className="metric-card">
-                      <p>Total Orders</p>
-                      <h3>1,248</h3>
-                      <small>▲ 18.7%</small>
-                    </div>
+      <div className="dashboard-main">
+        <h4>Analytics Overview</h4>
 
-                    <div className="chart-card line-chart">
-                      <span></span>
-                    </div>
+        <div className="dashboard-grid">
+          <div className="dash-box">
+            <p>Total Revenue</p>
+            <h3>₹8.42L</h3>
+            <small>▲ 23.8%</small>
+            <div className="mini-line"></div>
+          </div>
 
-                    <div className="chart-card circle-chart">
-                      <div>63%</div>
-                    </div>
-                  </div>
-                </div>
-              </div>
+          <div className="dash-box">
+            <p>Total Orders</p>
+            <h3>1,248</h3>
+            <small>▲ 18.7%</small>
+            <div className="mini-line purple"></div>
+          </div>
 
-              <div className="bar-stage">
-                <span></span>
-                <span></span>
-                <span></span>
-                <span></span>
-              </div>
+          <div className="dash-box">
+            <p>Profit</p>
+            <h3>₹2.31L</h3>
+            <small>▲ 21.4%</small>
+            <div className="mini-line cyan"></div>
+          </div>
 
-              <div className="platform-base"></div>
-            </div>
+          <div className="dash-box donut-box">
+            <p>Category Share</p>
+            <div className="donut">63%</div>
           </div>
         </div>
+      </div>
+    </div>
+
+    <div className="bars-3d">
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+
+    <div className="base-platform"></div>
+  </div>
+</div>
       </section>
 
       <section id="about" className="section">
