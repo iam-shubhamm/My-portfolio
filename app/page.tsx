@@ -182,27 +182,45 @@ export default function Home() {
           </div>
         </div>
 
-        <div className="hero-visual reveal">
-          <div className="data-visual-3d">
-            <div className="cube">
-              <div className="face front">Power BI</div>
-              <div className="face back">SQL</div>
-              <div className="face right">Python</div>
-              <div className="face left">Data</div>
-              <div className="face top">Charts</div>
-              <div className="face bottom">Insights</div>
-            </div>
+<div className="hero-visual reveal">
+  <div className="data-visual-3d">
+    <div className="analytics-card">
+      <div className="mini-card card-one">Power BI</div>
+      <div className="mini-card card-two">SQL</div>
+      <div className="mini-card card-three">Python</div>
 
-            <div className="chart-bars">
-              <span></span>
-              <span></span>
-              <span></span>
-              <span></span>
-            </div>
+      <div className="dashboard-screen">
+        <div className="screen-top">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
 
-            <p>Data • Dashboard • Insights</p>
+        <div className="kpi-row">
+          <div>
+            <h4>Revenue</h4>
+            <p>₹2.4M</p>
+          </div>
+          <div>
+            <h4>Growth</h4>
+            <p>38%</p>
           </div>
         </div>
+
+        <div className="chart-line"></div>
+
+        <div className="bar-box">
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      </div>
+
+      <p className="analytics-title">Data Analytics Dashboard</p>
+    </div>
+  </div>
+</div>
       </section>
 
       <section id="about" className="section">
