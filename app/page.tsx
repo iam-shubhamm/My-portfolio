@@ -183,41 +183,59 @@ export default function Home() {
         </div>
 
 <div className="hero-visual reveal">
-  <div className="data-visual-3d">
-    <div className="analytics-card">
-      <div className="mini-card card-one">Power BI</div>
-      <div className="mini-card card-two">SQL</div>
-      <div className="mini-card card-three">Python</div>
+  <div className="unique-3d-scene">
+    <div className="orbit-line orbit-a"></div>
+    <div className="orbit-line orbit-b"></div>
 
-      <div className="dashboard-screen">
-        <div className="screen-top">
-          <span></span>
-          <span></span>
-          <span></span>
+    <div className="floating-tool powerbi">📊 Power BI</div>
+    <div className="floating-tool sql">🛢️ SQL</div>
+    <div className="floating-tool python">🐍 Python</div>
+
+    <div className="analytics-platform">
+      <div className="dashboard-panel">
+        <div className="side-menu">
+          <span>◔</span>
+          <span>▦</span>
+          <span>▥</span>
+          <span>☆</span>
+          <span>⚙</span>
         </div>
 
-        <div className="kpi-row">
-          <div>
-            <h4>Revenue</h4>
-            <p>₹2.4M</p>
-          </div>
-          <div>
-            <h4>Growth</h4>
-            <p>38%</p>
-          </div>
-        </div>
+        <div className="dashboard-content">
+          <h4>Analytics Overview</h4>
 
-        <div className="chart-line"></div>
+          <div className="dash-grid">
+            <div className="metric-card">
+              <p>Total Revenue</p>
+              <h3>₹8.42L</h3>
+              <small>▲ 23.8%</small>
+            </div>
 
-        <div className="bar-box">
-          <span></span>
-          <span></span>
-          <span></span>
-          <span></span>
+            <div className="metric-card">
+              <p>Total Orders</p>
+              <h3>1,248</h3>
+              <small>▲ 18.7%</small>
+            </div>
+
+            <div className="chart-card line-chart">
+              <span></span>
+            </div>
+
+            <div className="chart-card circle-chart">
+              <div>63%</div>
+            </div>
+          </div>
         </div>
       </div>
 
-      <p className="analytics-title">Data Analytics Dashboard</p>
+      <div className="bar-stage">
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+
+      <div className="platform-base"></div>
     </div>
   </div>
 </div>
