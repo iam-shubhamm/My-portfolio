@@ -1,0 +1,38 @@
+name: Redirect legacy portfolio link
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - .github/workflows/legacy-portfolio-redirect.yml
+      - legacy-redirect/**
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: github-pages
+  cancel-in-progress: true
+
+jobs:
+  deploy-redirect:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Configure GitHub Pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload redirect page
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: legacy-redirect
+
+      - name: Deploy redirect page
+        id: deployment
+        uses: actions/deploy-pages@v4

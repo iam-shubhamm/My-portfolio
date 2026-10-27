@@ -4,6 +4,8 @@ A personal portfolio showcasing my work and learning path across data analytics,
 
 The interface features a cinematic design, a saved Light/Dark theme switch, responsive navigation with direct contact links, and motion-aware animations.
 
+The legacy GitHub Pages address [iam-shubhamm.github.io/My-portfolio](https://iam-shubhamm.github.io/My-portfolio/) redirects to the current Vercel portfolio after the GitHub Pages redirect workflow deploys.
+
 ## Deploy to Vercel
 
 Import this repository into [Vercel](https://vercel.com/new) and deploy it as a Next.js project. Vercel will build the app and its `/api/chat` server route automatically. The site no longer uses a static export or GitHub Pages deployment.
