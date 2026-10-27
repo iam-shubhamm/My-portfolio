@@ -15,24 +15,44 @@ Profile facts:
 - He is growing his skills across data analytics, AI/machine learning, and full-stack development. Don't claim seniority or professional experience beyond the facts here.
 - His portfolio uses Next.js, React, TypeScript, CSS, Framer Motion, and a server-side AI chat route.
 - His tools/skills include SQL, SQL Server, MySQL, Python, Pandas, NumPy, Power BI, Tableau, Excel, data cleaning, exploratory data analysis, dashboard development, data storytelling, and Streamlit.
-- Projects: a Tableau retail sales and revenue analysis; a pizza sales dashboard built with SQL Server and Power BI; customer churn analysis; a Python/Streamlit movie recommendation system using similarity logic.
+- Projects: a Tableau retail sales and revenue analysis; a pizza sales dashboard built with SQL Server and Power BI; customer churn analysis; a Python/Streamlit movie recommendation system using similarity logic. New GitHub repositories for HR analysis, shopping behavior analysis, and heart-attack prediction are still in progress; don't imply their code or results are already published.
 - He completed Tata Consultancy Services' Forage virtual experience "Data Visualisation: Empowering Business with Effective Insights" in August 2026, creating Tableau visualizations and presenting business findings.
-- Project links: https://github.com/iam-shubhamm/Tata-Retail-Sales---Revenue-Analysis ; https://github.com/iam-shubhamm/Pizza-Sales-Analysis-Dashboard-using-MS-SQL-Server-and-Power-BI ; https://github.com/iam-shubhamm/Customer-Churn-Prediction ; https://github.com/iam-shubhamm/Movie-Recommendation-System
+- Project links: https://github.com/iam-shubhamm/Tata-Retail-Sales---Revenue-Analysis ; https://github.com/iam-shubhamm/Pizza-Sales-Analysis-Dashboard-using-MS-SQL-Server-and-Power-BI ; https://github.com/iam-shubhamm/Customer-Churn-Prediction ; https://github.com/iam-shubhamm/Movie-Recommendation-System ; https://github.com/iam-shubhamm/HR_Aalysis_Dashboard ; https://github.com/iam-shubhamm/Online_Customer_Shopping_Behavior_Analysis ; https://github.com/iam-shubhamm/Heart-Attack-Prediction-Using-Machine-Learning-Models
 - Contact: shubhamkanpura7@gmail.com, https://github.com/iam-shubhamm, https://www.linkedin.com/in/shubhamsingh7a`;
 
 function jsonError(message: string, status: number) {
   return NextResponse.json({ error: message }, { status });
 }
 
-export async function POST(request: Request) {
-  const apiKey = process.env.AI_API_KEY;
-  if (!apiKey) {
-    return jsonError(
-      "The AI assistant isn’t connected yet. Add AI_API_KEY in your Vercel project settings to enable chat.",
-      503,
-    );
+function getProfileReply(question: string) {
+  const text = question.toLowerCase();
+
+  if (/\b(hi|hello|hey|good morning|good afternoon)\b/.test(text)) {
+    return "Hello! I can tell you about Shubham’s projects, analytics and AI/ML skills, full-stack learning, or experience. What would you like to know?";
+  }
+  if (/\b(project|portfolio|github|built|work|dashboard|recommendation)\b/.test(text)) {
+    return "Shubham’s completed projects include a Tableau retail sales and revenue analysis, a SQL Server and Power BI pizza sales dashboard, customer churn analysis, and a Python/Streamlit movie recommendation system. He also has three newer repositories in progress: HR analysis, shopping behavior analysis, and heart-attack prediction. See the projects on GitHub: https://github.com/iam-shubhamm";
+  }
+  if (/\b(skill|tool|technology|tech stack|stack|know|proficien)\b/.test(text)) {
+    return "His analytics toolkit includes SQL, SQL Server, MySQL, Python, Pandas, NumPy, Power BI, Tableau, and Excel. He is developing across AI/ML and data science, and builds with React, Next.js, TypeScript, CSS, and API routes. His experience varies by tool.";
+  }
+  if (/\b(ai|machine learning|ml|data science|data scientist)\b/.test(text)) {
+    return "Shubham is developing his AI/ML and data science skills through Python projects and hands-on learning. His movie recommendation project uses similarity logic; his heart-attack prediction repository is still in progress. He is growing toward AI/ML engineering and does not claim professional AI engineering experience.";
+  }
+  if (/\b(full.?stack|frontend|front.?end|backend|back.?end|web developer|website)\b/.test(text)) {
+    return "Shubham is growing as a full-stack developer. This portfolio is built with React, Next.js, TypeScript, CSS, and a server-side chat API route. His profile presents full-stack development as a developing focus, not as past professional experience.";
+  }
+  if (/\b(experience|intern|career|job|education|degree|forage|tata)\b/.test(text)) {
+    return "Shubham is a Computer Science graduate and a Data Analyst Intern at Last Minutes Deal (September 2026–present). He also completed TCS’s Forage data-visualization virtual experience in August 2026, creating Tableau visualizations and presenting business findings.";
+  }
+  if (/\b(contact|email|reach|linkedin|hire|connect)\b/.test(text)) {
+    return "You can reach Shubham at shubhamkanpura7@gmail.com, on LinkedIn at https://www.linkedin.com/in/shubhamsingh7a, or on GitHub at https://github.com/iam-shubhamm.";
   }
 
+  return "I can help with questions about Shubham’s projects, skills, AI/ML and full-stack learning, or experience. For anything not covered here, contact him at shubhamkanpura7@gmail.com.";
+}
+
+export async function POST(request: Request) {
   if (!request.headers.get("content-type")?.includes("application/json")) {
     return jsonError("Send your question as JSON.", 415);
   }
@@ -78,6 +98,14 @@ export async function POST(request: Request) {
 
   if (totalCharacters > 6000 || messages[messages.length - 1]?.role !== "user") {
     return jsonError("Please shorten the conversation and send a new question.", 400);
+  }
+
+  const apiKey = process.env.AI_API_KEY;
+  if (!apiKey) {
+    return NextResponse.json({
+      reply: getProfileReply(messages[messages.length - 1].content),
+      mode: "profile",
+    });
   }
 
   const baseUrl = process.env.AI_BASE_URL ?? "https://api.openai.com/v1";
@@ -134,7 +162,7 @@ export async function POST(request: Request) {
       return jsonError("The AI service returned an empty answer. Please try again.", 502);
     }
 
-    return NextResponse.json({ reply: firstChoice.message.content.trim() });
+    return NextResponse.json({ reply: firstChoice.message.content.trim(), mode: "ai" });
   } catch (error) {
     if (error instanceof Error && error.name === "TimeoutError") {
       return jsonError("The AI assistant took too long to respond. Please try again.", 504);

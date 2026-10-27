@@ -11,7 +11,9 @@ import {
   Database,
   Mail,
   Menu,
+  Moon,
   Network,
+  Sun,
   Send,
   Sparkles,
   X,
@@ -23,12 +25,24 @@ import type { FormEvent } from "react";
 const navigation = [
   { id: "about", label: "About" },
   { id: "work", label: "Work" },
-  { id: "toolkit", label: "Toolkit" },
+  { id: "skills", label: "Skills" },
   { id: "experience", label: "Experience" },
   { id: "contact", label: "Contact" },
 ];
 
-const projects = [
+type Project = {
+  number: string;
+  title: string;
+  category: string;
+  description: string;
+  href: string;
+  className: string;
+  icon: typeof BarChart3;
+  artLabel: string;
+  inProgress?: boolean;
+};
+
+const projects: Project[] = [
   {
     number: "01",
     title: "Retail sales & revenue analysis",
@@ -73,35 +87,81 @@ const projects = [
     icon: Code2,
     artLabel: "Abstract film recommendation illustration",
   },
+  {
+    number: "05",
+    title: "HR analysis dashboard",
+    category: "DATA ANALYTICS · IN PROGRESS",
+    description:
+      "A new HR analytics repository is in progress. Follow the project on GitHub as I publish the analysis and dashboard.",
+    href: "https://github.com/iam-shubhamm/HR_Aalysis_Dashboard",
+    className: "hr-art",
+    icon: Network,
+    artLabel: "Abstract workforce analytics illustration",
+    inProgress: true,
+  },
+  {
+    number: "06",
+    title: "Shopping behavior analysis",
+    category: "DATA SCIENCE · IN PROGRESS",
+    description:
+      "A shopping behavior analysis project is in progress. Visit the repository for updates as the work develops.",
+    href: "https://github.com/iam-shubhamm/Online_Customer_Shopping_Behavior_Analysis",
+    className: "shopping-art",
+    icon: BarChart3,
+    artLabel: "Abstract shopping data illustration",
+    inProgress: true,
+  },
+  {
+    number: "07",
+    title: "Heart-attack prediction",
+    category: "MACHINE LEARNING · IN PROGRESS",
+    description:
+      "An early machine-learning project repository. The public repository is currently being developed; no model results are claimed.",
+    href: "https://github.com/iam-shubhamm/Heart-Attack-Prediction-Using-Machine-Learning-Models",
+    className: "health-art",
+    icon: BrainCircuit,
+    artLabel: "Abstract machine-learning illustration",
+    inProgress: true,
+  },
 ];
 
 const tracks = [
   {
     number: "01",
-    label: "DATA & ANALYTICS",
+    label: "DATA ANALYTICS",
     title: "Turn data into direction.",
     description:
-      "Prepare, query, and explore data, then make the findings clear with thoughtful dashboards and reporting.",
-    skills: ["SQL", "Python", "Pandas", "Power BI", "Tableau", "Excel"],
+      "Query, clean, and explore data, then communicate useful findings with clear dashboards and reporting.",
+    skills: ["SQL", "SQL Server", "Power BI", "Tableau", "Excel", "Data cleaning", "EDA"],
     icon: BarChart3,
     color: "mint",
   },
   {
     number: "02",
     label: "AI & MACHINE LEARNING",
-    title: "Build useful intelligence.",
+    title: "Explore intelligent systems.",
     description:
-      "Explore machine-learning ideas through practical projects, including a Python movie recommendation system.",
-    skills: ["Python", "NumPy", "Pandas", "Recommendations", "Exploratory analysis"],
+      "Build a foundation in AI/ML through Python projects, recommendation logic, and hands-on learning.",
+    skills: ["Python", "NumPy", "Pandas", "Recommendation systems", "Machine-learning fundamentals"],
     icon: BrainCircuit,
     color: "violet",
   },
   {
     number: "03",
-    label: "FULL-STACK DEVELOPMENT",
-    title: "Bring products to life.",
+    label: "DATA SCIENCE",
+    title: "Ask better questions of data.",
     description:
-      "Grow across the stack: this portfolio is built with React, Next.js, TypeScript, and a server-side AI chat route.",
+      "Use analytical thinking, data preparation, and exploratory methods to understand patterns and frame useful questions.",
+    skills: ["Python", "Pandas", "NumPy", "Exploratory analysis", "Data storytelling"],
+    icon: Database,
+    color: "blue",
+  },
+  {
+    number: "04",
+    label: "FULL-STACK DEVELOPMENT",
+    title: "Take ideas across the stack.",
+    description:
+      "Keep growing as a full-stack developer by building responsive experiences and server-backed features.",
     skills: ["React", "Next.js", "TypeScript", "CSS", "API routes", "GitHub"],
     icon: Code2,
     color: "orange",
@@ -135,6 +195,8 @@ type ChatMessage = {
   content: string;
 };
 
+type ChatMode = "profile" | "ai";
+
 const reveal = {
   hidden: { opacity: 0, y: 24 },
   visible: { opacity: 1, y: 0 },
@@ -142,19 +204,26 @@ const reveal = {
 
 export default function Portfolio() {
   const reduceMotion = useReducedMotion();
+  const [dark, setDark] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const [chatOpen, setChatOpen] = useState(false);
+  const [chatMode, setChatMode] = useState<ChatMode>("profile");
   const [messages, setMessages] = useState<ChatMessage[]>([
     {
       role: "assistant",
       content:
-        "Hey! I’m Shubham’s portfolio assistant. Ask me about his projects, experience, or the tools he works with.",
+        "Hey! I’m Shubham’s portfolio assistant, and I’m online. Ask me about his projects, skills, or experience.",
     },
   ]);
   const [question, setQuestion] = useState("");
   const [sending, setSending] = useState(false);
   const [chatError, setChatError] = useState("");
   const messageListRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const savedTheme = window.localStorage.getItem("portfolio-theme");
+    setDark(savedTheme === "dark");
+  }, []);
 
   useEffect(() => {
     messageListRef.current?.scrollTo({
@@ -174,6 +243,14 @@ export default function Portfolio() {
     window.addEventListener("keydown", onKeyDown);
     return () => window.removeEventListener("keydown", onKeyDown);
   }, []);
+
+  function toggleTheme() {
+    setDark((current) => {
+      const next = !current;
+      window.localStorage.setItem("portfolio-theme", next ? "dark" : "light");
+      return next;
+    });
+  }
 
   async function sendQuestion(event?: FormEvent<HTMLFormElement>, text = question) {
     event?.preventDefault();
@@ -219,6 +296,11 @@ export default function Portfolio() {
         throw new Error("The assistant returned an unexpected response. Please try again.");
       }
       setMessages((current) => [...current, { role: "assistant", content: reply }]);
+      if (typeof data === "object" && data !== null && "mode" in data && data.mode === "profile") {
+        setChatMode("profile");
+      } else {
+        setChatMode("ai");
+      }
     } catch (error) {
       setChatError(
         error instanceof Error ? error.message : "Something went wrong. Please try again.",
@@ -231,7 +313,7 @@ export default function Portfolio() {
   const motionOff = reduceMotion ?? false;
 
   return (
-    <main className="portfolio">
+    <main className={`portfolio${dark ? " is-dark" : ""}`}>
       <a className="skip-link" href="#main-content">Skip to content</a>
 
       <header className="topbar">
@@ -250,6 +332,17 @@ export default function Portfolio() {
           </a>
         </nav>
         <div className="topbar-actions">
+          <button
+            className="icon-button theme-toggle"
+            type="button"
+            onClick={toggleTheme}
+            aria-pressed={dark}
+            aria-label={dark ? "Switch to light theme" : "Switch to dark theme"}
+            title={dark ? "Switch to light theme" : "Switch to dark theme"}
+          >
+            {dark ? <Sun size={18} aria-hidden="true" /> : <Moon size={18} aria-hidden="true" />}
+            <span className="theme-toggle-label">{dark ? "Light" : "Dark"}</span>
+          </button>
           <a className="nav-cta" href="#contact">
             Let&apos;s connect <ArrowUpRight size={16} aria-hidden="true" />
           </a>
@@ -276,16 +369,17 @@ export default function Portfolio() {
           >
             <p className="eyebrow"><span className="status-dot" /> OPEN TO OPPORTUNITIES</p>
             <h1>
-              I make data<br />
-              <span>do more.</span>
+              Shubham<br />
+              <span>Singh.</span>
             </h1>
             <p className="hero-lede">
-              Hey, I&apos;m <strong>Shubham Singh</strong> — a data analyst growing across AI/ML
-              and full-stack development. I turn curious questions into useful, human-friendly
-              experiences.
+              I&apos;m a <strong>Data Analyst and aspiring Data Scientist</strong>, building
+              toward AI/ML engineering and full-stack development. I turn curious questions
+              into thoughtful, useful digital experiences.
             </p>
             <div className="hero-tags" aria-label="Areas of interest">
-              <span>DATA ANALYST</span><i /><span>AI &amp; ML</span><i /><span>FULL-STACK</span>
+              <span>AI / ML ENGINEERING</span><i /><span>FULL-STACK DEVELOPER</span><i />
+              <span>DATA ANALYST</span><i /><span>DATA SCIENCE</span>
             </div>
             <div className="hero-actions">
               <a className="button button-primary" href="#work">
@@ -296,8 +390,8 @@ export default function Portfolio() {
               </a>
             </div>
             <div className="hero-proof">
-              <div><strong>04</strong><small>FEATURED PROJECTS</small></div>
-              <div><strong>03</strong><small>AREAS OF FOCUS</small></div>
+              <div><strong>04</strong><small>COMPLETED PROJECTS</small></div>
+              <div><strong>04</strong><small>SKILL TRACKS</small></div>
               <div><strong>01</strong><small>CURIOUS MIND</small></div>
             </div>
           </motion.div>
@@ -316,7 +410,7 @@ export default function Portfolio() {
             <div className="visual-core">
               <div className="core-glow" />
               <div className="core-grid" />
-              <span className="core-label">DATA / AI / CODE</span>
+              <span className="core-label">SHUBHAM SINGH · DATA / AI / CODE</span>
               <div className="core-bars" aria-hidden="true">
                 <i /><i /><i /><i /><i /><i /><i />
               </div>
@@ -325,8 +419,20 @@ export default function Portfolio() {
             <div className="float-chip chip-sql"><Database size={15} /> SQL</div>
             <div className="float-chip chip-python"><Code2 size={15} /> PYTHON</div>
             <div className="float-chip chip-ai"><Sparkles size={15} /> AI / ML</div>
+            <div className="tech-orbit" aria-label="Tools and technologies orbiting the data sphere">
+              <span>SQL</span><span>Python</span><span>Power BI</span><span>Tableau</span>
+              <span>React</span><span>Next.js</span><span>TypeScript</span><span>ML</span>
+            </div>
             <div className="visual-caption"><span /> DATA IN MOTION <span>·</span> IDEAS IN PROGRESS</div>
           </motion.div>
+        </section>
+
+        <section className="manifesto" aria-label="A note on how I work">
+          <div className="section-wrap manifesto-inner">
+            <span className="manifesto-mark"><Sparkles size={18} aria-hidden="true" /></span>
+            <p>Stay curious. Build with purpose. Turn every new question into a chance to learn.</p>
+            <span className="manifesto-caption">THE WAY I MOVE FORWARD</span>
+          </div>
         </section>
 
         <div className="ticker" aria-label="Areas I work across">
@@ -361,9 +467,9 @@ export default function Portfolio() {
           </div>
         </section>
 
-        <section className="content-section focus-section" id="toolkit">
+        <section className="content-section focus-section" id="skills">
           <div className="section-wrap">
-            <SectionHeader number="02" kicker="WHAT I'M INTO" title="Three ways I like to solve problems." />
+            <SectionHeader number="02" kicker="MY SKILLS" title="A growing toolkit, grouped by what it helps me do." />
             <div className="focus-grid">
               {tracks.map((track, index) => {
                 const Icon = track.icon;
@@ -393,13 +499,13 @@ export default function Portfolio() {
               })}
             </div>
             <p className="toolkit-note">
-              A snapshot of my toolkit and current learning path — not a claim of equal experience with every tool.
+              Practical skills, project tools, and areas I&apos;m actively developing — experience varies by technology.
             </p>
           </div>
         </section>
 
         <section className="content-section section-wrap work-section" id="work">
-          <SectionHeader number="03" kicker="SELECTED PROJECTS" title="A few things I&apos;ve been working on." />
+          <SectionHeader number="03" kicker="SELECTED PROJECTS" title="Projects, experiments, and what I&apos;m building next." />
           <div className="projects-grid">
             {projects.map((project, index) => {
               const Icon = project.icon;
@@ -430,12 +536,13 @@ export default function Portfolio() {
                       </div>
                     </div>
                     <span className="art-project-icon"><Icon size={19} aria-hidden="true" /></span>
-                    <span className="art-index">{project.number}</span>
+                    <span className="art-index">{project.inProgress ? "WIP" : project.number}</span>
                   </div>
                   <div className="project-info">
                     <div className="project-meta"><span>{project.category}</span><ArrowUpRight size={17} aria-hidden="true" /></div>
                     <h3>{project.title}</h3>
                     <p>{project.description}</p>
+                    {project.inProgress && <span className="project-status">IN PROGRESS</span>}
                   </div>
                 </motion.a>
               );
@@ -518,7 +625,10 @@ export default function Portfolio() {
           <section id="chat-panel" className="chat-panel" aria-label="Chat with Shubham's portfolio assistant">
             <header className="chat-header">
               <span className="chat-avatar"><Sparkles size={19} aria-hidden="true" /></span>
-              <div><strong>Ask about Shubham</strong><small><i /> PORTFOLIO AI ASSISTANT</small></div>
+              <div>
+                <strong>Ask about Shubham</strong>
+                <small><i /> {chatMode === "ai" ? "GENERATIVE AI ONLINE" : "PROFILE ASSISTANT ONLINE"}</small>
+              </div>
               <button className="chat-close" type="button" onClick={() => setChatOpen(false)} aria-label="Close chat">
                 <X size={18} />
               </button>
@@ -555,7 +665,11 @@ export default function Portfolio() {
                 <Send size={17} aria-hidden="true" />
               </button>
             </form>
-            <p className="chat-footnote">Answers are based on the information on this portfolio.</p>
+            <p className="chat-footnote">
+              {chatMode === "ai"
+                ? "AI answers are grounded in the information on this portfolio."
+                : "Profile answers are active. Add AI_API_KEY in Vercel for generative answers."}
+            </p>
           </section>
         )}
         <button
