@@ -252,7 +252,7 @@ const reveal = {
 
 export default function Portfolio() {
   const reduceMotion = useReducedMotion();
-  const [dark, setDark] = useState(true);
+  const [dark, setDark] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("home");
   const [skillFilter, setSkillFilter] = useState("analytics");
@@ -282,7 +282,7 @@ export default function Portfolio() {
 
   useEffect(() => {
     const savedTheme = window.localStorage.getItem("portfolio-theme");
-    setDark(savedTheme === null ? true : savedTheme === "dark");
+    setDark(savedTheme === "dark");
   }, []);
 
   useEffect(() => {
@@ -506,6 +506,19 @@ export default function Portfolio() {
       </header>
 
       <div id="main-content">
+        <div className="role-marquee" aria-label="AI, data analytics, data science, and full-stack development">
+          <span className="visually-hidden">AI and machine learning engineer, data analytics engineer, data scientist, full-stack developer.</span>
+          <div className="role-marquee-track" aria-hidden="true">
+            {[0, 1].map((copy) => (
+              <div className="role-marquee-content" key={copy}>
+                <span>AI &amp; ML ENGINEER</span><Sparkles />
+                <span>DATA ANALYTICS</span><Sparkles />
+                <span>DATA SCIENCE</span><Sparkles />
+                <span>FULL-STACK DEVELOPER</span><Sparkles />
+              </div>
+            ))}
+          </div>
+        </div>
         <section className="hero section-wrap" id="home">
           <div className="hero-backdrop" aria-hidden="true">
             <span className="hero-scanline" />
@@ -600,8 +613,8 @@ export default function Portfolio() {
               {orbitTechnologies.map((technology, index) => {
                 const angle = (360 / orbitTechnologies.length) * index;
                 const radians = (angle * Math.PI) / 180;
-                const left = 50 + Math.sin(radians) * 40;
-                const top = 50 - Math.cos(radians) * 40;
+                const left = (50 + Math.sin(radians) * 40).toFixed(3);
+                const top = (50 - Math.cos(radians) * 40).toFixed(3);
                 return (
                   <span
                     className={`orbit-tech orbit-tech-${technology.category}`}
