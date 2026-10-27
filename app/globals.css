@@ -1443,6 +1443,40 @@ a.social-link:hover { border-color: var(--accent); color: var(--ink); }
   background: color-mix(in srgb, var(--surface) 94%, var(--page));
   box-shadow: 0 14px 40px rgba(20,18,30,.06);
 }
+.skills-viewport {
+  overflow: hidden;
+  outline: none;
+  overscroll-behavior-y: auto;
+  touch-action: pan-y;
+}
+.skills-viewport:focus-visible { box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent) 24%, transparent), 0 14px 40px rgba(20,18,30,.06); }
+.skills-slider-track {
+  display: flex;
+  width: 100%;
+  transition: transform .9s cubic-bezier(.22,.75,.24,1);
+  will-change: transform;
+}
+.skills-category { flex: 0 0 100%; min-width: 0; }
+.skills-slide-progress {
+  display: flex;
+  justify-content: flex-end;
+  gap: 18px;
+  margin-top: 12px;
+  color: var(--muted);
+  font-size: 9px;
+  letter-spacing: .12em;
+}
+.skills-slide-progress span { position: relative; transition: color .2s ease; }
+.skills-slide-progress span.is-active { color: var(--ink); }
+.skills-slide-progress span.is-active::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  bottom: -5px;
+  left: 0;
+  height: 2px;
+  background: var(--accent);
+}
 .skills-category h3 { margin: 0 0 22px; color: var(--track-color, var(--accent)); font-size: clamp(20px, 3vw, 27px); letter-spacing: -.045em; }
 .skill-group + .skill-group { margin-top: 21px; }
 .skill-group h4 { margin: 0 0 10px; color: var(--muted); font-size: 11px; font-weight: 700; letter-spacing: .05em; }

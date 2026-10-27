@@ -257,6 +257,9 @@ export default function Portfolio() {
   const [activeSection, setActiveSection] = useState("home");
   const [skillFilter, setSkillFilter] = useState("analytics");
   const [projectFilter, setProjectFilter] = useState("all");
+  const skillsViewportRef = useRef<HTMLDivElement>(null);
+  const skillWheelLockedRef = useRef(false);
+  const skillWheelAccumulatorRef = useRef(0);
   const [chatOpen, setChatOpen] = useState(false);
   const [chatMode, setChatMode] = useState<ChatMode>("profile");
   const [messages, setMessages] = useState<ChatMessage[]>([
@@ -303,6 +306,62 @@ export default function Portfolio() {
     observedSections.forEach((section) => observer.observe(section));
     return () => observer.disconnect();
   }, []);
+
+  useEffect(() => {
+    const viewport = skillsViewportRef.current;
+    if (!viewport) return;
+
+    const handleWheel = (event: WheelEvent) => {
+      const movement = Math.abs(event.deltaX) > Math.abs(event.deltaY) * 1.15
+        ? event.deltaX
+        : event.deltaY;
+      if (Math.abs(movement) < 2) return;
+
+      const currentIndex = tracks.findIndex((track) => track.id === skillFilter);
+
+      // The final slide hands every wheel gesture back to the normal page scroll.
+      // Explicit horizontal input is still available for the reverse navigation.
+      const horizontalGesture = Math.abs(event.deltaX) > Math.abs(event.deltaY) * 1.15;
+      if (currentIndex === tracks.length - 1 && !horizontalGesture) {
+        skillWheelAccumulatorRef.current = 0;
+        skillWheelLockedRef.current = false;
+        return;
+      }
+
+      const canMoveForward = movement > 0 && currentIndex < tracks.length - 1;
+      const canMoveBackward = movement < 0 && currentIndex > 0;
+
+      // Keep the page scroll active once the user reaches either end of the skills track.
+      if (!canMoveForward && !canMoveBackward) {
+        skillWheelAccumulatorRef.current = 0;
+        skillWheelLockedRef.current = false;
+        return;
+      }
+
+      event.preventDefault();
+      if (skillWheelLockedRef.current) return;
+
+      if (movement * skillWheelAccumulatorRef.current < 0) {
+        skillWheelAccumulatorRef.current = movement;
+      } else {
+        skillWheelAccumulatorRef.current += movement;
+      }
+
+      if (Math.abs(skillWheelAccumulatorRef.current) < 70) return;
+
+      const direction = skillWheelAccumulatorRef.current > 0 ? 1 : -1;
+      skillWheelAccumulatorRef.current = 0;
+      skillWheelLockedRef.current = true;
+      setSkillFilter(tracks[currentIndex + direction].id);
+
+      window.setTimeout(() => {
+        skillWheelLockedRef.current = false;
+      }, 520);
+    };
+
+    viewport.addEventListener("wheel", handleWheel, { passive: false });
+    return () => viewport.removeEventListener("wheel", handleWheel);
+  }, [skillFilter]);
 
   useEffect(() => {
     const root = document.querySelector(".portfolio");
@@ -671,21 +730,48 @@ export default function Portfolio() {
                 </button>
               ))}
             </div>
-            <div className="skills-catalog" id="skills-catalog" key={skillFilter} data-reveal>
-              {tracks.filter((track) => track.id === skillFilter).map((track) => (
-                <div className={`skills-category skills-${track.color}`} key={track.id}>
-                  <h3>{track.label}</h3>
-                  {track.skillGroups.map((group) => (
-                    <div className="skill-group" key={group.label}>
-                      <h4>{group.label}</h4>
-                      <div className="skill-tags" role="list">
-                        {group.skills.map((skill) => (
-                          <span className="skill-chip" role="listitem" tabIndex={0} key={skill}>{skill}</span>
-                        ))}
+            <div
+              className="skills-catalog skills-viewport"
+              id="skills-catalog"
+              ref={skillsViewportRef}
+              data-reveal
+              tabIndex={0}
+              onKeyDown={(event) => {
+                const currentIndex = tracks.findIndex((track) => track.id === skillFilter);
+                if (event.key === "ArrowRight" && currentIndex < tracks.length - 1) {
+                  event.preventDefault();
+                  setSkillFilter(tracks[currentIndex + 1].id);
+                }
+                if (event.key === "ArrowLeft" && currentIndex > 0) {
+                  event.preventDefault();
+                  setSkillFilter(tracks[currentIndex - 1].id);
+                }
+              }}
+            >
+              <div
+                className="skills-slider-track"
+                style={{ transform: `translateX(-${tracks.findIndex((track) => track.id === skillFilter) * 100}%)` }}
+              >
+                {tracks.map((track) => (
+                  <div className={`skills-category skills-${track.color}`} key={track.id}>
+                    <h3>{track.label}</h3>
+                    {track.skillGroups.map((group) => (
+                      <div className="skill-group" key={group.label}>
+                        <h4>{group.label}</h4>
+                        <div className="skill-tags" role="list">
+                          {group.skills.map((skill) => (
+                            <span className="skill-chip" role="listitem" tabIndex={0} key={skill}>{skill}</span>
+                          ))}
+                        </div>
                       </div>
-                    </div>
-                  ))}
-                </div>
+                    ))}
+                  </div>
+                ))}
+              </div>
+            </div>
+            <div className="skills-slide-progress" aria-hidden="true">
+              {tracks.map((track, index) => (
+                <span className={skillFilter === track.id ? "is-active" : ""} key={track.id}>{String(index + 1).padStart(2, "0")}</span>
               ))}
             </div>
             <p className="toolkit-note">
