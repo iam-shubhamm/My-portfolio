@@ -4,6 +4,8 @@ A personal portfolio showcasing my work and learning path across data analytics,
 
 The interface features a responsive Light/Dark theme switch, section navigation, skill and project filters, motion-aware animations, an AI portfolio assistant, and a contact form.
 
+The Projects section links to `/projects` for additional public repositories. Its editable repository list lives in `app/projects-data.ts`. The Skills category catalogs include areas to explore and should not be read as claims of proficiency in every listed technology.
+
 The legacy GitHub Pages address [iam-shubhamm.github.io/My-portfolio](https://iam-shubhamm.github.io/My-portfolio/) redirects to the current Vercel portfolio after the GitHub Pages redirect workflow deploys.
 
 ## Deploy to Vercel

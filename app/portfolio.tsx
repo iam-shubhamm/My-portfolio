@@ -21,6 +21,7 @@ import {
 import { motion, useReducedMotion } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
 import type { FormEvent } from "react";
+import { additionalProjects } from "./projects-data";
 
 const navigation = [
   { id: "experience", label: "Experience" },
@@ -35,6 +36,21 @@ const roles = [
   { label: "AI Engineer", track: "ai-ml" },
   { label: "Machine Learning Engineer", track: "ai-ml" },
   { label: "Full Stack Engineer", track: "full-stack" },
+];
+
+const orbitTechnologies = [
+  { label: "Python", category: "ai" },
+  { label: "SQL", category: "analytics" },
+  { label: "React", category: "fullstack" },
+  { label: "NumPy", category: "science" },
+  { label: "Power BI", category: "analytics" },
+  { label: "Scikit-learn", category: "ai" },
+  { label: "PostgreSQL", category: "data" },
+  { label: "TypeScript", category: "fullstack" },
+  { label: "Tableau", category: "analytics" },
+  { label: "SciPy", category: "science" },
+  { label: "Next.js", category: "fullstack" },
+  { label: "Generative AI", category: "ai" },
 ];
 
 type Project = {
@@ -110,65 +126,81 @@ const projects: Project[] = [
 
 const tracks = [
   {
-    number: "01",
     id: "analytics",
-    label: "DATA ANALYTICS",
-    title: "Data Analytics Engineer",
-    description:
-      "Analyze, prepare, and communicate data through SQL queries, business intelligence, and dashboards.",
-    skills: ["SQL", "SQL Server", "Power BI", "Tableau", "Excel", "Data cleaning", "EDA"],
-    skillGroups: [
-      { label: "Query & prepare", skills: ["SQL", "SQL Server", "Data cleaning"] },
-      { label: "Analyze & communicate", skills: ["Power BI", "Tableau", "Excel", "EDA"] },
-    ],
-    icon: BarChart3,
+    label: "Data Analytics",
     color: "mint",
+    skillGroups: [
+      {
+        label: "Analysis & preparation",
+        skills: ["SQL", "Data Cleaning", "Data Transformation", "Exploratory Data Analysis", "Data Visualization", "Data Validation", "Statistical Analysis", "Trend Analysis", "Data Quality"],
+      },
+      {
+        label: "Dashboards & reporting",
+        skills: ["Dashboard Development", "KPI Reporting", "Business Intelligence", "Data Storytelling", "Reporting Automation", "Power BI", "Tableau", "DAX", "Power Query", "Advanced Excel"],
+      },
+      {
+        label: "Databases & data platforms",
+        skills: ["Microsoft SQL Server", "PostgreSQL", "MySQL", "Data Modeling", "Data Warehousing", "ETL/ELT", "Apache Spark", "Apache Airflow", "dbt", "Databricks", "BigQuery", "Snowflake", "Amazon Redshift", "Python", "Pandas", "NumPy"],
+      },
+    ],
   },
   {
-    number: "02",
     id: "ai-ml",
-    label: "AI & MACHINE LEARNING",
-    title: "AI & Machine Learning",
-    description:
-      "Explore practical intelligent systems with Python projects and a growing foundation in machine learning.",
-    skills: ["Python", "NumPy", "Pandas", "Recommendation systems", "Machine-learning fundamentals"],
-    skillGroups: [
-      { label: "Libraries", skills: ["Python", "NumPy", "Pandas"] },
-      { label: "Concepts", skills: ["Recommendation systems", "Machine-learning fundamentals"] },
-    ],
-    icon: BrainCircuit,
+    label: "AI / ML",
     color: "violet",
+    skillGroups: [
+      {
+        label: "Foundations & modeling",
+        skills: ["Python", "NumPy", "Pandas", "Scikit-learn", "Supervised Learning", "Unsupervised Learning", "Classification", "Regression", "Clustering", "Feature Engineering", "Feature Selection", "Model Training", "Model Evaluation", "Cross-Validation", "Hyperparameter Tuning", "Random Forest", "Decision Trees", "Gradient Boosting", "XGBoost", "LightGBM"],
+      },
+      {
+        label: "Deep learning & applied AI",
+        skills: ["TensorFlow", "PyTorch", "Keras", "Neural Networks", "Deep Learning", "Natural Language Processing", "Computer Vision", "OpenCV", "Transformers", "Hugging Face", "Generative AI", "Large Language Models", "Prompt Engineering", "Embeddings", "Vector Databases", "Retrieval-Augmented Generation", "LangChain", "LlamaIndex", "AI APIs", "Model Deployment", "MLflow", "Model Monitoring", "Explainable AI", "MLOps", "Recommendation Systems"],
+      },
+    ],
   },
   {
-    number: "03",
     id: "data-science",
-    label: "DATA SCIENCE",
-    title: "Data Science",
-    description:
-      "Use exploratory analysis and thoughtful data preparation to understand patterns and ask better questions.",
-    skills: ["Python", "Pandas", "NumPy", "Exploratory analysis", "Data storytelling"],
-    skillGroups: [
-      { label: "Explore & prepare", skills: ["Python", "Pandas", "NumPy", "Exploratory analysis"] },
-      { label: "Communicate", skills: ["Data storytelling"] },
-    ],
-    icon: Database,
+    label: "Data Science",
     color: "blue",
+    skillGroups: [
+      {
+        label: "Scientific analysis",
+        skills: ["Python", "R", "NumPy", "Pandas", "SciPy", "Statsmodels", "Matplotlib", "Seaborn", "Jupyter Notebook", "Probability", "Descriptive Statistics", "Inferential Statistics", "Hypothesis Testing", "Statistical Inference", "Correlation Analysis"],
+      },
+      {
+        label: "Modeling & interpretation",
+        skills: ["Regression Analysis", "Predictive Modeling", "Feature Engineering", "Data Preprocessing", "Feature Selection", "Cross-Validation", "Model Evaluation", "Time-Series Analysis", "Forecasting", "Experimental Design", "A/B Testing", "Bayesian Statistics", "Dimensionality Reduction", "Principal Component Analysis", "Clustering", "Anomaly Detection", "Statistical Modeling", "Data Storytelling", "Model Interpretation", "Statistics", "Numerical Computing", "Scientific Computing", "Fortran", "C", "C++", "MATLAB", "Julia"],
+      },
+    ],
   },
   {
-    number: "04",
     id: "full-stack",
-    label: "FULL-STACK DEVELOPMENT",
-    title: "Full Stack Development",
-    description:
-      "Build responsive web experiences and server-backed features with modern JavaScript frameworks.",
-    skills: ["React", "Next.js", "TypeScript", "CSS", "API routes", "Git", "GitHub", "Streamlit"],
-    skillGroups: [
-      { label: "Frontend", skills: ["React", "Next.js", "TypeScript", "CSS"] },
-      { label: "Backend & workflow", skills: ["API routes", "Git", "GitHub", "Streamlit"] },
-    ],
-    icon: Code2,
+    label: "Full Stack Development",
     color: "orange",
+    skillGroups: [
+      {
+        label: "Frontend",
+        skills: ["HTML5", "CSS3", "JavaScript", "TypeScript", "React", "Next.js", "Responsive Design", "Tailwind CSS", "Bootstrap", "Accessibility", "UI/UX Fundamentals", "State Management", "Frontend Testing"],
+      },
+      {
+        label: "Backend & databases",
+        skills: ["Node.js", "Express.js", "Python", "FastAPI", "Flask", "REST APIs", "GraphQL", "Authentication", "Authorization", "Server-Side Development", "API Integration", "Error Handling", "PostgreSQL", "MySQL", "MongoDB", "SQLite", "Redis", "SQL Queries", "Database Design", "Data Modeling", "Database Optimization"],
+      },
+      {
+        label: "Tools & deployment",
+        skills: ["Git", "GitHub", "VS Code", "npm", "Postman", "Docker", "CI/CD", "Automated Testing", "AWS", "Microsoft Azure", "Vercel", "Environment Configuration", "Application Deployment", "Logging and Monitoring"],
+      },
+    ],
   },
+];
+
+const curiosityGroups = [
+  { label: "AI & machine learning", color: "violet", items: ["Generative AI", "Large Language Models", "AI agents", "Retrieval-Augmented Generation", "Deep learning", "Natural language processing", "Computer vision", "MLOps", "Responsible AI"] },
+  { label: "Analytics & business intelligence", color: "mint", items: ["Business intelligence", "Interactive dashboards", "KPI optimization", "Data storytelling", "Business reporting", "Analytics automation", "Decision support systems", "Data-driven strategy"] },
+  { label: "Data science", color: "blue", items: ["Predictive modeling", "Statistical analysis", "Forecasting", "Experimentation", "Feature engineering", "Model interpretability", "Anomaly detection", "Advanced analytics"] },
+  { label: "Full-stack development", color: "orange", items: ["Modern web applications", "Frontend engineering", "Backend architecture", "API development", "Database design", "Cloud deployment", "Application performance", "Web accessibility", "Developer tooling"] },
+  { label: "Data engineering & scientific computing", color: "rose", items: ["Data pipelines", "ETL/ELT", "Data warehousing", "Distributed computing", "Apache Spark", "Workflow orchestration", "Numerical computing", "Scientific programming"] },
 ];
 
 const portfolioStats = {
@@ -223,7 +255,7 @@ export default function Portfolio() {
   const [dark, setDark] = useState(true);
   const [menuOpen, setMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("home");
-  const [skillFilter, setSkillFilter] = useState("all");
+  const [skillFilter, setSkillFilter] = useState("analytics");
   const [projectFilter, setProjectFilter] = useState("all");
   const [chatOpen, setChatOpen] = useState(false);
   const [chatMode, setChatMode] = useState<ChatMode>("profile");
@@ -271,6 +303,32 @@ export default function Portfolio() {
     observedSections.forEach((section) => observer.observe(section));
     return () => observer.disconnect();
   }, []);
+
+  useEffect(() => {
+    const root = document.querySelector(".portfolio");
+    const revealElements = Array.from(document.querySelectorAll<HTMLElement>("[data-reveal]"));
+    if (!root || reduceMotion || !("IntersectionObserver" in window)) {
+      root?.classList.remove("reveal-enabled");
+      revealElements.forEach((element) => element.classList.remove("is-revealed"));
+      return;
+    }
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          entry.target.classList.toggle("is-revealed", entry.isIntersecting);
+        });
+      },
+      { rootMargin: "0px 0px -8% 0px", threshold: 0.12 },
+    );
+    revealElements.forEach((element) => observer.observe(element));
+    root.classList.add("reveal-enabled");
+
+    return () => {
+      observer.disconnect();
+      root.classList.remove("reveal-enabled");
+    };
+  }, [reduceMotion, skillFilter, projectFilter]);
 
   useEffect(() => {
     messageListRef.current?.scrollTo({
@@ -538,9 +596,22 @@ export default function Portfolio() {
             <div className="float-chip chip-sql"><Database size={15} /> SQL</div>
             <div className="float-chip chip-python"><Code2 size={15} /> PYTHON</div>
             <div className="float-chip chip-ai"><Sparkles size={15} /> AI / ML</div>
-            <div className="tech-orbit" aria-label="Tools and technologies orbiting the data sphere">
-              <span>SQL</span><span>Python</span><span>Power BI</span><span>Tableau</span>
-              <span>React</span><span>Next.js</span><span>TypeScript</span><span>ML</span>
+            <div className="tech-orbit" aria-label="Representative technologies across AI, analytics, science, and software">
+              {orbitTechnologies.map((technology, index) => {
+                const angle = (360 / orbitTechnologies.length) * index;
+                const radians = (angle * Math.PI) / 180;
+                const left = 50 + Math.sin(radians) * 40;
+                const top = 50 - Math.cos(radians) * 40;
+                return (
+                  <span
+                    className={`orbit-tech orbit-tech-${technology.category}`}
+                    key={technology.label}
+                    style={{ left: `${left}%`, top: `${top}%` }}
+                  >
+                    {technology.label}
+                  </span>
+                );
+              })}
             </div>
             <div className="visual-caption"><span /> DATA IN MOTION <span>·</span> IDEAS IN PROGRESS</div>
           </motion.div>
@@ -548,17 +619,14 @@ export default function Portfolio() {
 
         <section className="content-section experience-section" id="experience">
           <div className="section-wrap">
-            <SectionHeader number="02" kicker="EXPERIENCE" title="Experience so far." />
+            <div data-reveal><SectionHeader number="02" kicker="EXPERIENCE" title="Experience so far." /></div>
             <div className="experience-list">
               {experiences.map((experience, index) => (
                 <motion.article
                   className="experience-row"
                   key={experience.role}
-                  initial={motionOff ? false : "hidden"}
-                  whileInView="visible"
-                  viewport={{ once: true, amount: 0.2 }}
-                  variants={reveal}
-                  transition={{ duration: 0.5, delay: index * 0.08 }}
+                  data-reveal
+                  style={{ transitionDelay: `${index * 80}ms` }}
                 >
                   <span className="experience-period">{experience.period}</span>
                   <span className="experience-icon"><BriefcaseBusiness size={19} aria-hidden="true" /></span>
@@ -575,21 +643,14 @@ export default function Portfolio() {
 
         <section className="content-section focus-section" id="skills">
           <div className="section-wrap">
-            <SectionHeader number="03" kicker="SKILLS & INTERESTS" title="A practical toolkit, still growing." />
-            <div className="skill-filters" role="group" aria-label="Filter skill categories">
-              <button
-                type="button"
-                className={skillFilter === "all" ? "is-selected" : ""}
-                aria-pressed={skillFilter === "all"}
-                onClick={() => setSkillFilter("all")}
-              >
-                All skills
-              </button>
+            <div data-reveal><SectionHeader number="03" kicker="SKILLS & INTERESTS" title="A practical toolkit, still growing." /></div>
+            <div className="skill-filters" role="group" aria-label="Filter skill categories" data-reveal>
               {tracks.map((track) => (
                 <button
                   type="button"
                   className={skillFilter === track.id ? "is-selected" : ""}
                   aria-pressed={skillFilter === track.id}
+                  aria-controls="skills-catalog"
                   key={track.id}
                   onClick={() => setSkillFilter(track.id)}
                 >
@@ -597,54 +658,36 @@ export default function Portfolio() {
                 </button>
               ))}
             </div>
-            <motion.div className="focus-grid" layout>
-              {tracks.filter((track) => skillFilter === "all" || track.id === skillFilter).map((track, index) => {
-                const Icon = track.icon;
-                return (
-                  <motion.article
-                    className={`focus-card focus-${track.color}`}
-                    key={track.id}
-                    layout
-                    initial={motionOff ? false : { opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: motionOff ? 0 : 0.38, delay: motionOff ? 0 : index * 0.06 }}
-                    whileHover={motionOff ? undefined : { y: -7, rotateX: 2 }}
-                  >
-                    <div className="focus-card-top">
-                      <span className="focus-number">{track.number}</span>
-                      <span className="focus-icon"><Icon size={21} aria-hidden="true" /></span>
-                    </div>
-                    <p className="focus-label">{track.label}</p>
-                    <h3>{track.title}</h3>
-                    <p className="focus-description">{track.description}</p>
-                    {track.skillGroups.map((group) => (
-                      <div className="skill-group" key={group.label}>
-                        <span className="skill-group-label">{group.label}</span>
-                        <div className="skill-tags">
-                          {group.skills.map((skill) => <span key={skill}>{skill}</span>)}
-                        </div>
+            <div className="skills-catalog" id="skills-catalog" key={skillFilter} data-reveal>
+              {tracks.filter((track) => track.id === skillFilter).map((track) => (
+                <div className={`skills-category skills-${track.color}`} key={track.id}>
+                  <h3>{track.label}</h3>
+                  {track.skillGroups.map((group) => (
+                    <div className="skill-group" key={group.label}>
+                      <h4>{group.label}</h4>
+                      <div className="skill-tags" role="list">
+                        {group.skills.map((skill) => (
+                          <span className="skill-chip" role="listitem" tabIndex={0} key={skill}>{skill}</span>
+                        ))}
                       </div>
-                    ))}
-                  </motion.article>
-                );
-              })}
-            </motion.div>
+                    </div>
+                  ))}
+                </div>
+              ))}
+            </div>
             <p className="toolkit-note">
-              Practical skills, project tools, and areas I&apos;m actively developing — experience varies by technology.
+              This technology catalog includes skills, tools, and topics I&apos;m exploring; it is not a claim of proficiency in every item.
             </p>
             <div className="skill-interests">
               <span className="interest-label">ALWAYS CURIOUS ABOUT</span>
-              <div className="interest-list">
-                {["Data storytelling", "Practical AI", "Customer insights", "Interactive dashboards", "Useful digital tools"].map((interest, index) => (
-                  <motion.span
-                    key={interest}
-                    initial={motionOff ? false : { opacity: 0, scale: 0.9 }}
-                    whileInView={{ opacity: 1, scale: 1 }}
-                    viewport={{ once: true, amount: 0.6 }}
-                    transition={{ duration: 0.3, delay: index * 0.07 }}
-                  >
-                    {interest}
-                  </motion.span>
+              <div className="curiosity-grid">
+                {curiosityGroups.map((group, index) => (
+                  <article className={`curiosity-card curiosity-${group.color}`} key={group.label} data-reveal style={{ transitionDelay: `${index * 70}ms` }}>
+                    <h3>{group.label}</h3>
+                    <div className="interest-list">
+                      {group.items.map((interest) => <span key={interest}>{interest}</span>)}
+                    </div>
+                  </article>
                 ))}
               </div>
             </div>
@@ -652,8 +695,8 @@ export default function Portfolio() {
         </section>
 
         <section className="content-section section-wrap work-section" id="work">
-          <SectionHeader number="04" kicker="SELECTED PROJECTS" title="Projects, experiments, and what I&apos;m building next." />
-          <div className="project-filters" role="group" aria-label="Filter project categories">
+          <div data-reveal><SectionHeader number="04" kicker="SELECTED PROJECTS" title="Projects, experiments, and what I&apos;m building next." /></div>
+          <div className="project-filters" role="group" aria-label="Filter project categories" data-reveal>
             {[
               { id: "all", label: "All projects" },
               { id: "analytics", label: "Data analytics" },
@@ -677,12 +720,9 @@ export default function Portfolio() {
                 <motion.article
                   className="project-card"
                   key={project.number}
-                  initial={motionOff ? false : "hidden"}
-                  whileInView="visible"
-                  viewport={{ once: true, amount: 0.16 }}
-                  variants={reveal}
-                  transition={{ duration: 0.55, delay: (index % 2) * 0.1 }}
                   whileHover={motionOff ? undefined : { y: -6, rotateX: 2 }}
+                  data-reveal
+                  style={{ transitionDelay: `${(index % 2) * 100}ms` }}
                 >
                   <div className={`project-art ${project.className}`}>
                     <div className="art-window" aria-hidden="true">
@@ -695,6 +735,7 @@ export default function Portfolio() {
                         </div>
                       </div>
                     </div>
+                    <ProjectSubject type={project.className} />
                     <span className="art-project-icon"><Icon size={19} aria-hidden="true" /></span>
                     <span className="art-index">{project.inProgress ? "WIP" : project.number}</span>
                   </div>
@@ -721,18 +762,18 @@ export default function Portfolio() {
               );
             })}
           </div>
-          <a className="all-work-link" href="https://github.com/iam-shubhamm" target="_blank" rel="noopener noreferrer">
-            Explore all my repositories <ArrowUpRight size={17} aria-hidden="true" />
+          <a className="all-work-link" href="/projects" aria-label={`More Projects, ${additionalProjects.length} additional public repository`}>
+            More Projects <ArrowUpRight size={17} aria-hidden="true" />
           </a>
         </section>
 
         <section className="content-section certification-section" id="certifications">
           <div className="section-wrap">
-            <SectionHeader number="05" kicker="CERTIFICATIONS" title="Learning, with proof when it’s ready." />
+            <div data-reveal><SectionHeader number="05" kicker="CERTIFICATIONS" title="Learning, with proof when it’s ready." /></div>
             {certifications.length > 0 ? (
               <div className="certification-grid">
                 {certifications.map((certification) => (
-                  <article className="certification-card" key={`${certification.organization}-${certification.title}`}>
+                  <article className="certification-card" key={`${certification.organization}-${certification.title}`} data-reveal>
                     <span><Sparkles size={18} aria-hidden="true" /></span>
                     <div>
                       <h3>{certification.title}</h3>
@@ -747,7 +788,7 @@ export default function Portfolio() {
                 ))}
               </div>
             ) : (
-              <div className="certification-empty">
+              <div className="certification-empty" data-reveal>
                 <Sparkles size={20} aria-hidden="true" />
                 <div>
                   <h3>Certificate links coming soon</h3>
@@ -761,12 +802,12 @@ export default function Portfolio() {
         <section className="contact-section" id="contact">
           <div className="section-wrap contact-layout">
             <div className="contact-copy">
-              <SectionHeader number="06" kicker="CONTACT" title="Have an idea? Let’s talk." />
-              <p className="contact-intro">Tell me what you&apos;re working on or what you&apos;d like to discuss.</p>
+              <div data-reveal><SectionHeader number="06" kicker="CONTACT" title="Have an idea? Let’s talk." /></div>
+              <p className="contact-intro" data-reveal>Tell me what you&apos;re working on or what you&apos;d like to discuss.</p>
               <a className="button button-light" href="mailto:shubhamkanpura7@gmail.com">
                 Say hello <ArrowUpRight size={18} aria-hidden="true" />
               </a>
-              <div className="contact-socials">
+              <div className="contact-socials" data-reveal>
                 {socialLinks.slice(0, 2).map(({ label, href, icon: Icon }) => (
                   <a key={label} href={href} target="_blank" rel="noopener noreferrer">
                     <Icon size={16} aria-hidden="true" /> {label}
@@ -774,7 +815,7 @@ export default function Portfolio() {
                 ))}
               </div>
             </div>
-            <form className="contact-form" onSubmit={sendContactMessage}>
+            <form className="contact-form" onSubmit={sendContactMessage} data-reveal>
               <div className="contact-form-row">
                 <label>
                   Your name
@@ -937,6 +978,41 @@ function SectionHeader({ number, kicker, title }: { number: string; kicker: stri
     <div className="section-heading">
       <div className="section-kicker"><span>{number}</span>{kicker}</div>
       <h2>{title}</h2>
+    </div>
+  );
+}
+
+function ProjectSubject({ type }: { type: string }) {
+  if (type === "pizza-art") {
+    return (
+      <div className="project-subject pizza-subject" aria-hidden="true">
+        <div className="pizza-disc"><i /><i /><i /><i /><i /><i /></div>
+        <div className="subject-metric"><small>SALES MIX</small><span className="mini-bars"><i /><i /><i /><i /><i /></span></div>
+      </div>
+    );
+  }
+  if (type === "churn-art") {
+    return (
+      <div className="project-subject churn-subject" aria-hidden="true">
+        <div className="customer-cluster"><i /><i /><i /><i /><i /></div>
+        <div className="subject-metric"><small>RETENTION</small><span className="retention-line"><i /><i /><i /><i /></span></div>
+      </div>
+    );
+  }
+  if (type === "movie-art") {
+    return (
+      <div className="project-subject movie-subject" aria-hidden="true">
+        <div className="movie-cards"><i /><i /><i /></div>
+        <div className="subject-metric"><small>RECOMMENDATIONS</small><span className="movie-stars">★★★★★</span></div>
+      </div>
+    );
+  }
+  return (
+    <div className="project-subject health-subject" aria-hidden="true">
+      <svg viewBox="0 0 240 80" role="presentation">
+        <path d="M4 43h48l13-23 18 49 17-34 12 8h32l12-16 17 32 14-16h38" />
+      </svg>
+      <span>HEART-ATTACK PREDICTION · WORK IN PROGRESS</span>
     </div>
   );
 }
