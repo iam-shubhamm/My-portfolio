@@ -1321,6 +1321,8 @@ a.social-link:hover { border-color: var(--accent); color: var(--ink); }
   text-decoration: none;
 }
 .contact-section .section-heading { margin-bottom: 20px; }
+.contact-section .section-kicker { color: #d1e6c6; }
+.contact-section .section-kicker span { color: #adc59f; }
 .contact-intro { max-width: 410px; margin: 0 0 27px; color: #d1d9d2; font-size: 14px; }
 .contact-socials, .footer-socials { display: flex; align-items: center; gap: 9px; margin-top: 25px; }
 .contact-socials a, .footer-socials a {
