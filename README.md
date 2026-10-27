@@ -2,7 +2,7 @@
 
 A personal portfolio showcasing my work and learning path across data analytics, AI/machine learning, and full-stack development.
 
-The interface features a cinematic, red-accented design, a saved Morning/Evening theme switch, responsive navigation, and motion-aware animations.
+The interface features a cinematic design, a saved Light/Dark theme switch, responsive navigation with direct contact links, and motion-aware animations.
 
 ## Deploy to Vercel
 
@@ -24,12 +24,9 @@ I am a Computer Science graduate building practical data analysis and visualizat
 
 ## Featured Projects
 
-- **[Tata Retail Sales and Revenue Analysis](https://github.com/iam-shubhamm/Tata-Retail-Sales---Revenue-Analysis)** — Tableau analysis of online retail revenue trends, customer performance, and country-wise sales, with interactive charts and geographic maps.
 - **[Pizza Sales Analysis Dashboard](https://github.com/iam-shubhamm/Pizza-Sales-Analysis-Dashboard-using-MS-SQL-Server-and-Power-BI)** — Sales analysis using Microsoft SQL Server and Power BI.
 - **[Customer Churn Prediction](https://github.com/iam-shubhamm/Customer-Churn-Prediction)** — Dashboard project exploring customer churn behavior and retention patterns.
 - **[Movie Recommendation System](https://github.com/iam-shubhamm/Movie-Recommendation-System)** — Python and Streamlit movie recommendation project.
-- **[HR Analysis Dashboard](https://github.com/iam-shubhamm/HR_Aalysis_Dashboard)** — In progress; follow the repository for updates.
-- **[Online Customer Shopping Behavior Analysis](https://github.com/iam-shubhamm/Online_Customer_Shopping_Behavior_Analysis)** — In progress; follow the repository for updates.
 - **[Heart Attack Prediction Using Machine Learning Models](https://github.com/iam-shubhamm/Heart-Attack-Prediction-Using-Machine-Learning-Models)** — In progress; no model results are published yet.
 
 ## Experience
@@ -44,6 +41,8 @@ I am a Computer Science graduate building practical data analysis and visualizat
 **AI and machine learning:** Python · NumPy · Pandas · Recommendation systems · Machine-learning fundamentals
 
 **Full-stack development:** React · Next.js · TypeScript · CSS · API routes · GitHub
+
+**Tools and workflow:** Git · GitHub · Streamlit · Next.js API routes · Project documentation
 
 Skills reflect a mix of project tools and areas currently in development; experience varies by technology.
 

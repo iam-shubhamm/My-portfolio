@@ -52,17 +52,6 @@ type Project = {
 const projects: Project[] = [
   {
     number: "01",
-    title: "Retail sales & revenue analysis",
-    category: "TABLEAU · BUSINESS INTELLIGENCE",
-    description:
-      "Explored online retail revenue, customer performance, and country-level sales with interactive charts and maps.",
-    href: "https://github.com/iam-shubhamm/Tata-Retail-Sales---Revenue-Analysis",
-    className: "retail-art",
-    icon: BarChart3,
-    artLabel: "Abstract bar chart illustration",
-  },
-  {
-    number: "02",
     title: "Pizza sales dashboard",
     category: "SQL SERVER · POWER BI",
     description:
@@ -73,7 +62,7 @@ const projects: Project[] = [
     artLabel: "Abstract circular pizza sales chart",
   },
   {
-    number: "03",
+    number: "02",
     title: "Customer churn analysis",
     category: "POWER BI · CUSTOMER INSIGHTS",
     description:
@@ -84,7 +73,7 @@ const projects: Project[] = [
     artLabel: "Abstract customer data illustration",
   },
   {
-    number: "04",
+    number: "03",
     title: "Movie recommendation system",
     category: "PYTHON · STREAMLIT",
     description:
@@ -95,31 +84,7 @@ const projects: Project[] = [
     artLabel: "Abstract film recommendation illustration",
   },
   {
-    number: "05",
-    title: "HR analysis dashboard",
-    category: "DATA ANALYTICS · IN PROGRESS",
-    description:
-      "A new HR analytics repository is in progress. Follow the project on GitHub as I publish the analysis and dashboard.",
-    href: "https://github.com/iam-shubhamm/HR_Aalysis_Dashboard",
-    className: "hr-art",
-    icon: Network,
-    artLabel: "Abstract workforce analytics illustration",
-    inProgress: true,
-  },
-  {
-    number: "06",
-    title: "Shopping behavior analysis",
-    category: "DATA SCIENCE · IN PROGRESS",
-    description:
-      "A shopping behavior analysis project is in progress. Visit the repository for updates as the work develops.",
-    href: "https://github.com/iam-shubhamm/Online_Customer_Shopping_Behavior_Analysis",
-    className: "shopping-art",
-    icon: BarChart3,
-    artLabel: "Abstract shopping data illustration",
-    inProgress: true,
-  },
-  {
-    number: "07",
+    number: "04",
     title: "Heart-attack prediction",
     category: "MACHINE LEARNING · IN PROGRESS",
     description:
@@ -172,6 +137,16 @@ const tracks = [
     skills: ["React", "Next.js", "TypeScript", "CSS", "API routes", "GitHub"],
     icon: Code2,
     color: "orange",
+  },
+  {
+    number: "05",
+    label: "TOOLS & WORKFLOW",
+    title: "Make good ideas usable.",
+    description:
+      "Use the tools behind my projects to explore ideas, shape a clear result, and share it with others.",
+    skills: ["Git", "GitHub", "Streamlit", "Next.js API routes", "Project documentation"],
+    icon: Network,
+    color: "rose",
   },
 ];
 
@@ -355,11 +330,11 @@ export default function Portfolio() {
             type="button"
             onClick={toggleTheme}
             aria-pressed={dark}
-            aria-label={dark ? "Switch to morning theme" : "Switch to evening theme"}
-            title={dark ? "Switch to morning theme" : "Switch to evening theme"}
+            aria-label={dark ? "Switch to light mode" : "Switch to dark mode"}
+            title={dark ? "Switch to light mode" : "Switch to dark mode"}
           >
             {dark ? <Sun size={16} aria-hidden="true" /> : <Moon size={16} aria-hidden="true" />}
-            <span className="theme-toggle-label">{dark ? "Morning" : "Evening"}</span>
+            <span className="theme-toggle-label">{dark ? "Light" : "Dark"}</span>
           </button>
           <a className="nav-cta" href="#contact">
             Let&apos;s connect <ArrowUpRight size={16} aria-hidden="true" />
@@ -423,6 +398,9 @@ export default function Portfolio() {
               <a className="button button-outline" href="#about">
                 Discover my story <ArrowDown size={16} aria-hidden="true" />
               </a>
+              <a className="button button-contact" href="#contact">
+                Contact me <ArrowUpRight size={16} aria-hidden="true" />
+              </a>
             </div>
             <div className="hero-social-proof" aria-label="Connect with Shubham">
               <a href="https://github.com/iam-shubhamm" target="_blank" rel="noopener noreferrer">GITHUB <ArrowUpRight size={13} aria-hidden="true" /></a>
@@ -430,8 +408,8 @@ export default function Portfolio() {
               <a href="mailto:shubhamkanpura7@gmail.com">EMAIL <ArrowUpRight size={13} aria-hidden="true" /></a>
             </div>
             <div className="hero-proof">
-              <div><strong>04</strong><small>COMPLETED PROJECTS</small></div>
-              <div><strong>04</strong><small>SKILL TRACKS</small></div>
+              <div><strong>03</strong><small>COMPLETED PROJECTS</small></div>
+              <div><strong>05</strong><small>SKILL TRACKS</small></div>
               <div><strong>01</strong><small>CURIOUS MIND</small></div>
             </div>
           </motion.div>
@@ -510,7 +488,7 @@ export default function Portfolio() {
 
         <section className="content-section focus-section" id="skills">
           <div className="section-wrap">
-            <SectionHeader number="02" kicker="MY SKILLS" title="A growing toolkit, grouped by what it helps me do." />
+            <SectionHeader number="02" kicker="SKILLS & INTERESTS" title="Skills in action. Curiosity in motion." />
             <div className="focus-grid">
               {tracks.map((track, index) => {
                 const Icon = track.icon;
@@ -542,6 +520,22 @@ export default function Portfolio() {
             <p className="toolkit-note">
               Practical skills, project tools, and areas I&apos;m actively developing — experience varies by technology.
             </p>
+            <div className="skill-interests">
+              <span className="interest-label">ALWAYS CURIOUS ABOUT</span>
+              <div className="interest-list">
+                {["Data storytelling", "Practical AI", "Customer insights", "Interactive dashboards", "Useful digital tools"].map((interest, index) => (
+                  <motion.span
+                    key={interest}
+                    initial={motionOff ? false : { opacity: 0, scale: 0.9 }}
+                    whileInView={{ opacity: 1, scale: 1 }}
+                    viewport={{ once: true, amount: 0.6 }}
+                    transition={{ duration: 0.3, delay: index * 0.07 }}
+                  >
+                    {interest}
+                  </motion.span>
+                ))}
+              </div>
+            </div>
           </div>
         </section>
 
@@ -596,7 +590,7 @@ export default function Portfolio() {
 
         <section className="content-section experience-section" id="experience">
           <div className="section-wrap">
-            <SectionHeader number="04" kicker="EXPERIENCE" title="Learning by doing." />
+            <SectionHeader number="04" kicker="EXPERIENCE" title="Experience so far." />
             <div className="experience-list">
               {experiences.map((experience, index) => (
                 <motion.article

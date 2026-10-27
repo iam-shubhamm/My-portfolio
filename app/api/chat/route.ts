@@ -15,9 +15,9 @@ Profile facts:
 - He is growing his skills across data analytics, AI/machine learning, and full-stack development. Don't claim seniority or professional experience beyond the facts here.
 - His portfolio uses Next.js, React, TypeScript, CSS, Framer Motion, and a server-side AI chat route.
 - His tools/skills include SQL, SQL Server, MySQL, Python, Pandas, NumPy, Power BI, Tableau, Excel, data cleaning, exploratory data analysis, dashboard development, data storytelling, and Streamlit.
-- Projects: a Tableau retail sales and revenue analysis; a pizza sales dashboard built with SQL Server and Power BI; customer churn analysis; a Python/Streamlit movie recommendation system using similarity logic. New GitHub repositories for HR analysis, shopping behavior analysis, and heart-attack prediction are still in progress; don't imply their code or results are already published.
+- Projects: a pizza sales dashboard built with SQL Server and Power BI; customer churn analysis; a Python/Streamlit movie recommendation system using similarity logic. A GitHub repository for heart-attack prediction is still in progress; don't imply its code or results are already published.
 - He completed Tata Consultancy Services' Forage virtual experience "Data Visualisation: Empowering Business with Effective Insights" in August 2026, creating Tableau visualizations and presenting business findings.
-- Project links: https://github.com/iam-shubhamm/Tata-Retail-Sales---Revenue-Analysis ; https://github.com/iam-shubhamm/Pizza-Sales-Analysis-Dashboard-using-MS-SQL-Server-and-Power-BI ; https://github.com/iam-shubhamm/Customer-Churn-Prediction ; https://github.com/iam-shubhamm/Movie-Recommendation-System ; https://github.com/iam-shubhamm/HR_Aalysis_Dashboard ; https://github.com/iam-shubhamm/Online_Customer_Shopping_Behavior_Analysis ; https://github.com/iam-shubhamm/Heart-Attack-Prediction-Using-Machine-Learning-Models
+- Project links: https://github.com/iam-shubhamm/Pizza-Sales-Analysis-Dashboard-using-MS-SQL-Server-and-Power-BI ; https://github.com/iam-shubhamm/Customer-Churn-Prediction ; https://github.com/iam-shubhamm/Movie-Recommendation-System ; https://github.com/iam-shubhamm/Heart-Attack-Prediction-Using-Machine-Learning-Models
 - Contact: shubhamkanpura7@gmail.com, https://github.com/iam-shubhamm, https://www.linkedin.com/in/shubhamsingh7a`;
 
 function jsonError(message: string, status: number) {
@@ -30,8 +30,8 @@ function getProfileReply(question: string) {
   if (/\b(hi|hello|hey|good morning|good afternoon)\b/.test(text)) {
     return "Hello! I can tell you about Shubham’s projects, analytics and AI/ML skills, full-stack learning, or experience. What would you like to know?";
   }
-  if (/\b(project|portfolio|github|built|work|dashboard|recommendation)\b/.test(text)) {
-    return "Shubham’s completed projects include a Tableau retail sales and revenue analysis, a SQL Server and Power BI pizza sales dashboard, customer churn analysis, and a Python/Streamlit movie recommendation system. He also has three newer repositories in progress: HR analysis, shopping behavior analysis, and heart-attack prediction. See the projects on GitHub: https://github.com/iam-shubhamm";
+  if (/\b(projects?|portfolio|github|built|work|dashboard|recommendation)\b/.test(text)) {
+    return "Shubham’s completed projects include a SQL Server and Power BI pizza sales dashboard, customer churn analysis, and a Python/Streamlit movie recommendation system. His heart-attack prediction repository is in progress. See the projects on GitHub: https://github.com/iam-shubhamm";
   }
   if (/\b(skill|tool|technology|tech stack|stack|know|proficien)\b/.test(text)) {
     return "His analytics toolkit includes SQL, SQL Server, MySQL, Python, Pandas, NumPy, Power BI, Tableau, and Excel. He is developing across AI/ML and data science, and builds with React, Next.js, TypeScript, CSS, and API routes. His experience varies by tool.";
