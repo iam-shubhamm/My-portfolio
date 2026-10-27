@@ -1,12 +1,12 @@
 "use client";
 
 import {
-  ArrowDown,
   ArrowRight,
   ArrowUpRight,
   BarChart3,
   BrainCircuit,
   BriefcaseBusiness,
+  Camera,
   Code2,
   Database,
   Mail,
@@ -23,29 +23,32 @@ import { useEffect, useRef, useState } from "react";
 import type { FormEvent } from "react";
 
 const navigation = [
-  { id: "about", label: "About" },
-  { id: "work", label: "Work" },
-  { id: "skills", label: "Skills" },
   { id: "experience", label: "Experience" },
+  { id: "skills", label: "Skills" },
+  { id: "work", label: "Projects" },
+  { id: "certifications", label: "Certifications" },
   { id: "contact", label: "Contact" },
 ];
 
 const roles = [
-  "DATA ANALYST",
-  "ASPIRING DATA SCIENTIST",
-  "AI / ML ENGINEER IN PROGRESS",
-  "FULL-STACK DEVELOPER IN PROGRESS",
+  { label: "Data Analytics Engineer", track: "analytics" },
+  { label: "AI Engineer", track: "ai-ml" },
+  { label: "Machine Learning Engineer", track: "ai-ml" },
+  { label: "Full Stack Engineer", track: "full-stack" },
 ];
 
 type Project = {
   number: string;
   title: string;
   category: string;
+  categoryId: string;
   description: string;
   href: string;
   className: string;
   icon: typeof BarChart3;
   artLabel: string;
+  technologies: string[];
+  demoHref?: string;
   inProgress?: boolean;
 };
 
@@ -54,45 +57,53 @@ const projects: Project[] = [
     number: "01",
     title: "Pizza sales dashboard",
     category: "SQL SERVER · POWER BI",
+    categoryId: "analytics",
     description:
       "Analyzed revenue, order volume, average order value, product performance, and sales trends.",
     href: "https://github.com/iam-shubhamm/Pizza-Sales-Analysis-Dashboard-using-MS-SQL-Server-and-Power-BI",
     className: "pizza-art",
     icon: Database,
     artLabel: "Abstract circular pizza sales chart",
+    technologies: ["SQL Server", "Power BI", "Data analysis"],
   },
   {
     number: "02",
     title: "Customer churn analysis",
     category: "POWER BI · CUSTOMER INSIGHTS",
+    categoryId: "analytics",
     description:
       "Explored customer churn behavior and retention patterns through an interactive dashboard.",
     href: "https://github.com/iam-shubhamm/Customer-Churn-Prediction",
     className: "churn-art",
     icon: BrainCircuit,
     artLabel: "Abstract customer data illustration",
+    technologies: ["Power BI", "Customer analytics", "Visualization"],
   },
   {
     number: "03",
     title: "Movie recommendation system",
     category: "PYTHON · STREAMLIT",
+    categoryId: "ai-ml",
     description:
       "Built a movie recommendation experience that suggests films using similarity-based logic.",
     href: "https://github.com/iam-shubhamm/Movie-Recommendation-System",
     className: "movie-art",
     icon: Code2,
     artLabel: "Abstract film recommendation illustration",
+    technologies: ["Python", "Streamlit", "Similarity logic"],
   },
   {
     number: "04",
     title: "Heart-attack prediction",
     category: "MACHINE LEARNING · IN PROGRESS",
+    categoryId: "ai-ml",
     description:
       "An early machine-learning project repository. The public repository is currently being developed; no model results are claimed.",
     href: "https://github.com/iam-shubhamm/Heart-Attack-Prediction-Using-Machine-Learning-Models",
     className: "health-art",
     icon: BrainCircuit,
     artLabel: "Abstract machine-learning illustration",
+    technologies: ["Machine learning", "Python"],
     inProgress: true,
   },
 ];
@@ -100,54 +111,76 @@ const projects: Project[] = [
 const tracks = [
   {
     number: "01",
+    id: "analytics",
     label: "DATA ANALYTICS",
-    title: "Turn data into direction.",
+    title: "Data Analytics Engineer",
     description:
-      "Query, clean, and explore data, then communicate useful findings with clear dashboards and reporting.",
+      "Analyze, prepare, and communicate data through SQL queries, business intelligence, and dashboards.",
     skills: ["SQL", "SQL Server", "Power BI", "Tableau", "Excel", "Data cleaning", "EDA"],
+    skillGroups: [
+      { label: "Query & prepare", skills: ["SQL", "SQL Server", "Data cleaning"] },
+      { label: "Analyze & communicate", skills: ["Power BI", "Tableau", "Excel", "EDA"] },
+    ],
     icon: BarChart3,
     color: "mint",
   },
   {
     number: "02",
+    id: "ai-ml",
     label: "AI & MACHINE LEARNING",
-    title: "Explore intelligent systems.",
+    title: "AI & Machine Learning",
     description:
-      "Build a foundation in AI/ML through Python projects, recommendation logic, and hands-on learning.",
+      "Explore practical intelligent systems with Python projects and a growing foundation in machine learning.",
     skills: ["Python", "NumPy", "Pandas", "Recommendation systems", "Machine-learning fundamentals"],
+    skillGroups: [
+      { label: "Libraries", skills: ["Python", "NumPy", "Pandas"] },
+      { label: "Concepts", skills: ["Recommendation systems", "Machine-learning fundamentals"] },
+    ],
     icon: BrainCircuit,
     color: "violet",
   },
   {
     number: "03",
+    id: "data-science",
     label: "DATA SCIENCE",
-    title: "Ask better questions of data.",
+    title: "Data Science",
     description:
-      "Use analytical thinking, data preparation, and exploratory methods to understand patterns and frame useful questions.",
+      "Use exploratory analysis and thoughtful data preparation to understand patterns and ask better questions.",
     skills: ["Python", "Pandas", "NumPy", "Exploratory analysis", "Data storytelling"],
+    skillGroups: [
+      { label: "Explore & prepare", skills: ["Python", "Pandas", "NumPy", "Exploratory analysis"] },
+      { label: "Communicate", skills: ["Data storytelling"] },
+    ],
     icon: Database,
     color: "blue",
   },
   {
     number: "04",
+    id: "full-stack",
     label: "FULL-STACK DEVELOPMENT",
-    title: "Take ideas across the stack.",
+    title: "Full Stack Development",
     description:
-      "Keep growing as a full-stack developer by building responsive experiences and server-backed features.",
-    skills: ["React", "Next.js", "TypeScript", "CSS", "API routes", "GitHub"],
+      "Build responsive web experiences and server-backed features with modern JavaScript frameworks.",
+    skills: ["React", "Next.js", "TypeScript", "CSS", "API routes", "Git", "GitHub", "Streamlit"],
+    skillGroups: [
+      { label: "Frontend", skills: ["React", "Next.js", "TypeScript", "CSS"] },
+      { label: "Backend & workflow", skills: ["API routes", "Git", "GitHub", "Streamlit"] },
+    ],
     icon: Code2,
     color: "orange",
   },
-  {
-    number: "05",
-    label: "TOOLS & WORKFLOW",
-    title: "Make good ideas usable.",
-    description:
-      "Use the tools behind my projects to explore ideas, shape a clear result, and share it with others.",
-    skills: ["Git", "GitHub", "Streamlit", "Next.js API routes", "Project documentation"],
-    icon: Network,
-    color: "rose",
-  },
+];
+
+const portfolioStats = {
+  completedProjects: "20+",
+};
+
+const certifications: { title: string; organization: string; issueDate: string; url: string }[] = [];
+
+const socialLinks = [
+  { label: "GitHub", href: "https://github.com/iam-shubhamm", icon: Code2 },
+  { label: "LinkedIn", href: "https://www.linkedin.com/in/shubhamsingh7a", icon: Network },
+  { label: "Email", href: "mailto:shubhamkanpura7@gmail.com", icon: Mail },
 ];
 
 const experiences = [
@@ -178,6 +211,7 @@ type ChatMessage = {
 };
 
 type ChatMode = "profile" | "ai";
+type ContactFields = { name: string; email: string; subject: string; message: string; company: string };
 
 const reveal = {
   hidden: { opacity: 0, y: 24 },
@@ -188,7 +222,9 @@ export default function Portfolio() {
   const reduceMotion = useReducedMotion();
   const [dark, setDark] = useState(true);
   const [menuOpen, setMenuOpen] = useState(false);
-  const [roleIndex, setRoleIndex] = useState(0);
+  const [activeSection, setActiveSection] = useState("home");
+  const [skillFilter, setSkillFilter] = useState("all");
+  const [projectFilter, setProjectFilter] = useState("all");
   const [chatOpen, setChatOpen] = useState(false);
   const [chatMode, setChatMode] = useState<ChatMode>("profile");
   const [messages, setMessages] = useState<ChatMessage[]>([
@@ -202,6 +238,15 @@ export default function Portfolio() {
   const [sending, setSending] = useState(false);
   const [chatError, setChatError] = useState("");
   const messageListRef = useRef<HTMLDivElement>(null);
+  const [contact, setContact] = useState<ContactFields>({
+    name: "",
+    email: "",
+    subject: "",
+    message: "",
+    company: "",
+  });
+  const [contactSending, setContactSending] = useState(false);
+  const [contactStatus, setContactStatus] = useState<{ type: "success" | "error"; message: string } | null>(null);
 
   useEffect(() => {
     const savedTheme = window.localStorage.getItem("portfolio-theme");
@@ -209,14 +254,23 @@ export default function Portfolio() {
   }, []);
 
   useEffect(() => {
-    if (reduceMotion) return;
+    const observedSections = ["home", ...navigation.map((item) => item.id)]
+      .map((id) => document.getElementById(id))
+      .filter((section): section is HTMLElement => section !== null);
+    if (!("IntersectionObserver" in window)) return;
 
-    const interval = window.setInterval(() => {
-      setRoleIndex((current) => (current + 1) % roles.length);
-    }, 2600);
-
-    return () => window.clearInterval(interval);
-  }, [reduceMotion]);
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const visibleSections = entries
+          .filter((entry) => entry.isIntersecting)
+          .sort((first, second) => second.intersectionRatio - first.intersectionRatio);
+        if (visibleSections[0]) setActiveSection(visibleSections[0].target.id);
+      },
+      { rootMargin: "-20% 0px -65% 0px", threshold: [0, 0.1, 0.3, 0.6] },
+    );
+    observedSections.forEach((section) => observer.observe(section));
+    return () => observer.disconnect();
+  }, []);
 
   useEffect(() => {
     messageListRef.current?.scrollTo({
@@ -243,6 +297,43 @@ export default function Portfolio() {
       window.localStorage.setItem("portfolio-theme", next ? "dark" : "light");
       return next;
     });
+  }
+
+  async function sendContactMessage(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    if (contactSending) return;
+
+    setContactSending(true);
+    setContactStatus(null);
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(contact),
+      });
+      const data: unknown = await response.json();
+      if (!response.ok) {
+        const message =
+          typeof data === "object" && data !== null && "error" in data && typeof data.error === "string"
+            ? data.error
+            : "Your message could not be sent. Please try again or email Shubham directly.";
+        throw new Error(message);
+      }
+
+      setContact({ name: "", email: "", subject: "", message: "", company: "" });
+      setContactStatus({
+        type: "success",
+        message: "Your message was accepted for delivery. Thank you — Shubham will get back to you.",
+      });
+    } catch (error) {
+      setContactStatus({
+        type: "error",
+        message:
+          error instanceof Error ? error.message : "Your message could not be sent. Please try again.",
+      });
+    } finally {
+      setContactSending(false);
+    }
   }
 
   async function sendQuestion(event?: FormEvent<HTMLFormElement>, text = question) {
@@ -312,11 +403,16 @@ export default function Portfolio() {
       <header className="topbar">
         <a className="wordmark" href="#home" aria-label="Shubham Singh, home">
           <span className="wordmark-mark">S</span>
-          <span>shubham<span className="wordmark-period">.</span></span>
+          <span>SHUBHAM<span className="wordmark-period">.</span></span>
         </a>
         <nav className={`desktop-nav${menuOpen ? " is-open" : ""}`} aria-label="Main navigation">
           {navigation.map((item) => (
-            <a key={item.id} href={`#${item.id}`} onClick={() => setMenuOpen(false)}>
+            <a
+              key={item.id}
+              href={`#${item.id}`}
+              onClick={() => setMenuOpen(false)}
+              aria-current={activeSection === item.id ? "location" : undefined}
+            >
               {item.label}
             </a>
           ))}
@@ -371,46 +467,50 @@ export default function Portfolio() {
               SHUBHAM<br />
               <span>SINGH</span>
             </h1>
-            <div className="hero-role" aria-live="polite">
-              <span className="role-caret" aria-hidden="true" />
-              <motion.span
-                key={roles[roleIndex]}
-                initial={motionOff ? false : { opacity: 0, y: 9 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -7 }}
-                transition={{ duration: 0.24 }}
-              >
-                {roles[roleIndex]}
-              </motion.span>
-            </div>
-            <p className="hero-lede">
-              I turn curious questions into clear data insights and useful digital
-              experiences — while growing my skills across machine learning and full-stack development.
+            <p className="hero-lede hero-introduction">
+              I&apos;m Shubham Singh, a Computer Science graduate who enjoys using data and technology to solve useful problems.
+              Explore my work across analytics, AI and machine learning, data science, and full-stack development.
             </p>
-            <div className="hero-tags" aria-label="Areas of interest">
-              <span>DATA ANALYTICS</span><i /><span>AI / ML</span><i />
-              <span>FULL-STACK</span><i /><span>DATA SCIENCE</span>
+            <div className="role-badges" aria-label="Professional interests">
+              {roles.map((role) => (
+                <a
+                  className="role-badge"
+                  href="#skills"
+                  key={role.label}
+                  onClick={() => setSkillFilter(role.track)}
+                >
+                  {role.label}<ArrowUpRight size={13} aria-hidden="true" />
+                </a>
+              ))}
             </div>
             <div className="hero-actions">
               <a className="button button-primary" href="#work">
                 View my projects <ArrowRight size={17} aria-hidden="true" />
               </a>
-              <a className="button button-outline" href="#about">
-                Discover my story <ArrowDown size={16} aria-hidden="true" />
-              </a>
               <a className="button button-contact" href="#contact">
                 Contact me <ArrowUpRight size={16} aria-hidden="true" />
               </a>
             </div>
-            <div className="hero-social-proof" aria-label="Connect with Shubham">
-              <a href="https://github.com/iam-shubhamm" target="_blank" rel="noopener noreferrer">GITHUB <ArrowUpRight size={13} aria-hidden="true" /></a>
-              <a href="https://www.linkedin.com/in/shubhamsingh7a" target="_blank" rel="noopener noreferrer">LINKEDIN <ArrowUpRight size={13} aria-hidden="true" /></a>
-              <a href="mailto:shubhamkanpura7@gmail.com">EMAIL <ArrowUpRight size={13} aria-hidden="true" /></a>
+            <div className="social-links" aria-label="Connect with Shubham">
+              {socialLinks.map(({ label, href, icon: Icon }) => (
+                <a
+                  className="social-link"
+                  href={href}
+                  key={label}
+                  target={href.startsWith("mailto:") ? undefined : "_blank"}
+                  rel={href.startsWith("mailto:") ? undefined : "noopener noreferrer"}
+                >
+                  <Icon size={17} aria-hidden="true" /><span>{label}</span>
+                </a>
+              ))}
+              <span className="social-link social-link-disabled" title="Add your Instagram profile URL to enable this link">
+                <Camera size={17} aria-hidden="true" /><span>Instagram</span><small>link needed</small>
+              </span>
             </div>
-            <div className="hero-proof">
-              <div><strong>03</strong><small>COMPLETED PROJECTS</small></div>
-              <div><strong>05</strong><small>SKILL TRACKS</small></div>
-              <div><strong>01</strong><small>CURIOUS MIND</small></div>
+            <div className="hero-proof" aria-label="Portfolio highlights">
+              <div><strong>{portfolioStats.completedProjects}</strong><small>PROJECTS COMPLETED</small></div>
+              <div><strong>04</strong><small>SKILL AREAS</small></div>
+              <div><strong>01</strong><small>AI ASSISTANT</small></div>
             </div>
           </motion.div>
 
@@ -446,151 +546,9 @@ export default function Portfolio() {
           </motion.div>
         </section>
 
-        <section className="manifesto" aria-label="A note on how I work">
-          <div className="section-wrap manifesto-inner">
-            <span className="manifesto-mark"><Sparkles size={18} aria-hidden="true" /></span>
-            <p>Stay curious. Build with purpose. Turn every new question into a chance to learn.</p>
-            <span className="manifesto-caption">THE WAY I MOVE FORWARD</span>
-          </div>
-        </section>
-
-        <div className="ticker" aria-label="Areas I work across">
-          <div className="ticker-track" aria-hidden="true">
-            {Array.from({ length: 2 }, (_, index) => (
-              <span className="ticker-set" key={index}>
-                <span>DATA ANALYTICS</span><i>✳</i><span>AI &amp; MACHINE LEARNING</span><i>✳</i>
-                <span>FULL-STACK DEVELOPMENT</span><i>✳</i><span>BUSINESS INTELLIGENCE</span><i>✳</i>
-              </span>
-            ))}
-          </div>
-        </div>
-
-        <section className="content-section section-wrap about-section" id="about">
-          <SectionHeader number="01" kicker="A LITTLE ABOUT ME" title="Curious by nature. Builder by instinct." />
-          <div className="about-layout">
-            <p className="about-lede">
-              I like connecting the dots between <span>data, technology,</span> and the people
-              they can help.
-            </p>
-            <div className="about-detail">
-              <p>
-                My work so far spans data preparation, SQL analysis, Python projects, and
-                dashboards that make findings easier to act on. Now I&apos;m growing my
-                full-stack and AI/ML skills by building practical things — including this
-                portfolio and its AI-powered guide.
-              </p>
-              <a href="#experience" className="inline-arrow">
-                My experience <ArrowUpRight size={17} aria-hidden="true" />
-              </a>
-            </div>
-          </div>
-        </section>
-
-        <section className="content-section focus-section" id="skills">
-          <div className="section-wrap">
-            <SectionHeader number="02" kicker="SKILLS & INTERESTS" title="Skills in action. Curiosity in motion." />
-            <div className="focus-grid">
-              {tracks.map((track, index) => {
-                const Icon = track.icon;
-                return (
-                  <motion.article
-                    className={`focus-card focus-${track.color}`}
-                    key={track.number}
-                    initial={motionOff ? false : "hidden"}
-                    whileInView="visible"
-                    viewport={{ once: true, amount: 0.18 }}
-                    variants={reveal}
-                    transition={{ duration: 0.55, delay: index * 0.1 }}
-                    whileHover={motionOff ? undefined : { y: -7, rotateX: 2 }}
-                  >
-                    <div className="focus-card-top">
-                      <span className="focus-number">{track.number}</span>
-                      <span className="focus-icon"><Icon size={21} aria-hidden="true" /></span>
-                    </div>
-                    <p className="focus-label">{track.label}</p>
-                    <h3>{track.title}</h3>
-                    <p className="focus-description">{track.description}</p>
-                    <div className="skill-tags">
-                      {track.skills.map((skill) => <span key={skill}>{skill}</span>)}
-                    </div>
-                  </motion.article>
-                );
-              })}
-            </div>
-            <p className="toolkit-note">
-              Practical skills, project tools, and areas I&apos;m actively developing — experience varies by technology.
-            </p>
-            <div className="skill-interests">
-              <span className="interest-label">ALWAYS CURIOUS ABOUT</span>
-              <div className="interest-list">
-                {["Data storytelling", "Practical AI", "Customer insights", "Interactive dashboards", "Useful digital tools"].map((interest, index) => (
-                  <motion.span
-                    key={interest}
-                    initial={motionOff ? false : { opacity: 0, scale: 0.9 }}
-                    whileInView={{ opacity: 1, scale: 1 }}
-                    viewport={{ once: true, amount: 0.6 }}
-                    transition={{ duration: 0.3, delay: index * 0.07 }}
-                  >
-                    {interest}
-                  </motion.span>
-                ))}
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <section className="content-section section-wrap work-section" id="work">
-          <SectionHeader number="03" kicker="SELECTED PROJECTS" title="Projects, experiments, and what I&apos;m building next." />
-          <div className="projects-grid">
-            {projects.map((project, index) => {
-              const Icon = project.icon;
-              return (
-                <motion.a
-                  href={project.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="project-card"
-                  key={project.number}
-                  initial={motionOff ? false : "hidden"}
-                  whileInView="visible"
-                  viewport={{ once: true, amount: 0.16 }}
-                  variants={reveal}
-                  transition={{ duration: 0.55, delay: (index % 2) * 0.1 }}
-                  whileHover={motionOff ? undefined : { y: -6, rotateX: 2 }}
-                  aria-label={`Open ${project.title} on GitHub`}
-                >
-                  <div className={`project-art ${project.className}`}>
-                    <div className="art-window" aria-hidden="true">
-                      <div className="art-window-top"><i /><i /><i /><span>INSIGHT / {project.number}</span></div>
-                      <div className="art-window-content">
-                        <div className="art-side"><i /><i /><i /><i /></div>
-                        <div className="art-visual">
-                          <span className="art-visual-label">{project.artLabel}</span>
-                          <div className="art-graph"><i /><i /><i /><i /><i /><i /></div>
-                        </div>
-                      </div>
-                    </div>
-                    <span className="art-project-icon"><Icon size={19} aria-hidden="true" /></span>
-                    <span className="art-index">{project.inProgress ? "WIP" : project.number}</span>
-                  </div>
-                  <div className="project-info">
-                    <div className="project-meta"><span>{project.category}</span><ArrowUpRight size={17} aria-hidden="true" /></div>
-                    <h3>{project.title}</h3>
-                    <p>{project.description}</p>
-                    {project.inProgress && <span className="project-status">IN PROGRESS</span>}
-                  </div>
-                </motion.a>
-              );
-            })}
-          </div>
-          <a className="all-work-link" href="https://github.com/iam-shubhamm" target="_blank" rel="noopener noreferrer">
-            Explore all my repositories <ArrowUpRight size={17} aria-hidden="true" />
-          </a>
-        </section>
-
         <section className="content-section experience-section" id="experience">
           <div className="section-wrap">
-            <SectionHeader number="04" kicker="EXPERIENCE" title="Experience so far." />
+            <SectionHeader number="02" kicker="EXPERIENCE" title="Experience so far." />
             <div className="experience-list">
               {experiences.map((experience, index) => (
                 <motion.article
@@ -615,32 +573,277 @@ export default function Portfolio() {
           </div>
         </section>
 
+        <section className="content-section focus-section" id="skills">
+          <div className="section-wrap">
+            <SectionHeader number="03" kicker="SKILLS & INTERESTS" title="A practical toolkit, still growing." />
+            <div className="skill-filters" role="group" aria-label="Filter skill categories">
+              <button
+                type="button"
+                className={skillFilter === "all" ? "is-selected" : ""}
+                aria-pressed={skillFilter === "all"}
+                onClick={() => setSkillFilter("all")}
+              >
+                All skills
+              </button>
+              {tracks.map((track) => (
+                <button
+                  type="button"
+                  className={skillFilter === track.id ? "is-selected" : ""}
+                  aria-pressed={skillFilter === track.id}
+                  key={track.id}
+                  onClick={() => setSkillFilter(track.id)}
+                >
+                  {track.label}
+                </button>
+              ))}
+            </div>
+            <motion.div className="focus-grid" layout>
+              {tracks.filter((track) => skillFilter === "all" || track.id === skillFilter).map((track, index) => {
+                const Icon = track.icon;
+                return (
+                  <motion.article
+                    className={`focus-card focus-${track.color}`}
+                    key={track.id}
+                    layout
+                    initial={motionOff ? false : { opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: motionOff ? 0 : 0.38, delay: motionOff ? 0 : index * 0.06 }}
+                    whileHover={motionOff ? undefined : { y: -7, rotateX: 2 }}
+                  >
+                    <div className="focus-card-top">
+                      <span className="focus-number">{track.number}</span>
+                      <span className="focus-icon"><Icon size={21} aria-hidden="true" /></span>
+                    </div>
+                    <p className="focus-label">{track.label}</p>
+                    <h3>{track.title}</h3>
+                    <p className="focus-description">{track.description}</p>
+                    {track.skillGroups.map((group) => (
+                      <div className="skill-group" key={group.label}>
+                        <span className="skill-group-label">{group.label}</span>
+                        <div className="skill-tags">
+                          {group.skills.map((skill) => <span key={skill}>{skill}</span>)}
+                        </div>
+                      </div>
+                    ))}
+                  </motion.article>
+                );
+              })}
+            </motion.div>
+            <p className="toolkit-note">
+              Practical skills, project tools, and areas I&apos;m actively developing — experience varies by technology.
+            </p>
+            <div className="skill-interests">
+              <span className="interest-label">ALWAYS CURIOUS ABOUT</span>
+              <div className="interest-list">
+                {["Data storytelling", "Practical AI", "Customer insights", "Interactive dashboards", "Useful digital tools"].map((interest, index) => (
+                  <motion.span
+                    key={interest}
+                    initial={motionOff ? false : { opacity: 0, scale: 0.9 }}
+                    whileInView={{ opacity: 1, scale: 1 }}
+                    viewport={{ once: true, amount: 0.6 }}
+                    transition={{ duration: 0.3, delay: index * 0.07 }}
+                  >
+                    {interest}
+                  </motion.span>
+                ))}
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section className="content-section section-wrap work-section" id="work">
+          <SectionHeader number="04" kicker="SELECTED PROJECTS" title="Projects, experiments, and what I&apos;m building next." />
+          <div className="project-filters" role="group" aria-label="Filter project categories">
+            {[
+              { id: "all", label: "All projects" },
+              { id: "analytics", label: "Data analytics" },
+              { id: "ai-ml", label: "AI & machine learning" },
+            ].map((filter) => (
+              <button
+                type="button"
+                className={projectFilter === filter.id ? "is-selected" : ""}
+                aria-pressed={projectFilter === filter.id}
+                key={filter.id}
+                onClick={() => setProjectFilter(filter.id)}
+              >
+                {filter.label}
+              </button>
+            ))}
+          </div>
+          <div className="projects-grid">
+            {projects.filter((project) => projectFilter === "all" || project.categoryId === projectFilter).map((project, index) => {
+              const Icon = project.icon;
+              return (
+                <motion.article
+                  className="project-card"
+                  key={project.number}
+                  initial={motionOff ? false : "hidden"}
+                  whileInView="visible"
+                  viewport={{ once: true, amount: 0.16 }}
+                  variants={reveal}
+                  transition={{ duration: 0.55, delay: (index % 2) * 0.1 }}
+                  whileHover={motionOff ? undefined : { y: -6, rotateX: 2 }}
+                >
+                  <div className={`project-art ${project.className}`}>
+                    <div className="art-window" aria-hidden="true">
+                      <div className="art-window-top"><i /><i /><i /><span>INSIGHT / {project.number}</span></div>
+                      <div className="art-window-content">
+                        <div className="art-side"><i /><i /><i /><i /></div>
+                        <div className="art-visual">
+                          <span className="art-visual-label">{project.artLabel}</span>
+                          <div className="art-graph"><i /><i /><i /><i /><i /><i /></div>
+                        </div>
+                      </div>
+                    </div>
+                    <span className="art-project-icon"><Icon size={19} aria-hidden="true" /></span>
+                    <span className="art-index">{project.inProgress ? "WIP" : project.number}</span>
+                  </div>
+                  <div className="project-info">
+                    <div className="project-meta"><span>{project.category}</span><ArrowUpRight size={17} aria-hidden="true" /></div>
+                    <h3>{project.title}</h3>
+                    <p>{project.description}</p>
+                    {project.inProgress && <span className="project-status">IN PROGRESS</span>}
+                    <div className="project-technologies" aria-label="Technologies and topics">
+                      {project.technologies.map((technology) => <span key={technology}>{technology}</span>)}
+                    </div>
+                    <div className="project-actions">
+                      <a href={project.href} target="_blank" rel="noopener noreferrer">
+                        <Code2 size={15} aria-hidden="true" /> Source code <ArrowUpRight size={14} aria-hidden="true" />
+                      </a>
+                      {project.demoHref && (
+                        <a href={project.demoHref} target="_blank" rel="noopener noreferrer">
+                          Live demo <ArrowUpRight size={14} aria-hidden="true" />
+                        </a>
+                      )}
+                    </div>
+                  </div>
+                </motion.article>
+              );
+            })}
+          </div>
+          <a className="all-work-link" href="https://github.com/iam-shubhamm" target="_blank" rel="noopener noreferrer">
+            Explore all my repositories <ArrowUpRight size={17} aria-hidden="true" />
+          </a>
+        </section>
+
+        <section className="content-section certification-section" id="certifications">
+          <div className="section-wrap">
+            <SectionHeader number="05" kicker="CERTIFICATIONS" title="Learning, with proof when it’s ready." />
+            {certifications.length > 0 ? (
+              <div className="certification-grid">
+                {certifications.map((certification) => (
+                  <article className="certification-card" key={`${certification.organization}-${certification.title}`}>
+                    <span><Sparkles size={18} aria-hidden="true" /></span>
+                    <div>
+                      <h3>{certification.title}</h3>
+                      <p>{certification.organization}{certification.issueDate ? ` · ${certification.issueDate}` : ""}</p>
+                    </div>
+                    {certification.url && (
+                      <a href={certification.url} target="_blank" rel="noopener noreferrer">
+                        View certificate <ArrowUpRight size={15} aria-hidden="true" />
+                      </a>
+                    )}
+                  </article>
+                ))}
+              </div>
+            ) : (
+              <div className="certification-empty">
+                <Sparkles size={20} aria-hidden="true" />
+                <div>
+                  <h3>Certificate links coming soon</h3>
+                  <p>No verified certificate URLs have been added yet. I&apos;ll share them here once available.</p>
+                </div>
+              </div>
+            )}
+          </div>
+        </section>
+
         <section className="contact-section" id="contact">
           <div className="section-wrap contact-layout">
             <div className="contact-copy">
-              <p className="eyebrow"><span className="status-dot" /> LET&apos;S BUILD SOMETHING GOOD</p>
-              <h2>Have an idea?<br /><span>Let&apos;s talk.</span></h2>
+              <SectionHeader number="06" kicker="CONTACT" title="Have an idea? Let’s talk." />
+              <p className="contact-intro">Tell me what you&apos;re working on or what you&apos;d like to discuss.</p>
               <a className="button button-light" href="mailto:shubhamkanpura7@gmail.com">
                 Say hello <ArrowUpRight size={18} aria-hidden="true" />
               </a>
+              <div className="contact-socials">
+                {socialLinks.slice(0, 2).map(({ label, href, icon: Icon }) => (
+                  <a key={label} href={href} target="_blank" rel="noopener noreferrer">
+                    <Icon size={16} aria-hidden="true" /> {label}
+                  </a>
+                ))}
+              </div>
             </div>
-            <div className="contact-links">
-              <a href="mailto:shubhamkanpura7@gmail.com">
-                <span><Mail size={18} aria-hidden="true" /></span>
-                <div><small>EMAIL</small><strong>shubhamkanpura7@gmail.com</strong></div>
-                <ArrowUpRight size={17} aria-hidden="true" />
-              </a>
-              <a href="https://github.com/iam-shubhamm" target="_blank" rel="noopener noreferrer">
-                <span><Code2 size={18} aria-hidden="true" /></span>
-                <div><small>GITHUB</small><strong>iam-shubhamm</strong></div>
-                <ArrowUpRight size={17} aria-hidden="true" />
-              </a>
-              <a href="https://www.linkedin.com/in/shubhamsingh7a" target="_blank" rel="noopener noreferrer">
-                <span><Network size={18} aria-hidden="true" /></span>
-                <div><small>LINKEDIN</small><strong>Shubham Singh</strong></div>
-                <ArrowUpRight size={17} aria-hidden="true" />
-              </a>
-            </div>
+            <form className="contact-form" onSubmit={sendContactMessage}>
+              <div className="contact-form-row">
+                <label>
+                  Your name
+                  <input
+                    autoComplete="name"
+                    maxLength={100}
+                    name="name"
+                    required
+                    value={contact.name}
+                    onChange={(event) => setContact({ ...contact, name: event.target.value })}
+                  />
+                </label>
+                <label>
+                  Email address
+                  <input
+                    autoComplete="email"
+                    maxLength={254}
+                    name="email"
+                    type="email"
+                    required
+                    value={contact.email}
+                    onChange={(event) => setContact({ ...contact, email: event.target.value })}
+                  />
+                </label>
+              </div>
+              <label>
+                Subject
+                <input
+                  maxLength={150}
+                  name="subject"
+                  required
+                  value={contact.subject}
+                  onChange={(event) => setContact({ ...contact, subject: event.target.value })}
+                />
+              </label>
+              <label>
+                Message
+                <textarea
+                  maxLength={5000}
+                  name="message"
+                  required
+                  rows={5}
+                  value={contact.message}
+                  onChange={(event) => setContact({ ...contact, message: event.target.value })}
+                />
+              </label>
+              <label className="contact-honeypot" aria-hidden="true">
+                Company
+                <input
+                  autoComplete="off"
+                  name="company"
+                  tabIndex={-1}
+                  value={contact.company}
+                  onChange={(event) => setContact({ ...contact, company: event.target.value })}
+                />
+              </label>
+              <button className="button button-primary contact-submit" type="submit" disabled={contactSending}>
+                {contactSending ? "Sending…" : "Send message"}
+                <Send size={16} aria-hidden="true" />
+              </button>
+              {contactStatus && (
+                <p className={`contact-status contact-status-${contactStatus.type}`} role="status" aria-live="polite">
+                  {contactStatus.message}
+                </p>
+              )}
+              <p className="contact-email-fallback">
+                Prefer email? <a href="mailto:shubhamkanpura7@gmail.com">shubhamkanpura7@gmail.com</a>
+              </p>
+            </form>
           </div>
         </section>
       </div>
@@ -648,9 +851,16 @@ export default function Portfolio() {
       <footer className="site-footer section-wrap">
         <a className="wordmark" href="#home">
           <span className="wordmark-mark">S</span>
-          <span>shubham<span className="wordmark-period">.</span></span>
+          <span>Shubham Singh<span className="wordmark-period">.</span></span>
         </a>
-        <p>Data · AI / ML · Full-stack</p>
+        <p>Data analytics · AI / ML · Data science · Full-stack</p>
+        <div className="footer-socials" aria-label="Social profiles">
+          {socialLinks.map(({ label, href, icon: Icon }) => (
+            <a key={label} href={href} aria-label={label} target={href.startsWith("mailto:") ? undefined : "_blank"} rel="noopener noreferrer">
+              <Icon size={16} aria-hidden="true" />
+            </a>
+          ))}
+        </div>
         <a className="back-top" href="#home">BACK TO TOP <ArrowUpRight size={15} aria-hidden="true" /></a>
         <small>© {new Date().getFullYear()} Shubham Singh</small>
       </footer>
