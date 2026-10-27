@@ -2,6 +2,8 @@
 
 A personal portfolio showcasing my work and learning path across data analytics, AI/machine learning, and full-stack development.
 
+The interface features a cinematic, red-accented design, a saved Morning/Evening theme switch, responsive navigation, and motion-aware animations.
+
 ## Deploy to Vercel
 
 Import this repository into [Vercel](https://vercel.com/new) and deploy it as a Next.js project. Vercel will build the app and its `/api/chat` server route automatically. The site no longer uses a static export or GitHub Pages deployment.

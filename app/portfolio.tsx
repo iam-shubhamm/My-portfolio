@@ -30,6 +30,13 @@ const navigation = [
   { id: "contact", label: "Contact" },
 ];
 
+const roles = [
+  "DATA ANALYST",
+  "ASPIRING DATA SCIENTIST",
+  "AI / ML ENGINEER IN PROGRESS",
+  "FULL-STACK DEVELOPER IN PROGRESS",
+];
+
 type Project = {
   number: string;
   title: string;
@@ -204,8 +211,9 @@ const reveal = {
 
 export default function Portfolio() {
   const reduceMotion = useReducedMotion();
-  const [dark, setDark] = useState(false);
+  const [dark, setDark] = useState(true);
   const [menuOpen, setMenuOpen] = useState(false);
+  const [roleIndex, setRoleIndex] = useState(0);
   const [chatOpen, setChatOpen] = useState(false);
   const [chatMode, setChatMode] = useState<ChatMode>("profile");
   const [messages, setMessages] = useState<ChatMessage[]>([
@@ -222,8 +230,18 @@ export default function Portfolio() {
 
   useEffect(() => {
     const savedTheme = window.localStorage.getItem("portfolio-theme");
-    setDark(savedTheme === "dark");
+    setDark(savedTheme === null ? true : savedTheme === "dark");
   }, []);
+
+  useEffect(() => {
+    if (reduceMotion) return;
+
+    const interval = window.setInterval(() => {
+      setRoleIndex((current) => (current + 1) % roles.length);
+    }, 2600);
+
+    return () => window.clearInterval(interval);
+  }, [reduceMotion]);
 
   useEffect(() => {
     messageListRef.current?.scrollTo({
@@ -337,11 +355,11 @@ export default function Portfolio() {
             type="button"
             onClick={toggleTheme}
             aria-pressed={dark}
-            aria-label={dark ? "Switch to light theme" : "Switch to dark theme"}
-            title={dark ? "Switch to light theme" : "Switch to dark theme"}
+            aria-label={dark ? "Switch to morning theme" : "Switch to evening theme"}
+            title={dark ? "Switch to morning theme" : "Switch to evening theme"}
           >
-            {dark ? <Sun size={18} aria-hidden="true" /> : <Moon size={18} aria-hidden="true" />}
-            <span className="theme-toggle-label">{dark ? "Light" : "Dark"}</span>
+            {dark ? <Sun size={16} aria-hidden="true" /> : <Moon size={16} aria-hidden="true" />}
+            <span className="theme-toggle-label">{dark ? "Morning" : "Evening"}</span>
           </button>
           <a className="nav-cta" href="#contact">
             Let&apos;s connect <ArrowUpRight size={16} aria-hidden="true" />
@@ -360,6 +378,12 @@ export default function Portfolio() {
 
       <div id="main-content">
         <section className="hero section-wrap" id="home">
+          <div className="hero-backdrop" aria-hidden="true">
+            <span className="hero-scanline" />
+            <span className="hero-backdrop-orbit backdrop-orbit-one" />
+            <span className="hero-backdrop-orbit backdrop-orbit-two" />
+            <span className="hero-backdrop-index">DATA / AI / 001</span>
+          </div>
           <motion.div
             className="hero-copy"
             initial={motionOff ? false : "hidden"}
@@ -367,27 +391,43 @@ export default function Portfolio() {
             variants={reveal}
             transition={{ duration: 0.7, ease: "easeOut" }}
           >
-            <p className="eyebrow"><span className="status-dot" /> OPEN TO OPPORTUNITIES</p>
+            <p className="eyebrow"><span className="status-dot" /> COMPUTER SCIENCE GRADUATE · OPEN TO OPPORTUNITIES</p>
             <h1>
-              Shubham<br />
-              <span>Singh.</span>
+              SHUBHAM<br />
+              <span>SINGH</span>
             </h1>
+            <div className="hero-role" aria-live="polite">
+              <span className="role-caret" aria-hidden="true" />
+              <motion.span
+                key={roles[roleIndex]}
+                initial={motionOff ? false : { opacity: 0, y: 9 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -7 }}
+                transition={{ duration: 0.24 }}
+              >
+                {roles[roleIndex]}
+              </motion.span>
+            </div>
             <p className="hero-lede">
-              I&apos;m a <strong>Data Analyst and aspiring Data Scientist</strong>, building
-              toward AI/ML engineering and full-stack development. I turn curious questions
-              into thoughtful, useful digital experiences.
+              I turn curious questions into clear data insights and useful digital
+              experiences — while growing my skills across machine learning and full-stack development.
             </p>
             <div className="hero-tags" aria-label="Areas of interest">
-              <span>AI / ML ENGINEERING</span><i /><span>FULL-STACK DEVELOPER</span><i />
-              <span>DATA ANALYST</span><i /><span>DATA SCIENCE</span>
+              <span>DATA ANALYTICS</span><i /><span>AI / ML</span><i />
+              <span>FULL-STACK</span><i /><span>DATA SCIENCE</span>
             </div>
             <div className="hero-actions">
               <a className="button button-primary" href="#work">
-                Explore my work <ArrowRight size={17} aria-hidden="true" />
+                View my projects <ArrowRight size={17} aria-hidden="true" />
               </a>
-              <a className="text-link" href="#about">
-                A little about me <ArrowDown size={16} aria-hidden="true" />
+              <a className="button button-outline" href="#about">
+                Discover my story <ArrowDown size={16} aria-hidden="true" />
               </a>
+            </div>
+            <div className="hero-social-proof" aria-label="Connect with Shubham">
+              <a href="https://github.com/iam-shubhamm" target="_blank" rel="noopener noreferrer">GITHUB <ArrowUpRight size={13} aria-hidden="true" /></a>
+              <a href="https://www.linkedin.com/in/shubhamsingh7a" target="_blank" rel="noopener noreferrer">LINKEDIN <ArrowUpRight size={13} aria-hidden="true" /></a>
+              <a href="mailto:shubhamkanpura7@gmail.com">EMAIL <ArrowUpRight size={13} aria-hidden="true" /></a>
             </div>
             <div className="hero-proof">
               <div><strong>04</strong><small>COMPLETED PROJECTS</small></div>
@@ -407,6 +447,7 @@ export default function Portfolio() {
           >
             <div className="visual-orbit orbit-one" />
             <div className="visual-orbit orbit-two" />
+            <div className="visual-orbit orbit-three" />
             <div className="visual-core">
               <div className="core-glow" />
               <div className="core-grid" />
