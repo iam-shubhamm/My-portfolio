@@ -95,6 +95,33 @@ const projects: Project[] = [
     artLabel: "Abstract customer data illustration",
     technologies: ["Power BI", "Customer analytics", "Visualization"],
   },
+  {
+    number: "03",
+    title: "Movie recommendation system",
+    category: "PYTHON · STREAMLIT",
+    categoryId: "ai-ml",
+    description:
+      "Built a movie recommendation experience that suggests films using similarity-based logic.",
+    href: "https://github.com/iam-shubhamm/Movie-Recommendation-System",
+    className: "movie-art",
+    icon: Code2,
+    artLabel: "Movie posters and personalized recommendations",
+    technologies: ["Python", "Streamlit", "Similarity logic"],
+  },
+  {
+    number: "04",
+    title: "Heart-attack prediction",
+    category: "MACHINE LEARNING · IN PROGRESS",
+    categoryId: "ai-ml",
+    description:
+      "An in-progress machine-learning project exploring heart-attack prediction. It is not a validated diagnostic tool, and no model results are claimed.",
+    href: "https://github.com/iam-shubhamm/Heart-Attack-Prediction-Using-Machine-Learning-Models",
+    className: "health-art",
+    icon: BrainCircuit,
+    artLabel: "Heart and ECG illustration for a machine-learning project",
+    technologies: ["Machine learning", "Python"],
+    inProgress: true,
+  },
 ];
 
 const tracks = [
@@ -673,6 +700,7 @@ export default function Portfolio() {
             {[
               { id: "all", label: "All projects" },
               { id: "analytics", label: "Data analytics" },
+              { id: "ai-ml", label: "AI & machine learning" },
             ].map((filter) => (
               <button
                 type="button"
@@ -974,17 +1002,25 @@ function ProjectSubject({ type }: { type: string }) {
   if (type === "movie-art") {
     return (
       <div className="project-subject movie-subject" aria-hidden="true">
-        <div className="movie-cards"><i /><i /><i /></div>
-        <div className="subject-metric"><small>RECOMMENDATIONS</small><span className="movie-stars">★★★★★</span></div>
+        <div className="movie-illustration">
+          <span className="movie-caption">PICKED FOR YOU</span>
+          <div className="movie-cards">
+            <i><span>SCI-FI</span></i>
+            <i><span>DRAMA</span></i>
+            <i><span>ADVENTURE</span></i>
+          </div>
+          <span className="movie-match"><Sparkles size={12} /> MATCHED TO YOUR TASTE</span>
+        </div>
       </div>
     );
   }
   return (
     <div className="project-subject health-subject" aria-hidden="true">
-      <svg viewBox="0 0 240 80" role="presentation">
-        <path d="M4 43h48l13-23 18 49 17-34 12 8h32l12-16 17 32 14-16h38" />
+      <svg viewBox="0 0 240 120" role="presentation">
+        <path className="heart-shape" d="M120 108 31 51C-15 17 33-20 73 7l47 40 47-40c40-27 88 10 42 44z" />
+        <path className="heart-pulse" d="M4 62h48l13-19 18 39 17-29 12 10h31l13-16 16 30 14-15h40" />
       </svg>
-      <span>HEART-ATTACK PREDICTION · WORK IN PROGRESS</span>
+      <span>MACHINE-LEARNING CONCEPT · IN PROGRESS</span>
     </div>
   );
 }
