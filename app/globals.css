@@ -625,10 +625,10 @@ button { color: inherit; }
 .portfolio ::selection { background: var(--accent); color: #fff; }
 
 .topbar {
-  top: 12px;
+  top: 0;
   width: min(1280px, calc(100% - 48px));
   min-height: 68px;
-  margin: 12px auto 0;
+  margin: 0 auto;
   padding-inline: 23px;
   border: 1px solid color-mix(in srgb, var(--line) 75%, transparent);
   border-radius: 999px;
@@ -1138,7 +1138,7 @@ button { color: inherit; }
   .focus-card:nth-child(5) { grid-column: 1 / -1; }
 }
 @media (max-width: 740px) {
-  .topbar { top: 8px; width: calc(100% - 28px); min-height: 60px; margin-top: 8px; padding-inline: 13px; }
+  .topbar { top: 0; width: calc(100% - 28px); min-height: 60px; margin-top: 0; padding-inline: 13px; }
   .topbar-actions { gap: 7px; }
   .topbar-actions .nav-cta { display: none; }
   .menu-toggle { display: grid; }

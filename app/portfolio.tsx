@@ -95,33 +95,6 @@ const projects: Project[] = [
     artLabel: "Abstract customer data illustration",
     technologies: ["Power BI", "Customer analytics", "Visualization"],
   },
-  {
-    number: "03",
-    title: "Movie recommendation system",
-    category: "PYTHON · STREAMLIT",
-    categoryId: "ai-ml",
-    description:
-      "Built a movie recommendation experience that suggests films using similarity-based logic.",
-    href: "https://github.com/iam-shubhamm/Movie-Recommendation-System",
-    className: "movie-art",
-    icon: Code2,
-    artLabel: "Abstract film recommendation illustration",
-    technologies: ["Python", "Streamlit", "Similarity logic"],
-  },
-  {
-    number: "04",
-    title: "Heart-attack prediction",
-    category: "MACHINE LEARNING · IN PROGRESS",
-    categoryId: "ai-ml",
-    description:
-      "An early machine-learning project repository. The public repository is currently being developed; no model results are claimed.",
-    href: "https://github.com/iam-shubhamm/Heart-Attack-Prediction-Using-Machine-Learning-Models",
-    className: "health-art",
-    icon: BrainCircuit,
-    artLabel: "Abstract machine-learning illustration",
-    technologies: ["Machine learning", "Python"],
-    inProgress: true,
-  },
 ];
 
 const tracks = [
@@ -700,7 +673,6 @@ export default function Portfolio() {
             {[
               { id: "all", label: "All projects" },
               { id: "analytics", label: "Data analytics" },
-              { id: "ai-ml", label: "AI & machine learning" },
             ].map((filter) => (
               <button
                 type="button"
