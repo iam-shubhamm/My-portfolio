@@ -195,6 +195,72 @@ const tracks = [
   },
 ];
 
+const customSkillIcon = (kind: "clean" | "chart" | "puzzle" | "check" | "report" | "search" | "pipeline" | "keyboard") => {
+  const symbols: Record<typeof kind, string> = {
+    clean: '<ellipse cx="12" cy="5" rx="7" ry="3"/><path d="M5 5v8c0 1.7 3.1 3 7 3 1.1 0 2.1-.1 3-.3"/><path d="m16 13 4 4m0-4-4 4"/>',
+    chart: '<path d="M4 19V5M4 19h16"/><path d="M7 16v-4h3v4m2 0V8h3v8m2 0v-5h2v5"/>',
+    puzzle: '<path d="M8 4H5a1 1 0 0 0-1 1v3h2a2 2 0 1 1 0 4H4v7h7v-2a2 2 0 1 1 4 0v2h5v-7h-2a2 2 0 1 1 0-4h2V5a1 1 0 0 0-1-1h-3v2a2 2 0 1 1-4 0V4Z"/>',
+    check: '<ellipse cx="11" cy="6" rx="7" ry="3"/><path d="M4 6v10c0 1.7 3.1 3 7 3"/><path d="m15 17 2 2 4-5"/>',
+    report: '<path d="M6 3h9l3 3v15H6z"/><path d="M15 3v4h3M9 18v-3m3 3v-6m3 6v-4"/>',
+    search: '<circle cx="10" cy="10" r="5"/><path d="m14 14 6 6M7 12V9m3 3V7m3 5V8"/>',
+    pipeline: '<ellipse cx="5" cy="7" rx="3" ry="2"/><ellipse cx="19" cy="17" rx="3" ry="2"/><path d="M8 7h3c2 0 2 10 5 10h1M5 9v8h11"/>',
+    keyboard: '<rect x="3" y="6" width="18" height="12" rx="2"/><path d="M7 10h.01M11 10h.01M15 10h.01M18 10h.01M7 14h10"/>',
+  };
+  const svg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#1f6feb" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="11" fill="#edf5ff" stroke="#c8dcf8"/>${symbols[kind]}</svg>`;
+  return `data:image/svg+xml,${encodeURIComponent(svg)}`;
+};
+
+const technologyIcons: Record<string, string> = {
+  Typing: customSkillIcon("keyboard"),
+  "Data Cleaning": customSkillIcon("clean"),
+  "Data Analysis": customSkillIcon("chart"),
+  "Data Visualization": customSkillIcon("chart"),
+  "Problem Solving": customSkillIcon("puzzle"),
+  "Data Validation": customSkillIcon("check"),
+  Reporting: customSkillIcon("report"),
+  "KPI Reporting": customSkillIcon("report"),
+  "Reporting Automation": customSkillIcon("report"),
+  "Exploratory Data Analysis": customSkillIcon("search"),
+  "ETL/ELT": customSkillIcon("pipeline"),
+  Python: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/python/python-original.svg",
+  SQL: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/mysql/mysql-original.svg",
+  "Microsoft SQL Server": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/microsoftsqlserver/microsoftsqlserver-original.svg",
+  PostgreSQL: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/postgresql/postgresql-original.svg",
+  MySQL: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/mysql/mysql-original.svg",
+  "Power BI": "https://cdn.simpleicons.org/microsoftpowerbi",
+  Tableau: "https://cdn.simpleicons.org/tableau",
+  Excel: "https://cdn.simpleicons.org/microsoftexcel",
+  "Advanced Excel": "https://cdn.simpleicons.org/microsoftexcel",
+  Pandas: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/pandas/pandas-original.svg",
+  NumPy: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/numpy/numpy-original.svg",
+  "Scikit-learn": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/scikitlearn/scikitlearn-original.svg",
+  TensorFlow: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/tensorflow/tensorflow-original.svg",
+  PyTorch: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/pytorch/pytorch-original.svg",
+  Keras: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/keras/keras-original.svg",
+  "OpenCV": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/opencv/opencv-original.svg",
+  JavaScript: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/javascript/javascript-original.svg",
+  TypeScript: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/typescript/typescript-original.svg",
+  React: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/react/react-original.svg",
+  "Next.js": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/nextjs/nextjs-original.svg",
+  HTML5: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/html5/html5-original.svg",
+  CSS3: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/css3/css3-original.svg",
+  "Tailwind CSS": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/tailwindcss/tailwindcss-original.svg",
+  Bootstrap: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/bootstrap/bootstrap-original.svg",
+  "Node.js": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/nodejs/nodejs-original.svg",
+  "Express.js": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/express/express-original.svg",
+  FastAPI: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/fastapi/fastapi-original.svg",
+  Flask: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/flask/flask-original.svg",
+  MongoDB: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/mongodb/mongodb-original.svg",
+  SQLite: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/sqlite/sqlite-original.svg",
+  Redis: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/redis/redis-original.svg",
+  Git: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/git/git-original.svg",
+  GitHub: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/github/github-original.svg",
+  Docker: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/docker/docker-original.svg",
+  AWS: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/amazonwebservices/amazonwebservices-original-wordmark.svg",
+  "Microsoft Azure": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/azure/azure-original.svg",
+  Vercel: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/vercel/vercel-original.svg",
+};
+
 const curiosityGroups = [
   { label: "AI & machine learning", color: "violet", items: ["Generative AI", "Large Language Models", "AI agents", "Retrieval-Augmented Generation", "Deep learning", "Natural language processing", "Computer vision", "MLOps", "Responsible AI"] },
   { label: "Analytics & business intelligence", color: "mint", items: ["Business intelligence", "Interactive dashboards", "KPI optimization", "Data storytelling", "Business reporting", "Analytics automation", "Decision support systems", "Data-driven strategy"] },
@@ -260,6 +326,8 @@ export default function Portfolio() {
   const skillsViewportRef = useRef<HTMLDivElement>(null);
   const skillWheelLockedRef = useRef(false);
   const skillWheelAccumulatorRef = useRef(0);
+  const skillFilterRef = useRef(skillFilter);
+  skillFilterRef.current = skillFilter;
   const [chatOpen, setChatOpen] = useState(false);
   const [chatMode, setChatMode] = useState<ChatMode>("profile");
   const [messages, setMessages] = useState<ChatMessage[]>([
@@ -308,38 +376,34 @@ export default function Portfolio() {
   }, []);
 
   useEffect(() => {
-    const viewport = skillsViewportRef.current;
-    if (!viewport) return;
-
     const handleWheel = (event: WheelEvent) => {
+      const viewport = skillsViewportRef.current;
+      if (!viewport) return;
+
+      const bounds = viewport.getBoundingClientRect();
+      const viewportVisible = bounds.top < window.innerHeight * 0.72 && bounds.bottom > window.innerHeight * 0.28;
+      if (!viewportVisible) return;
+
       const movement = Math.abs(event.deltaX) > Math.abs(event.deltaY) * 1.15
         ? event.deltaX
         : event.deltaY;
       if (Math.abs(movement) < 2) return;
 
-      const currentIndex = tracks.findIndex((track) => track.id === skillFilter);
-
-      // The final slide hands every wheel gesture back to the normal page scroll.
-      // Explicit horizontal input is still available for the reverse navigation.
-      const horizontalGesture = Math.abs(event.deltaX) > Math.abs(event.deltaY) * 1.15;
-      if (currentIndex === tracks.length - 1 && !horizontalGesture) {
-        skillWheelAccumulatorRef.current = 0;
-        skillWheelLockedRef.current = false;
-        return;
-      }
-
+      const currentIndex = tracks.findIndex((track) => track.id === skillFilterRef.current);
       const canMoveForward = movement > 0 && currentIndex < tracks.length - 1;
       const canMoveBackward = movement < 0 && currentIndex > 0;
-
-      // Keep the page scroll active once the user reaches either end of the skills track.
       if (!canMoveForward && !canMoveBackward) {
         skillWheelAccumulatorRef.current = 0;
         skillWheelLockedRef.current = false;
         return;
       }
 
+      if (skillWheelLockedRef.current) {
+        event.preventDefault();
+        return;
+      }
+
       event.preventDefault();
-      if (skillWheelLockedRef.current) return;
 
       if (movement * skillWheelAccumulatorRef.current < 0) {
         skillWheelAccumulatorRef.current = movement;
@@ -347,21 +411,22 @@ export default function Portfolio() {
         skillWheelAccumulatorRef.current += movement;
       }
 
-      if (Math.abs(skillWheelAccumulatorRef.current) < 70) return;
+      if (Math.abs(skillWheelAccumulatorRef.current) < 55) return;
 
       const direction = skillWheelAccumulatorRef.current > 0 ? 1 : -1;
       skillWheelAccumulatorRef.current = 0;
       skillWheelLockedRef.current = true;
-      setSkillFilter(tracks[currentIndex + direction].id);
+      skillFilterRef.current = tracks[currentIndex + direction].id;
+      setSkillFilter(skillFilterRef.current);
 
       window.setTimeout(() => {
         skillWheelLockedRef.current = false;
-      }, 520);
+      }, reduceMotion ? 80 : 520);
     };
 
-    viewport.addEventListener("wheel", handleWheel, { passive: false });
-    return () => viewport.removeEventListener("wheel", handleWheel);
-  }, [skillFilter]);
+    window.addEventListener("wheel", handleWheel, { passive: false });
+    return () => window.removeEventListener("wheel", handleWheel);
+  }, [reduceMotion]);
 
   useEffect(() => {
     const root = document.querySelector(".portfolio");
@@ -753,14 +818,17 @@ export default function Portfolio() {
                 style={{ transform: `translateX(-${tracks.findIndex((track) => track.id === skillFilter) * 100}%)` }}
               >
                 {tracks.map((track) => (
-                  <div className={`skills-category skills-${track.color}`} key={track.id}>
+                  <div className={`skills-category skills-${track.color}`} data-group-count={track.skillGroups.length} key={track.id}>
                     <h3>{track.label}</h3>
                     {track.skillGroups.map((group) => (
                       <div className="skill-group" key={group.label}>
                         <h4>{group.label}</h4>
                         <div className="skill-tags" role="list">
                           {group.skills.map((skill) => (
-                            <span className="skill-chip" role="listitem" tabIndex={0} key={skill}>{skill}</span>
+                            <span className={`skill-chip${technologyIcons[skill] ? " has-icon" : ""}`} role="listitem" tabIndex={0} key={skill}>
+                              {technologyIcons[skill] && <img src={technologyIcons[skill]} alt="" loading="lazy" />}
+                              <span>{skill}</span>
+                            </span>
                           ))}
                         </div>
                       </div>
