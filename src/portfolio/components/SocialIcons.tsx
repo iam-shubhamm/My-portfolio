@@ -76,7 +76,7 @@ const SocialIcons = () => {
           </a>
         </span>
         <span>
-          <a href={config.contact.instagram} target="_blank" rel="noopener noreferrer">
+          <a href={config.contact.instagram}>
             <FaInstagram />
           </a>
         </span>

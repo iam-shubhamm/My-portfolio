@@ -63,7 +63,7 @@ const About = () => {
             <a className="social-email" href={`https://mail.google.com/mail/u/0/?view=cm&fs=1&to=${encodeURIComponent(config.contact.email)}&authuser=${encodeURIComponent(config.contact.email)}`} target="_blank" rel="noopener noreferrer">
               <FaEnvelope /> Email
             </a>
-            <a className="social-instagram" href={config.contact.instagram} target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+            <a className="social-instagram" href={config.contact.instagram} aria-label="Instagram">
               <FaInstagram /> Instagram
             </a>
           </div>
