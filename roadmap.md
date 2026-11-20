@@ -1,0 +1,11 @@
+# Roadmap
+- [x] Restore the original Tech Stack title, icon pyramid and video background from the uploaded portfolio.
+- [x] Make Full Stack, Data Analytics and AI/ML one continuous horizontal scroll with automatic category transitions.
+- [x] Verify forward/backward scrolling, category buttons and narrow-screen layout.
+- [x] Finish all eight project covers and grouped My Work scrolling (Full Stack → Data Analytics → AI/ML).
+- [x] Add category navigation to All Works.
+- [x] Update Tech Stack to Full Stack, Data Analytics, Data Science and AI/ML (learning).
+- [x] Finish GitHub and Hire Me links; replace Play With Me with a contact action.
+- [x] Verify two experiences, contact form states (simulated responses), project navigation and mobile layout.
+- [ ] Verify real email delivery (requires owner's FormSubmit activation).
+- [x] Deliver a clean project ZIP with source, assets and setup instructions.

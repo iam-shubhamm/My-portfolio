@@ -1,0 +1,103 @@
+/* Site-wide color themes. The hero has its own richer background treatment. */
+:root[data-theme="light"] {
+  color-scheme: light;
+  --backgroundColor: #f3eff8;
+  --theme-text: #19161e;
+  --theme-muted: #756f7c;
+  --theme-surface: #ffffff;
+  --theme-border: #ded8e7;
+  --theme-header: rgba(243, 239, 248, 0.94);
+}
+
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --backgroundColor: #0b080c;
+  --theme-text: #eee9f2;
+  --theme-muted: #b5acbd;
+  --theme-surface: #17131a;
+  --theme-border: #39323e;
+  --theme-header: rgba(11, 8, 12, 0.94);
+}
+
+body,
+.main-body,
+.cta-section,
+.contact-section {
+  color: var(--theme-text);
+  background-color: var(--backgroundColor);
+  transition: color 220ms ease, background-color 220ms ease;
+}
+
+:root[data-theme="light"] .techstack {
+  background: var(--backgroundColor);
+}
+:root[data-theme="light"] .techstack-new .techstack-overlay {
+  background: rgba(243, 239, 248, 0.86);
+}
+:root[data-theme="light"] .techstack-video-container::before {
+  background: linear-gradient(to bottom, #f3eff8 0%, transparent 100%);
+}
+:root[data-theme="light"] .techstack-video-container::after {
+  background: linear-gradient(to top, #f3eff8 0%, transparent 100%);
+}
+:root[data-theme="light"] .techstack-content h2 {
+  background-image: none;
+}
+:root[data-theme="light"] .techstack-item {
+  background: rgba(255, 255, 255, 0.76);
+  border-color: rgba(73, 58, 91, 0.2);
+}
+:root[data-theme="light"] .techstack-item span {
+  color: #393341;
+}
+:root[data-theme="light"] .techstack-item:hover span { color: #19161e; }
+
+:root[data-theme="light"] .what-content,
+:root[data-theme="light"] .what-box,
+:root[data-theme="light"] .career-section,
+:root[data-theme="light"] .work-section,
+:root[data-theme="light"] .contact-section {
+  color: #19161e;
+}
+:root[data-theme="light"] .what-content::before,
+:root[data-theme="light"] .what-content::after,
+:root[data-theme="light"] .what-corner::before,
+:root[data-theme="light"] .what-corner::after,
+:root[data-theme="light"] .what-arrow {
+  border-color: #675a73;
+}
+:root[data-theme="light"] .what-arrow::before {
+  border-left-color: #675a73;
+  border-bottom-color: #675a73;
+}
+:root[data-theme="light"] .what-tags {
+  color: #332d3a;
+  background-color: rgba(255, 255, 255, 0.75);
+  border-color: #d6cde0;
+}
+:root[data-theme="light"] .career-section h2 {
+  background-image: linear-gradient(0deg, #7f40ff, #211b29);
+}
+:root[data-theme="light"] .career-info-box p,
+:root[data-theme="light"] .career-info h3,
+:root[data-theme="light"] .career-info h4 {
+  color: #282330;
+}
+:root[data-theme="light"] .work-section h2 { color: #19161e; }
+:root[data-theme="light"] .work-box { border-right-color: #d5cedd; }
+:root[data-theme="light"] .work-flex::before,
+:root[data-theme="light"] .work-flex::after { background-color: #d5cedd; }
+:root[data-theme="light"] .work-info h4,
+:root[data-theme="light"] .work-title h3,
+:root[data-theme="light"] .see-all-works h3,
+:root[data-theme="light"] .see-all-works p { color: #282330; }
+:root[data-theme="light"] .work-info p { color: #756f7c; }
+:root[data-theme="light"] .cta-btn-play {
+  color: #282330;
+  background: rgba(255, 255, 255, 0.65);
+  border-color: #d5cedd;
+}
+:root[data-theme="light"] .cta-btn-play:hover { background: #fff; }
+:root[data-theme="light"] a.contact-social { border-bottom-color: #cfc7d8; }
+
+:root[data-theme="dark"] .techstack-new .techstack-overlay { background: rgba(0, 0, 0, 0.5); }

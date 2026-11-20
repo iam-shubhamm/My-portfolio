@@ -1,0 +1,32 @@
+.work-section{position:relative;height:auto;padding:80px 0;color:var(--theme-text);background:var(--backgroundColor)}
+.work-container{margin:auto;min-width:0}
+.work-scroll-frame{position:relative;width:100%;background:var(--backgroundColor)}
+.work-heading{position:relative;z-index:12;background:var(--backgroundColor);display:flex;justify-content:space-between;align-items:center;gap:24px;padding:20px 0;border-bottom:1px solid var(--theme-border)}
+.work-heading h2{font-size:60px;font-weight:500;margin:0;line-height:1.1}
+.work-heading h2 span{color:var(--accentColor)}
+.work-category-nav{display:flex;gap:6px;flex-wrap:wrap}
+.work-category-button{color:var(--theme-muted);border:1px solid var(--theme-border);background:var(--backgroundColor);border-radius:6px;height:42px;font-size:14px}
+.work-category-button[aria-current=true],.work-category-button:hover{background:var(--accentColor);color:var(--theme-text);border-color:var(--accentColor)}
+.work-group{position:relative;flex:none;scroll-margin-top:180px;padding:28px 0 32px}
+.work-group-label{font-size:15px;color:var(--theme-muted);font-weight:500;margin:0 0 28px}
+.work-horizontal-stage{width:100%;overflow:hidden}
+.work-horizontal-track{position:relative;display:flex;gap:72px;width:max-content;padding-right:4px;will-change:transform}
+.work-project-track{display:flex;gap:48px}
+.work-horizontal-track .work-project{width:560px;flex-shrink:0;display:flex;flex-direction:column;gap:24px}
+.work-image,.work-image-in{display:block;width:100%;position:relative}
+.work-image img{display:block;width:100%;height:auto;aspect-ratio:16/9;object-fit:cover;border-radius:6px;background:var(--theme-surface)}
+.work-link{position:absolute;bottom:12px;right:12px;background:var(--theme-surface);color:var(--theme-text);width:42px;height:42px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:24px;z-index:1}
+.work-image video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.work-project-info{position:relative;padding-left:46px}
+.work-project-number{position:absolute;left:0;top:0;color:var(--theme-muted);font-size:17px}
+.work-project-category{color:var(--accentColor);font-size:13px;margin:0 0 8px}
+.work-project h4{font-size:26px;line-height:1.25;margin:0 0 14px;font-weight:500;overflow-wrap:anywhere}
+.work-project-description{font-size:15px;line-height:1.65;margin:0 0 16px;color:var(--theme-muted)}
+.work-project-tools{font-size:13px;line-height:1.6;margin:0;color:var(--theme-text)}
+.work-all-link{color:var(--theme-text);background:var(--theme-surface);border-color:var(--theme-border);margin-top:10px}
+@media(max-width:1100px){.work-heading h2{font-size:46px}.work-horizontal-track .work-project{width:450px}}
+@media(max-width:768px){.work-section{padding:50px 0}.work-heading{align-items:flex-start;flex-direction:column;gap:10px;padding:10px 0}.work-heading h2{font-size:36px}.work-category-nav{width:100%;gap:5px}.work-category-button{font-size:12px;padding:0 12px;height:38px}.work-horizontal-track{gap:32px}.work-project-track{gap:24px}.work-horizontal-track .work-project{width:min(400px,calc(100vw - 48px));gap:12px}.work-project h4{font-size:23px;margin-bottom:8px}.work-project-description{font-size:13px;line-height:1.5;margin-bottom:8px}.work-project-info{padding-left:32px}.work-project-tools{font-size:11px}.work-group{padding:14px 0}.work-group-label{margin-bottom:12px}}
+@media(max-height:700px){.work-horizontal-track .work-project{width:min(400px,calc(100vw - 48px))}.work-project h4{font-size:20px}.work-project-description{font-size:12px;line-height:1.4}.work-project-info{padding-left:30px}}
+@media(prefers-reduced-motion:reduce){.work-heading{position:sticky;top:60px}.work-horizontal-track{width:100%;flex-direction:column;will-change:auto}.work-project-track{flex-direction:column}.work-horizontal-track .work-project{width:100%;max-width:800px}.work-image-in{transition:none}}
+@media(max-height:850px) and (min-width:769px){.work-section{padding:24px 0}.work-heading{padding:10px 0}.work-group{padding:12px 0}.work-group-label{margin-bottom:12px}.work-horizontal-track .work-project{width:min(440px,calc(100vw - 48px));gap:12px}.work-project-info{padding-left:32px}.work-project h4{font-size:21px;margin-bottom:8px}.work-project-description{font-size:13px;line-height:1.4;margin-bottom:8px}.work-project-tools{font-size:11px}}
+@media(max-height:700px) and (min-width:769px){.work-horizontal-track .work-project{width:min(400px,calc(100vw - 48px))}.work-project h4{font-size:20px}.work-project-description{font-size:12px;line-height:1.35}.work-project-info{padding-left:30px}}
